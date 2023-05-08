@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# <宅建学習管理！>
 
-Things you may want to cover:
+## サイト概要
+### サイトテーマ
+<宅地建物取引士試験合格に向けて学習を始める人、学習を行っている人向けの学習コミュニティサイト>
 
-* Ruby version
+### テーマを選んだ理由
+<私自身資格取得に向けて学習を行った経験があり、同じように頑張っている仲間が近くにいたりその人たちの学習状況を見れると同じように頑張っている人の学習情報をみて、同じ仲間がいると思える環境があればいいなと思っていました。そこで、受験者の学習情報などを見てモチベーションを維持を目的に本テーマを選択しました。特に年間受験者数約20万人と母数も大きい宅建士受験者をターゲットに、アプリ内で学習中疑問に思っていることやつまずいている内容の共有やそれに対する回答が閲覧できるコミュニティサイトを作成することにしました。>
 
-* System dependencies
+### ターゲットユーザ
+<宅地建物取引士試験受験者>
 
-* Configuration
+### 主な利用シーン
+<学習時間の管理、打刻機能、他ユーザーの学習時間や参考書の閲覧、質問投稿及び回答の閲覧（余力があればユーザー同士のDM機能）>
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
