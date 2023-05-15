@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_15_161824) do
+ActiveRecord::Schema.define(version: 2023_05_15_163154) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,6 +44,26 @@ ActiveRecord::Schema.define(version: 2023_05_15_161824) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
+  end
+
+  create_table "learning_records", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.text "content_memo", null: false
+    t.date "date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "category_id", null: false
+    t.string "title", null: false
+    t.text "question", null: false
+    t.boolean "is_ansewer", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

@@ -1,0 +1,2 @@
+class LearningRecord < ApplicationRecord
+end

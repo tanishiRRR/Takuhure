@@ -8,10 +8,10 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
       t.string :encrypted_password, null: false, default: ""
 
       ##保存するカラム追加
-      t.string  :account_name, null: false                 #アカウント名
-      t.integer :is_study,     null: false, default: 0     #学習ステータス
-      t.date    :exam_date                                 #受験予定日
-      t.boolean :is_deleted,   null: false, default: false #会員ステータス
+      t.string  :account_name, null: false                  # アカウント名
+      t.integer :is_study,     null: false, default: 0      # 学習ステータス
+      t.date    :exam_date                                  # 受験予定日
+      t.boolean :is_deleted,   null: false, default: false  # 会員ステータス
 
 
       ## Recoverable
