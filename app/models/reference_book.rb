@@ -1,0 +1,2 @@
+class ReferenceBook < ApplicationRecord
+end

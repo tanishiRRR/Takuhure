@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_15_163154) do
+ActiveRecord::Schema.define(version: 2023_05_17_095715) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,8 +24,24 @@ ActiveRecord::Schema.define(version: 2023_05_15_163154) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "answers", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "question_id", null: false
+    t.text "answer", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "category_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "answer_id", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,6 +62,13 @@ ActiveRecord::Schema.define(version: 2023_05_15_163154) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "learning_records", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.time "start_time", null: false
@@ -62,6 +85,24 @@ ActiveRecord::Schema.define(version: 2023_05_15_163154) do
     t.string "title", null: false
     t.text "question", null: false
     t.boolean "is_ansewer", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reference_books", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "supplemental_questions", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.text "supplemental_question", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "supplementalquestions", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
