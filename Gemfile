@@ -58,6 +58,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rename'
 gem 'devise'
 gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 gem 'pry-rails'
 gem 'enum_help'
-gem 'bootstrap4-kaminari-views'
