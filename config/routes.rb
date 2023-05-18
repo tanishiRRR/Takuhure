@@ -34,5 +34,21 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  namespace :admin do
+    root to: 'homes#top'
+
+    resources :categories, only[:index, :create, :edit, :update]
+
+    resources :end_users, only[:show, :edit, :update]
+
+    resources :questions, only[:index, :show, :destroy]
+
+    resources :supplemental_questions, only[:destroy]
+
+    resources :answers, only[:index, :show, :destroy]
+
+    resources :comments, only[:index, :show, :destroy]
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
