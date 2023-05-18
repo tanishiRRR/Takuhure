@@ -1,26 +1,54 @@
-<h2>Log in</h2>
-
-<%= form_with model: @end_user, url: end_user_session_path, method: :post, local: true do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class='row mt-5 mb-3'>
+    <div class='col-11 offset-1'>
+      <span class="h4 pt-3">ログイン</span>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+  <div class='row mb-3'>
+    <div class='col-10 offset-2'>
+      <h4 class="pt-3">会員の方はこちらからログイン</h4>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-9 offset-3'>
+      <%= form_with model: @end_user, url: end_user_session_path, method: :post, local: true do |f| %>
+        <table class='table table-borderless'>
+          <tbody>
+            <tr>
+              <td><%= f.label :email, "メールアドレス" %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password, "パスワード" %></td>
+              <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+            </tr>
+          <tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-10 offset-2'>
+      <h4 class="pt-3">会員登録がお済みでない方</h4>
+      <div class='col-9 offset-3'>
+        <%= render "public/shared/links" %>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-10 offset-2'>
+      <div class='col-9 offset-3'>
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
