@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   # 会員用
-  # URL /customers/sign_in ...
-  devise_for :end_users, controller: {
-    registrations: "public/registrations",
-    sessions: "public/sessions"
+  # URL /end_users/sign_in ...
+  devise_for :end_users, controllers: {
+    sessions: 'public/sessions',
+    registrations: 'public/registrations',
+    passwords: 'public/passwords'
   }
 
   scope module: :public do
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
+    sessions: 'admin/sessions'
   }
 
   namespace :admin do
