@@ -5,9 +5,15 @@
   </div>
 
   <%= form_with model: @end_user, url: end_user_registration_path, method: :post, local: true do |f| %>
+
     <div class='form-group row mt-3'>
+      <%= f.label :account_name, 'アカウント名', class: 'col-3 form-label' %>
+      <%= f.email_field :account_name, autofocus: true, autocomplete: 'username', placeholder: 'samplename', class: 'col-9 form-control' %>
+    </div>
+
+    <div class='form-group row'>
       <%= f.label :email, 'メールアドレス', class: 'col-3 form-label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'sample@example.com', class: 'col-9 form-control' %>
+      <%= f.email_field :email, autocomplete: 'email', placeholder: 'sample@example.com', class: 'col-9 form-control' %>
     </div>
 
     <div class='form-group row'>
@@ -32,13 +38,13 @@
     </div>
   <% end %>
 
-  <div class='row mt-3'>
+  <div class='row mt-5'>
     <span class='border border-dark h4 bg-secondary text-white p-2'>既に登録済みの方</span>
   </div>
 
   <div class='row mt-3'>
     <div class='offset-3 col-9 pl-0'>
-      <%= link_to 'こちら', new_end_user_session_path(resource_name), class: 'border-bottom border-primary' %>からログインしてください。
+      <%= link_to 'こちら', new_end_user_session_path, class: 'border-bottom border-primary' %>からログインしてください。
     </div>
   </div>
 
