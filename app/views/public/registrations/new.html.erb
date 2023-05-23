@@ -1,5 +1,7 @@
 <div class='container'>
 
+  <%= render "public/shared/error_messages", resource: resource %>
+
   <div class='row mt-3'>
     <span class='border border-dark h4 bg-secondary text-white p-2'>新規会員登録</span>
   </div>
@@ -47,7 +49,5 @@
       <%= link_to 'こちら', new_end_user_session_path, class: 'border-bottom border-primary' %>からログインしてください。
     </div>
   </div>
-
-<%= render "public/shared/error_messages", resource: resource %>
 
 </div>

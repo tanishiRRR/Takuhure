@@ -56,7 +56,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def after_sign_up_for(resource)
+  def after_sign_up_path_for(resource)
     end_users_my_page_path
   end
 
