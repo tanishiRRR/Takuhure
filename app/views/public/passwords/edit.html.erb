@@ -4,28 +4,34 @@
     <span class='border border-dark h4 bg-secondary text-white p-2'>パスワード再設定</span>
   </div>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "publics/shared/error_messages", resource: resource %>
+  <%= render "public/shared/error_messages", resource: resource %>
+
+  <%= form_with model: @end_user, url: end_user_password_path, method: :patch, local: true do |f| %>
+
+    <div class='form-group row'>
+      <div class='col-3'>
+        <%= f.label :password, '新しいパスワード' %>
+        <% if @minimum_password_length %>
+          （<%= @minimum_password_length %>文字以上）
+        <% end %>
+      </div>
+      <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'col-9 form-control' %>
+    </div>
+
+    <div class='form-group row'>
+      <%= f.label :password_confirmation, 'パスワード（確認用）', class: 'form-label col-3' %>
+      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'col-9 form-control' %>
+    </div>
+
+    <!--隠しフィールドでトークンもパラメーターで送る。これにより
+    DBに保存されているリセットトークンとここから送られたトークンが一致するか確認している。%>-->
     <%= f.hidden_field :reset_password_token %>
 
-    <div class="field">
-      <%= f.label :password, "New password" %><br />
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-      <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation, "Confirm new password" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Change my password" %>
+    <div class='row'>
+      <div class='offset-2 col-10 pl-0'>
+        <%= f.submit 'パスワードを変更する', class: 'btn btn-success pl-5 pr-5' %>
+      </div>
     </div>
   <% end %>
-
-  <%= render "publics/shared/links" %>
 
 </div>

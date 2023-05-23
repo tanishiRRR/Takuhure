@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :reject_deleted_customer, only: [:create]
+  before_action :reject_deleted_end_user, only: [:create]
 
   # GET /resource/sign_in
   # def new
