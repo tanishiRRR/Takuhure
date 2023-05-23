@@ -61,3 +61,4 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'pry-rails'
 gem 'enum_help'
+gem 'dotenv-rails', groups: [:development, :test]
