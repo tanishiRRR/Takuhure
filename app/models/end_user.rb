@@ -4,7 +4,26 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 画像投稿
   has_one_attached :profile_image
+
+  # 学習記録詳細
+  has_many :learning_records
+
+  # 質問
+  has_many :questions
+
+  # 回答
+  has_many :answers
+
+  # コメント
+  has_many :comments
+
+  # いいね
+  has_many :favorites
+
+  # 参考書
+  has_many :reference_books
 
   def get_profile_image
     unless profile_image.attached?
