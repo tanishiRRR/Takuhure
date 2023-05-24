@@ -11,8 +11,10 @@
   </head>
 
   <body>
-    <header>
-      <ul class="navbar-nav ml-auto">
+    <!--ヘッダーを画面上部に固定-->
+    <header class='sticky-top'>
+      <!--navbar-expand-mdでナビゲーションバーとハンバーガーメニューの切り替え-->
+      <ul class='navbar nav-expand-md navbar-dark bg-dark text-white'>
         <li class="nav-item">
           <%= link_to 'マイページ', end_users_my_page_path, class: 'nav-link text-dark' %>
         </li>
