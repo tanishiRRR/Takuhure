@@ -1,4 +1,5 @@
 class Public::GuestSessionsController < Devise::SessionsController
+
   # ゲストログイン
   def guest_sign_in
     # find_or_create_by! => ゲストユーザーがあれば取り出す。なければ作成する
