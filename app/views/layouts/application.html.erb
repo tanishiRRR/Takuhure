@@ -25,6 +25,9 @@
               <%= link_to 'マイページ', end_users_my_page_path, class: 'nav-link' %>
             </li>
             <li class='nav-item active'>
+              <%= link_to 'ゲストログイン（閲覧用）', end_user_guest_sign_in_path, method: :post, class: 'nav-link' %>
+            </li>
+            <li class='nav-item active'>
               <%= link_to '会員ログアウト', destroy_end_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
             <li class='nav-item active'>

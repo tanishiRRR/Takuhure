@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  # ゲストログイン
+  # devise_scopeに渡すシンボルは単数形
+  devise_scope :end_user do
+    post 'end_user/guest_sign_in' => 'public/guest_sessions#guest_sign_in'
+  end
+
   # 会員用
   # URL /end_users/sign_in ...
   devise_for :end_users, controllers: {
