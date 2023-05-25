@@ -1,16 +1,31 @@
 class Public::EndUsersController < ApplicationController
+  before_action :authenticate_end_user!
+
   def show
+    @end_user = current_end_user
   end
 
   def edit
+    @end_user = current_end_user
   end
 
   def update
+    @end_user = current_end_user
+    if @end_user.update(end_user_params)
+      redirect_to end_users_my_page_path, notice: '登録情報を編集しました'
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
+    @end_user = current_end_user
   end
 
   def withdraw
+    @end_user = current_end_user
+    @end_user.update(is_delete: true)
+    reset_session  #この記述で現在のログイン状況をリセットすることができる
+    redirect_to root_path, notice: '退会しました'
   end
 end
