@@ -9,21 +9,20 @@ class EndUser < ApplicationRecord
 
   # 学習記録詳細
   has_many :learning_records
-
   # 質問
   has_many :questions
-
   # 回答
   has_many :answers
-
   # コメント
   has_many :comments
-
   # いいね
   has_many :favorites
-
   # 参考書
   has_many :reference_books
+
+  validates :account_name, presence: true  # presence: trueで入力済みかを検証
+  validates :email, presence: true, uniqueness: true  # uniqueness:trueでテーブル全体での重複を防ぐ(一つの名前のラベル名しか保存できないようにする)
+  validates :is_study, presence: true, format: { with: /\A\d{4}-\d{2}-\d{2}\z/}  # 日付の正規表(YYYY-MM-DD)
 
   def get_profile_image
     unless profile_image.attached?

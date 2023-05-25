@@ -24,8 +24,15 @@ class Public::EndUsersController < ApplicationController
 
   def withdraw
     @end_user = current_end_user
-    @end_user.update(is_delete: true)
+    @end_user.update(is_deleted: true)
     reset_session  #この記述で現在のログイン状況をリセットすることができる
     redirect_to root_path, notice: '退会しました'
   end
+
+  private
+
+    def end_user_params
+      params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, )
+    end
+
 end
