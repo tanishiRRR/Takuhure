@@ -4,17 +4,17 @@
     <span class='border border-dark h4 bg-secondary text-white p-2'>パスワード再設定</span>
   </div>
 
-  <%= render "public/shared/error_messages", resource: resource %>
+  <%= render 'public/shared/error_messages', resource: resource %>
 
   <%= form_with model: @end_user, url: end_user_password_path, method: :patch, local: true do |f| %>
 
-    <div class='form-group row'>
-      <div class='col-3'>
-        <%= f.label :password, '新しいパスワード' %>
+    <div class='form-group row mt-3'>
+      <%= f.label :password,class: 'col-3 form-label' do %>
+        新しいパスワード
         <% if @minimum_password_length %>
           （<%= @minimum_password_length %>文字以上）
         <% end %>
-      </div>
+      <% end %>
       <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'col-9 form-control' %>
     </div>
 
@@ -28,7 +28,7 @@
     <%= f.hidden_field :reset_password_token %>
 
     <div class='row'>
-      <div class='offset-2 col-10 pl-0'>
+      <div class='offset-3 col-9 pl-0'>
         <%= f.submit 'パスワードを変更する', class: 'btn btn-success pl-5 pr-5' %>
       </div>
     </div>
