@@ -22,7 +22,8 @@ class EndUser < ApplicationRecord
 
   validates :account_name, presence: true  # presence: trueで入力済みかを検証
   validates :email, presence: true, uniqueness: true  # uniqueness:trueでテーブル全体での重複を防ぐ(一つの名前のラベル名しか保存できないようにする)
-  validates :is_study, presence: true, format: { with: /\A\d{4}-\d{2}-\d{2}\z/}  # 日付の正規表(YYYY-MM-DD)
+  validates :is_study, presence: true
+  validates :exam_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/}  # 日付の正規表(YYYY-MM-DD)
 
   def get_profile_image
     unless profile_image.attached?

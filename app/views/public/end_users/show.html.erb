@@ -1,24 +1,16 @@
 <div class='container'>
 
   <div class='row mt-3'>
-    <span class='border border-dark h4 bg-secondary text-white p-2'>マイページ</span>
+    <h4 class='border border-dark bg-secondary text-white p-2'>マイページ</h4>
   </div>
 
   <div class='row mt-3'>
-    <div class='col d-flex flex-row'>
-    <!--d-flex : display を適用して, Flexコンテナを作成し, 子要素をFlexアイテムに変換-->
-    <!--flex-row : 左から横並び-->
-      <div class='p-2'>
-        <span class='font-weight-bold'>登録情報</span>
-      </div>
-      <div class='ml-3 p-2'>
-        <%= link_to '編集する', end_users_information_edit_path, class: 'btn btn-success btn-sm' %>
-      </div>
-    </div>
+    <div class='col-3'><p class='font-weight-bold'>登録情報</p></div>
+    <div class='col-5'><%= link_to '編集する', end_users_information_edit_path, class: 'btn btn-success btn-sm pl-5 pr-5' %></div>
   </div>
 
   <div class='row mt-3'>
-    <table class='col table table-bordered border-dark'>
+    <table class='col table table-bordered border-black'>
       <tbody>
         <tr>
           <td>アカウント名</td>
@@ -38,6 +30,16 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class='row'>
+    <div class='col-3'><p class='font-weight-bold'>質問投稿一覧</p></div>
+    <div class='col-5'><%= link_to '一覧を見る', questions_path, class: 'btn btn-primary btn-sm pl-5 pr-5' %></div>
+  </div>
+
+  <div class='row'>
+    <div class='col-3'><p class='font-weight-bold'>回答投稿一覧</p></div>
+    <div class='col-5'><%= link_to '一覧を見る', answers_path, class: 'btn btn-primary btn-sm pl-5 pr-5' %></div>
   </div>
 
 </div>
