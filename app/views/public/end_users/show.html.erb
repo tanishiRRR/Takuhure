@@ -28,11 +28,11 @@
         </tr>
         <tr>
           <td>学習ステータス</td>
-          <td><%= @end_user.is_study %></td>
+          <td><%= @end_user.is_study_i18n %></td>
         </tr>
         <tr>
           <td>受験予定日</td>
-          <td><%= @end_user.exam_date %></td>
+          <td><%= @end_user.exam_date.strftime("%Y年%m月%d日") %></td>
         </tr>
       </tbody>
     </table>
