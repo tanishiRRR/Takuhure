@@ -10,7 +10,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
       ##保存するカラム追加
       t.string  :account_name, null: false                  # アカウント名
       t.integer :is_study,     null: false, default: 0      # 学習ステータス
-      t.date    :exam_date                                  # 受験予定日
+      t.date    :exam_date, default: ""                     # 受験予定日
       t.boolean :is_deleted,   null: false, default: false  # 会員ステータス
 
 

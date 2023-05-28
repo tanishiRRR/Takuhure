@@ -32,7 +32,7 @@
         </tr>
         <tr>
           <td>受験予定日</td>
-          <td><%= @end_user.exam_date.strftime("%Y年%m月%d日") %></td>
+          <td><%= @end_user.exam_date.strftime("%Y年%m月%d日") if @end_user.exam_date.present? %></td>
         </tr>
       </tbody>
     </table>
