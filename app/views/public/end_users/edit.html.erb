@@ -21,12 +21,12 @@
       <%= f.email_field :email, placeholder: 'sample@example.com', class: 'col-10 form-control' %>
     </div>
 
-    <div class='form-group row mt-3'>
+    <div class='form-group row'>
       <%= f.label :is_study, '学習ステータス', class: 'col-2 form-label' %>
       <%= f.select :is_study, EndUser.is_studies.keys.map {|k| [I18n.t("enums.end_user.is_study.#{k}"), k]}, class: 'col-10 form-control' %>
     </div>
 
-    <div class='form-group row mt-3'>
+    <div class='form-group row'>
       <%= f.label :exam_date, '受験予定日', class: 'col-2 form-label' %>
       <%= f.text_field :exam_date, placeholder: 'YYYY-MM-DD (例:2023-10-01)', class: 'col-10 form-control' %>
     </div>

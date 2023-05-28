@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   # 会員用
-  # URL /end_users/sign_in ...
+  # この中に記述したex)sessionはex)publicのsessionsを参照するようになる
   devise_for :end_users, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',

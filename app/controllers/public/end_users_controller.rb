@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :check_guest, only: [:withdraw]
 
   def show
     @end_user = current_end_user
@@ -33,6 +34,13 @@ class Public::EndUsersController < ApplicationController
 
     def end_user_params
       params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, :profile_image )
+    end
+
+    def check_guest
+      @end_user =current_end_user
+      if @end_user.email == 'guest@example.com'
+        redirect_to end_users_my_page_path, alert: 'ゲストユーザーは退会できません'
+      end
     end
 
 end
