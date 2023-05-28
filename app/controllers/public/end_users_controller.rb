@@ -1,6 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :check_guest, only: [:withdraw]
+  before_action :check_guest, only: [:update, :withdraw]
 
   def show
     @end_user = current_end_user
@@ -39,7 +39,7 @@ class Public::EndUsersController < ApplicationController
     def check_guest
       @end_user =current_end_user
       if @end_user.email == 'guest@example.com'
-        redirect_to end_users_my_page_path, alert: 'ゲストユーザーは退会できません'
+        redirect_to end_users_my_page_path, alert: 'ゲストユーザーの編集・退会はできません'
       end
     end
 
