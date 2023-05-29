@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
 
+  # ゲストログイン
+  # devise_scopeに渡すシンボルは単数形
+  devise_scope :end_user do
+    post 'end_user/guest_sign_in' => 'public/sessions#guest_sign_in'
+  end
+
   # 会員用
-  # URL /customers/sign_in ...
-  devise_for :end_users, controller: {
-    registrations: "public/registrations",
-    sessions: "public/sessions"
+  # この中に記述したex)sessionはex)publicのsessionsを参照するようになる
+  devise_for :end_users, controllers: {
+    sessions: 'public/sessions',
+    registrations: 'public/registrations',
+    passwords: 'public/passwords'
   }
 
-  scope :public do
+  scope module: :public do
     root to: 'homes#top'
 
     get   'end_users/my_page' => 'end_users#show'
@@ -31,7 +38,7 @@ Rails.application.routes.draw do
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
+    sessions: 'admin/sessions'
   }
 
   namespace :admin do

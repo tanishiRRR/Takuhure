@@ -1,2 +1,21 @@
-<h1>Public::EndUsers#unsubscribe</h1>
-<p>Find me in app/views/public/end_users/unsubscribe.html.erb</p>
+<div class='container'>
+  <div class='row mt-5'>
+    <div class='col'>
+      <h2 class='text-center'>本当に退会しますか？</h2>
+      <h5 class='text-center mt-5'>
+        退会すると、会員登録情報や<br>
+        これまでの学習記録が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </h5>
+    </div>
+  </div>
+
+  <div class='row mt-5'>
+    <!--d-flex : display を適用して, Flexコンテナを作成し, 子要素をFlexアイテムに変換-->
+    <!--flex-row : 左から横並び-->
+    <div class='col d-flex flex-row justify-content-center'>
+      <div><%= link_to 'マイページに戻る', end_users_my_page_path, class: 'btn btn-primary pl-5 pr-5' %></div>
+      <div class='ml-5'><%= link_to '退会する', end_users_withdraw_path, method: :patch, data: { confirm: '本当に退会しますか'}, class: 'btn btn-danger pl-5 pr-5' %></div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,97 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if admin_signed_in? %>
+      <!--ヘッダーを画面上部に固定-->
+      <header class='sticky-top'>
+        <!--navbar-expand-mdでナビゲーションバーとハンバーガーメニューの切り替え-->
+        <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
+          <%= link_to '宅フレ！', new_admin_session_path , class: 'navbar-brand' %>
+          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
+          </button>
+          <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
+            <ul class='navbar-nav mr-auto'>
+              <li class='nav-item active'>
+                <%= link_to '会員一覧', admin_root_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to '質問一覧', admin_questions_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to '回答一覧', admin_answers_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to 'コメント一覧', admin_comments_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to 'カテゴリ一覧', admin_categories_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    <% elsif end_user_signed_in? %>
+      <header class='sticky-top'>
+        <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
+          <%= link_to '宅フレ！', root_path , class: 'navbar-brand' %>
+          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
+          </button>
+          <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
+            <ul class='navbar-nav mr-auto'>
+              <li class='nav-item active'>
+                <%= link_to 'マイページ', end_users_my_page_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to '学習時間', learning_records_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <p class='nav-link mb-0'>みんなの学習記録</p>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to 'Q&A', questions_top_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <p  class='nav-link mb-0'>いいね一覧</p>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class: 'nav-link' %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    <% else %>
+      <header class='sticky-top'>
+        <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
+          <%= link_to '宅フレ！', root_path , class: 'navbar-brand' %>
+          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
+          </button>
+          <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
+            <ul class='navbar-nav mr-auto'>
+              <li class='nav-item active'>
+                <%= link_to '新規登録', new_end_user_registration_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to 'ログイン', new_end_user_session_path, class: 'nav-link' %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    <% end %>
+
+    <main>
+      <%= render 'public/shared/flash_message' %>
+      <%= render 'public/shared/error_messages', resource: resource if devise_controller? %>
+      <%= yield %>
+    </main>
+
   </body>
+
 </html>

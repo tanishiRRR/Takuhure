@@ -1,2 +1,19 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>トップページ</h4>
+  </div>
+
+  <div class='row mt-5'>
+    <%= link_to '新規会員登録', new_end_user_registration_path, class: 'offset-2 col-8 btn btn-success btn-lg pl-5 pr-5' %>
+  </div>
+
+  <div class='row mt-3'>
+    <%= link_to 'ログインする', new_end_user_session_path, class: 'offset-2 col-8 btn btn-success btn-lg pl-5 pr-5' %>
+  </div>
+
+  <div class='row mt-3'>
+    <%= link_to 'ゲストユーザーとして利用する', end_user_guest_sign_in_path, method: :post, class: 'offset-2 col-8 btn btn-secondary btn-lg pl-5 pr-5' %>
+  </div>
+
+</div>
