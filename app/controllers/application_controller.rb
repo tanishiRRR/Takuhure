@@ -6,4 +6,7 @@ class ApplicationController < ActionController::Base
     Rails.application.routes.default_url_options[:host] = request.host_with_port
   end
 
+  # flashメッセージで、success、info、warning、dangerの4つのキーを使用できるようにする
+  add_flash_types :success, :info, :warning, :danger
+
 end

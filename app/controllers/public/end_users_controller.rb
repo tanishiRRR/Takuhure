@@ -13,7 +13,7 @@ class Public::EndUsersController < ApplicationController
   def update
     @end_user = current_end_user
     if @end_user.update(end_user_params)
-      redirect_to end_users_my_page_path, notice: '登録情報を編集しました'
+      redirect_to end_users_my_page_path, success: '登録情報を編集しました'
     else
       render :edit
     end
@@ -27,7 +27,7 @@ class Public::EndUsersController < ApplicationController
     @end_user = current_end_user
     @end_user.update(is_deleted: true)
     reset_session  #この記述で現在のログイン状況をリセットすることができる
-    redirect_to root_path, notice: '退会しました'
+    redirect_to root_path, success: '退会しました'
   end
 
   private
@@ -39,7 +39,7 @@ class Public::EndUsersController < ApplicationController
     def check_guest
       @end_user =current_end_user
       if @end_user.email == 'guest@example.com'
-        redirect_to end_users_my_page_path, alert: 'ゲストユーザーの編集・退会はできません'
+        redirect_to end_users_my_page_path, danger: 'ゲストユーザーの編集・退会はできません'
       end
     end
 

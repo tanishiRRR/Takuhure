@@ -6,7 +6,7 @@ class Public::PasswordsController < Devise::PasswordsController
   def check_guest
     # downcaseで大文字小文字を無視
     if params[:end_user][:email].downcase == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーのパスワード再設定はできません'
+      redirect_to root_path, danger: 'ゲストユーザーのパスワード再設定はできません'
     end
   end
 
