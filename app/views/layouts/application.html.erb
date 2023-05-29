@@ -39,6 +39,7 @@
     </header>
     <main>
       <div><%= render 'public/shared/flash_message' %></div>
+      <div><%= render 'public/shared/error_messages', resource: resource %></div>
       <%= yield %>
     </main>
   </body>

@@ -4,8 +4,6 @@
     <h4 class='border border-dark bg-secondary text-white p-2'>パスワード再設定</h4>
   </div>
 
-  <%= render 'public/shared/error_messages', resource: resource %>
-
   <%= form_with model: @end_user, url: end_user_password_path, method: :post, local: true do |f| %>
     <div class='form-group row mt-3'>
       <%= f.label :email, 'メールアドレス', class: 'col-2 form-label' %>
