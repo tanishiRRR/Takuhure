@@ -14,8 +14,8 @@
     <table class='col table table-bordered border-black'>
       <tbody>
         <tr>
-          <td style='width: 30%'>会員ID</td>
-          <td style='width: 70%'><%= @end_user.id %></td>
+          <td style='width: 25%'>会員ID</td>
+          <td style='width: 75%'><%= @end_user.id %></td>
         </tr>
         <tr>
           <td>アカウント名</td>
@@ -44,15 +44,15 @@
   </div>
 
   <div class='row mt-5'>
-    <%= link_to '会員情報を編集する', edit_admin_end_user_path(@end_user), class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
+    <%= link_to '会員情報を編集する', edit_admin_end_user_path(@end_user), class: 'offset-3 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
   <div class='row mt-5'>
-    <%= link_to '質問投稿一覧を見る', admin_questions_path, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+    <%= link_to '質問投稿一覧を見る', admin_questions_path, class: 'offset-3 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
   <div class='row mt-3'>
-    <%= link_to '回答投稿一覧を見る', admin_answers_path, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+    <%= link_to '回答投稿一覧を見る', admin_answers_path, class: 'offset-3 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
 </div>

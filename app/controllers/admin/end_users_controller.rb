@@ -15,6 +15,13 @@ class Admin::EndUsersController < ApplicationController
     if @end_user.update(end_user_params)
       redirect_to admin_end_user_path(@end_user), success: '会員情報を編集しました'
     else
+      if @end_user.account_name.empty?
+        flash.now[:warning] = 'アカウント名を入力してください'
+      elsif @end_user.email.empty?
+        flash.now[:warning] = 'メールアドレスを入力してください'
+      else
+        flash.now[:warning] = '既に登録済みのメールアドレスは入力できません'
+      end
       render :edit
     end
   end

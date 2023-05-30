@@ -4,11 +4,16 @@
     <h4 class='border border-dark bg-secondary text-white p-2'>会員情報編集</h4>
   </div>
 
-  <%= form_with model: @end_user, url: end_users_information_path, method: :patch, local: true do |f| %>
+  <%= form_with model: @end_user, url: admin_end_user_path, method: :patch, local: true do |f| %>
 
     <div class='form-group row mt-3'>
       <%= f.label :profile_image, 'プロフィール画像', class: 'col-2 form-label' %>
       <div class='col10'><%= f.file_field :profile_image, accept: 'image/*' %></div>
+    </div>
+
+    <div class='row'>
+      <p class='col-2'>会員ID</p>
+      <div class='col-10'><%= @end_user.id %></div>
     </div>
 
     <div class='form-group row'>
@@ -31,10 +36,19 @@
       <%= f.text_field :exam_date, placeholder: 'YYYY-MM-DD (例:2023-10-01)', class: 'col-10 form-control' %>
     </div>
 
+    <div class='form-group row'>
+      <%= f.label :is_deleted, '会員ステータス', class: 'col-2 form-label' %>
+      <div class='col-10'>
+        <%= f.radio_button :is_deleted, false, checked: false %>
+        <%= f.label:is_deleted, "有効", value: false %>
+        <%= f.radio_button :is_deleted, true, checked: true %>
+        <%= f.label:is_deleted, "退会", value: true %>
+      </div>
+    </div>
+
     <div class='row'>
       <div class='offset-2 col-10 pl-0'>
         <%= f.submit '変更内容を保存', class: 'btn btn-success pl-5 pr-5' %>
-        <%= link_to '削除する', end_users_unsubscribe_path, class: 'btn btn-danger pl-5 pr-5 ml-5' %>
       </div>
     </div>
   <% end %>
