@@ -36,7 +36,7 @@ class Public::EndUsersController < ApplicationController
   private
 
     def end_user_params
-      params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, :profile_image )
+      params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, :profile_image)
     end
 
     def check_guest

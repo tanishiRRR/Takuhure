@@ -100,9 +100,9 @@ ActiveRecord::Schema.define(version: 2023_05_17_115049) do
   create_table "learning_records", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.time "start_time", null: false
-    t.time "end_time", null: false
-    t.text "content_memo", null: false
-    t.date "date", null: false
+    t.time "end_time"
+    t.text "content_memo"
+    t.integer "is_record", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
