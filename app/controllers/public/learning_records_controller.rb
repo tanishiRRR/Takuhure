@@ -13,7 +13,7 @@ class Public::LearningRecordsController < ApplicationController
     @learning_record = LearningRecord.new(learning_record_params)
     @learning_record.end_user_id = current_end_user.id
     @learning_record.start_time = Time.now
-    if @learning_record.save!
+    if @learning_record.save
       redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
     else
       flash.now[:warning] = 'もう一度開始ボタンを押してください'
@@ -22,7 +22,8 @@ class Public::LearningRecordsController < ApplicationController
   end
 
   def end_count
-    @learning_record = LearningRecord.where(is_record: 'true')
+    @learning_record = LearningRecord.find_by(is_record: 'true')
+    # byebug
     @learning_record.end_time = Time.now
     if @learning_record.update(learning_record_params)
       redirect_to new_learning_record_path, success: '終了時刻を正常に打刻しました'
