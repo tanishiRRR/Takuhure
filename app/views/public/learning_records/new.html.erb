@@ -4,23 +4,28 @@
     <h4 class='border border-dark bg-secondary text-white p-2'>学習時間打刻</h4>
   </div>
 
-  <div class='row mt-3'>
-    <%= form_with model: @learning_record, url: learning_records_path, method: :post, local: true do |f| %>
-      <div class='col-6'>
-        <%= f.hidden_field :is_record, :value => true %>
-        <%= f.submit '開始', class: 'btn btn-success' %>
-      </div>
-    <% end %>
+  <div class ='row mt-3'>
+    <div class ='col-6'>
 
-    <%= form_with model: @learning_record, url: learning_records_path, method: :patch, local: true do |f| %>
-      <div class='col-6'>
-        <%= f.hidden_field :is_record, :value => false %>
-        <%= f.label :content_memo, 'メモ', class: 'form-label' %>
-        <%= f.text_area :content_memo, autofocus: true, placeholder: 'メモ書き', class: 'form-control' %>
-        <%= f.submit '終了', class: 'btn btn-success' %>
-      </div>
-    <% end %>
+    </div>
 
+    <% if LearningRecord.exists?(is_record: 'true') %>
+      <%= form_with model: @learning_record, url: learning_records_path, method: :patch, local: true do |f| %>
+        <div class='col-6'>
+          <%= f.hidden_field :is_record, :value => false %>
+          <%= f.label :content_memo, 'メモ', class: 'form-label' %>
+          <%= f.text_area :content_memo, autofocus: true, placeholder: 'メモ書き', class: 'form-control' %>
+          <%= f.submit '終了', class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= form_with model: @learning_record, url: learning_records_path, method: :post, local: true do |f| %>
+        <div class='col-6'>
+          <%= f.hidden_field :is_record, :value => true %>
+          <%= f.submit '開始', class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
   <div class='row mt-5'>
