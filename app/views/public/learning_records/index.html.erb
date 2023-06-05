@@ -21,6 +21,11 @@
     <div class='col-3'>
       <div>
         <p>表示年月日</p>
+        <p class='text-center'>
+          <%= link_to '<', learning_records_path(year: @time.prev_month.year, month: @time.prev_month.month), class: 'text-reset h5 pr-4' %>
+          <%= I18n.l @time, format: :short_month %>
+          <%= link_to '>', learning_records_path(year: @time.next_month.year, month: @time.next_month.month), class: 'text-reset h5 pl-4' %>
+        </p>
       </div>
     </div>
   </div>

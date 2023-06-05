@@ -14,4 +14,5 @@ class LearningRecord < ApplicationRecord
   def punctuation_day(year, month, day)
     Date.new(year, month, day)
   end
+
 end
