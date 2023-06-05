@@ -19,3 +19,6 @@ ja:
       short_day: "%Y/%m/%d"
       short_time: "%H:%M"
       short_month: "%Y年%m月"
+  date:
+    formats:
+      short_day: "%m/%d"

@@ -31,49 +31,26 @@
   </div>
 
   <div class='row mt-5'>
-    <table class='col table table-bordered'>
+    <div class='col-2'></div>
+    <table class='col-8 table table-bordered'>
       <thead>
         <tr>
-          <th style='width: 30%'>日付</th>
-          <th style='width: 20%'>曜日</th>
-          <th style='width: 30%'>学習時間</th>
-          <th style='width: 20%'></th>
+          <th style='width: 20%'>日付</th>
+          <th style='width: 10%'>曜日</th>
+          <th style='width: 40%'>学習時間</th>
+          <th style='width: 30%'></th>
         </tr>
       </thead>
       <tbody>
-        <% days = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"] %>
-        <% (@time.beginning_of_month.day..@time.end_of_month.day).each do |day| %>
-          <% if @time.month < 10 && day < 10 %>
-            <tr>
-              <td><%= "0#{@time.month}" %>/<%= "0#{day}" %></td>
-              <td>
-                <% date = "#{@time.year}-0#{@time.month}-0#{day}" %>
-                <%= date.wday %>
-              </td>
-              <td><%= @time %></td>
-              <td class='text-center'><%= link_to '詳細', learning_records_path, class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
-            </tr>
-          <% elsif @time.month < 10  %>
-            <tr>
-              <td><%= "0#{@time.month}" %>/<%= "#{day}" %></td>
-              <td>
-                <% date = "#{@time.year}-0#{@time.month}-#{day}" %>
-                <%= date.wday %>
-              </td>
-              <td><%= @time %></td>
-              <td class='text-center'><%= link_to '詳細', learning_records_path, class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
-            </tr>
-          <% elsif day < 10 %>
-            <tr>
-              <td><%= "#{@time.month}" %>/<%= "0#{day}" %></td>
-              <td>
-                <% date = "#{@time.year}-#{@time.month}-0#{day}" %>
-                <%= date.wday %>
-              </td>
-              <td><%= @time %></td>
-              <td class='text-center'><%= link_to '詳細', learning_records_path, class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
-            </tr>
-          <% end %>
+        <% days = ["日", "月", "火", "水", "木", "金", "土"] %>
+        <% date = @time.to_date %>
+        <% (date.beginning_of_month..date.end_of_month).each do |day| %>
+          <tr>
+            <td><%= I18n.l day, format: :short_day %></td>
+            <td><%= days[day.wday] %></td>
+            <td><%= @time %></td>
+            <td class='text-center'><%= link_to '詳細', learning_records_path, class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
