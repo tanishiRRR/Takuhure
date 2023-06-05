@@ -2,13 +2,19 @@ class Public::LearningRecordsController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-    @learning_records = current_end_user.learning_records.all
-
     if params[:month].present?
       @time = Time.local(params[:year],params[:month],1,00,00,00)
     else
       @time = Time.now
     end
+    @learning_records = current_end_user.learning_records.all
+    # time型からdate型へは.to_dateで変更できるため削除
+    # if @time.month < 10
+    #   @learning_records_month = @learning_records.where("date LIKE?", "#{@time.year}-0#{@time.month}%")
+    # else
+    #   @learning_records_month = @learning_records.where("date LIKE?", "#{@time.year}-#{@time.month}%")
+    # end
+    @learning_records_month = @learning_records.where("date LIKE?", "#{@time.to_date}%")
   end
 
   def new
