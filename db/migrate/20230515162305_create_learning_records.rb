@@ -6,6 +6,7 @@ class CreateLearningRecords < ActiveRecord::Migration[6.1]
       t.integer :end_user_id, null: false  # 会員ID
       t.time :start_time,     null: false  # 開始時刻
       t.time :end_time                     # 終了時刻
+      t.date :date,           null: false  # 日付
       t.text :content_memo                 # 内容メモ
       t.boolean :is_record,   null: false  # 打刻ステータス
 

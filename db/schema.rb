@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2023_05_17_115049) do
     t.integer "end_user_id", null: false
     t.time "start_time", null: false
     t.time "end_time"
+    t.date "date", null: false
     t.text "content_memo"
     t.boolean "is_record", null: false
     t.datetime "created_at", precision: 6, null: false
