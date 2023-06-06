@@ -16,9 +16,9 @@ class LearningRecord < ApplicationRecord
   end
 
   def self.total_day_time(day)
-    @day_time = where(date: day)
+    day_time = where(date: day)
     subtotal = 0
-    @day_time.each do |day_time|
+    day_time.each do |day_time|
       subtotal += day_time.end_time - day_time.start_time
     end
     subtotal/(60*60*60)
@@ -26,12 +26,12 @@ class LearningRecord < ApplicationRecord
 
   def self.total_month_time(year, month)
     if month < 10
-      @month_time = where("date LIKE ?", "#{year}-0#{month}%")
+      month_time = where("date LIKE ?", "#{year}-0#{month}%")
     else
-      @month_time = where("date LIKE ?", "#{year}-#{month}%")
+      month_time = where("date LIKE ?", "#{year}-#{month}%")
     end
     subtotal = 0
-    @month_time.each do |month_time|
+    month_time.each do |month_time|
       subtotal += month_time.end_time - month_time.start_time
     end
     subtotal/(60*60*60)

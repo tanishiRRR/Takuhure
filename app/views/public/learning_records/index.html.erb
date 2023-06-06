@@ -7,7 +7,13 @@
   <div class='row mt-3'>
     <div class='col-3'>
       <p>総学習時間</p>
-      <p class='text-center'>aaa</p>
+      <p class='text-center'>
+        <% total_time = 0 %>
+        <% @learning_records.each do |learning_records| %>
+          <%total_time += learning_records.end_time - learning_records.start_time %>
+        <% end %>
+        <%= (total_time/(60*60*60)).round(2) %>時間
+      </p>
     </div>
 
     <div class='col-3'>
@@ -17,7 +23,7 @@
 
     <div class='col-3'>
       <p>先月</p>
-      <p class='text-center'><%= @time.prev_month.month %>月</p>
+      <p class='text-center'><%= @learning_records.total_month_time(@time.prev_month.year, @time.prev_month.month).round(2) %>時間</p>
     </div>
 
     <div class='col-3'>
