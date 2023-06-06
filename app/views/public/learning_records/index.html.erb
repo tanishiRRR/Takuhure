@@ -48,8 +48,10 @@
           <tr>
             <td><%= I18n.l day, format: :short_day %></td>
             <td><%= days[day.wday] %></td>
-            <td><%= @time %></td>
-            <td class='text-center'><%= link_to '詳細', learning_records_path, class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
+            <td>
+              <%= @learning_records.total_time(day).round(2) if @learning_records.total_time(day) != 0 %>
+            </td>
+            <td class='text-center'><%= link_to '詳細', learning_record_path(day), class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
           </tr>
         <% end %>
       </tbody>

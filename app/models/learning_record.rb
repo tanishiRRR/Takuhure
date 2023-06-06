@@ -15,4 +15,13 @@ class LearningRecord < ApplicationRecord
     Date.new(year, month, day)
   end
 
+  def self.total_time(day)
+    @day_time = where(date: day)
+    subtotal = 0
+    @day_time.each do |day_time|
+      subtotal += day_time.end_time - day_time.start_time
+    end
+    subtotal/(60*60*60)
+  end
+
 end
