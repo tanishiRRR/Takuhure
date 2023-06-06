@@ -5,7 +5,7 @@ class Public::LearningRecordsController < ApplicationController
     if params[:month].present?
       @time = Time.local(params[:year],params[:month],1,00,00,00)
     else
-      @time = Time.now
+      @time = Time.current
     end
     @learning_records = current_end_user.learning_records.all
   end
@@ -17,7 +17,7 @@ class Public::LearningRecordsController < ApplicationController
   def create
     @learning_record = LearningRecord.new(learning_record_params)
     @learning_record.end_user_id = current_end_user.id
-    @learning_record.start_time = Time.now
+    @learning_record.start_time = Time.current
     @learning_record.date = Date.today
     if @learning_record.save
       redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
@@ -29,7 +29,7 @@ class Public::LearningRecordsController < ApplicationController
 
   def end_count
     @learning_record = current_end_user.learning_records.find_by(is_record: 'true')
-    @learning_record.end_time = Time.now
+    @learning_record.end_time = Time.current
     # 0時を超えない場合
     if @learning_record.end_time.day == @learning_record.start_time.day
       if @learning_record.update(learning_record_params)
@@ -50,11 +50,11 @@ class Public::LearningRecordsController < ApplicationController
           # 学習開始日翌日以降の00時00分00秒を表すために区切り時間23時59分59秒にプラス1秒する。
           learning_record_over.start_time = @learning_record.end_time + 24*60*60*k + 1
           learning_record_over.date = punctuation_day(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
-          i = Time.now.day - learning_record_over.start_time.day
+          i = Time.current.day - learning_record_over.start_time.day
           if i != 0
             learning_record_over.end_time = punctuation_time_end(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
           else
-            learning_record_over.end_time = Time.now
+            learning_record_over.end_time = Time.current
           end
           learning_record_over.save
           k += 1
