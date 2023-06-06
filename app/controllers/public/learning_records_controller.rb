@@ -68,7 +68,8 @@ class Public::LearningRecordsController < ApplicationController
   end
 
   def show
-    @learning_record = current_end_user.learning_records.where(date: params[:date]).order(start_time: :desc)
+    @date = Date.new(params[:id].slice(0,4).to_i, params[:id].slice(5,2).to_i, params[:id].slice(8,2).to_i)
+    @learning_records = current_end_user.learning_records.where(date: params[:id]).order(start_time: :desc)
   end
 
   def edit
