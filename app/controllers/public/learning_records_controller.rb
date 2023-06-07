@@ -17,22 +17,33 @@ class Public::LearningRecordsController < ApplicationController
   def create
     @learning_record = LearningRecord.new(learning_record_params)
     @learning_record.end_user_id = current_end_user.id
-    if params[:learning_record][:end_time].present?
-      @learning_record.start_time = Time.zone.local(params[:learning_record][:date].slice(0,4).to_i, params[:learning_record][:date].slice(5,2).to_i, params[:learning_record][:date].slice(8,2).to_i, params[:learning_record][:start_time].slice(0,2).to_i, params[:learning_record][:start_time].slice(4,2).to_i, 00).to_time
-      @learning_record.end_time = params[:learning_record][:date] + ' ' + params[:learning_record][:end_time]
+    # 手動で学習記録を保存する場合の処理をifで分岐
+    if params[:learning_record][:end_time_option].present?
+      @learning_record.start_time = Time.zone.local(params[:learning_record][:date].slice(0,4).to_i, params[:learning_record][:date].slice(5,2).to_i, params[:learning_record][:date].slice(8,2).to_i, params[:learning_record][:start_time_option].slice(0,2).to_i, params[:learning_record][:start_time_option].slice(3,2).to_i, 00).to_time
+      @learning_record.end_time = Time.zone.local(params[:learning_record][:date].slice(0,4).to_i, params[:learning_record][:date].slice(5,2).to_i, params[:learning_record][:date].slice(8,2).to_i, params[:learning_record][:end_time_option].slice(0,2).to_i, params[:learning_record][:end_time_option].slice(3,2).to_i, 00).to_time
+      # byebug
     end
-    byebug
-    if @learning_record.save
-      redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
+    # 手動で学習記録を保存する場合の処理をifで分岐
+    if params[:learning_record][:end_time_option].present?
+      if @learning_record.save
+        redirect_to learning_record_path(params[:learning_record][:date]), success: '学習記録を保存しました'
+      else
+        flash.now[:warning] = '正しい時間を入力してもう一度新規作成してください'
+        render :show
+      end
     else
-      flash.now[:warning] = 'もう一度開始ボタンを押してください'
-      render :new
+      if @learning_record.save
+        redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
+      else
+        flash.now[:warning] = 'もう一度開始ボタンを押してください'
+        render :new
+      end
     end
   end
 
   def end_count
     @learning_record = current_end_user.learning_records.find_by(is_record: 'true')
-    @learning_record.end_time = Time.current
+    @learning_record.end_time = Time.current.to_time
     # 0時を超えない場合
     if @learning_record.end_time.day == @learning_record.start_time.day
       if @learning_record.update(learning_record_params)
@@ -57,7 +68,7 @@ class Public::LearningRecordsController < ApplicationController
           if i != 0
             learning_record_over.end_time = punctuation_time_end(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
           else
-            learning_record_over.end_time = Time.current
+            learning_record_over.end_time = Time.current.to_time
           end
           learning_record_over.save
           k += 1
@@ -73,7 +84,7 @@ class Public::LearningRecordsController < ApplicationController
   def show
     @learning_record = LearningRecord.new
     @date = Date.new(params[:id].slice(0,4).to_i, params[:id].slice(5,2).to_i, params[:id].slice(8,2).to_i)
-    @learning_records = current_end_user.learning_records.where(date: params[:id]).order(start_time: :desc)
+    @learning_records = current_end_user.learning_records.where(date: params[:id]).order(start_time: :asc)
   end
 
   def edit
@@ -83,7 +94,7 @@ class Public::LearningRecordsController < ApplicationController
   def update
     @learning_record = LearningRecord.find(params[:id])
     if @learning_record = LearningRecord.update(learning_record_params)
-      @learning_record = current_end_user.learning_records.where(date: params[:date]).order(start_time: :desc)
+      @learning_record = current_end_user.learning_records.where(date: params[:date]).order(start_time: :asc)
       redirect_to learning_record_path, success: '学習時間を編集しました'
     else
       render :edit

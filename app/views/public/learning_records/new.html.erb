@@ -21,7 +21,7 @@
     <% else %>
       <%= form_with model: @learning_record, url: learning_records_path, method: :post, local: true do |f| %>
         <div class='col-6'>
-          <%= f.hidden_field :start_time, :value => Time.current %>
+          <%= f.hidden_field :start_time, :value => Time.current.to_time %>
           <%= f.hidden_field :date, :value => Date.current %>
           <%= f.hidden_field :is_record, :value => true %>
           <%= f.submit '開始', class: 'btn btn-success' %>
