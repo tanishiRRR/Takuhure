@@ -28,7 +28,7 @@ class Public::LearningRecordsController < ApplicationController
       if @learning_record.save
         redirect_to learning_record_path(params[:learning_record][:date]), success: '学習記録を保存しました'
       else
-        flash.now[:warning] = '正しい時間を入力してもう一度新規作成してください'
+        flash.now[:warning] = '正しい時間を入力して新規作成してください'
         render :show
       end
     else
@@ -93,10 +93,12 @@ class Public::LearningRecordsController < ApplicationController
 
   def update
     @learning_record = LearningRecord.find(params[:id])
-    if @learning_record = LearningRecord.update(learning_record_params)
-      @learning_record = current_end_user.learning_records.where(date: params[:date]).order(start_time: :asc)
-      redirect_to learning_record_path, success: '学習時間を編集しました'
+    @learning_record.start_time = Time.zone.local(@learning_record.date.year, @learning_record.date.month, @learning_record.date.day, params[:learning_record][:start_time_option].slice(0,2).to_i, params[:learning_record][:start_time_option].slice(3,2).to_i, 00).to_time
+    @learning_record.end_time = Time.zone.local(@learning_record.date.year, @learning_record.date.month, @learning_record.date.day, params[:learning_record][:end_time_option].slice(0,2).to_i, params[:learning_record][:end_time_option].slice(3,2).to_i, 00).to_time
+    if @learning_record.update(learning_record_params)
+      redirect_to learning_record_path(@learning_record.date), success: '学習時間を編集しました'
     else
+      flash.now[:warning] = '正しい時間を入力して編集してください'
       render :edit
     end
   end
