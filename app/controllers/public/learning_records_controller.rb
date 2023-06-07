@@ -3,7 +3,7 @@ class Public::LearningRecordsController < ApplicationController
 
   def index
     if params[:month].present?
-      @time = Time.local(params[:year],params[:month],1,00,00,00)
+      @time = Time.zone.local(params[:year],params[:month],1,00,00,00).to_time
     else
       @time = Time.current
     end
@@ -17,8 +17,11 @@ class Public::LearningRecordsController < ApplicationController
   def create
     @learning_record = LearningRecord.new(learning_record_params)
     @learning_record.end_user_id = current_end_user.id
-    @learning_record.start_time = Time.current
-    @learning_record.date = Date.today
+    if params[:learning_record][:end_time].present?
+      @learning_record.start_time = Time.zone.local(params[:learning_record][:date].slice(0,4).to_i, params[:learning_record][:date].slice(5,2).to_i, params[:learning_record][:date].slice(8,2).to_i, params[:learning_record][:start_time].slice(0,2).to_i, params[:learning_record][:start_time].slice(4,2).to_i, 00).to_time
+      @learning_record.end_time = params[:learning_record][:date] + ' ' + params[:learning_record][:end_time]
+    end
+    byebug
     if @learning_record.save
       redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
     else
@@ -68,6 +71,7 @@ class Public::LearningRecordsController < ApplicationController
   end
 
   def show
+    @learning_record = LearningRecord.new
     @date = Date.new(params[:id].slice(0,4).to_i, params[:id].slice(5,2).to_i, params[:id].slice(8,2).to_i)
     @learning_records = current_end_user.learning_records.where(date: params[:id]).order(start_time: :desc)
   end
@@ -92,7 +96,7 @@ class Public::LearningRecordsController < ApplicationController
   private
 
     def learning_record_params
-      params.require(:learning_record).permit(:end_user_id, :start_time, :end_time, :content_memo, :is_record)
+      params.require(:learning_record).permit(:end_user_id, :start_time, :end_time, :date, :content_memo, :is_record)
     end
 
 end

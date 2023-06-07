@@ -4,11 +4,11 @@ class LearningRecord < ApplicationRecord
   belongs_to :end_user
 
   def punctuation_time_start(year, month, day)
-    Time.local(year, month, day, 00, 00 ,00)
+    Time.zone.local(year, month, day, 00, 00 ,00).to_time
   end
 
   def punctuation_time_end(year, month, day)
-    Time.local(year, month, day, 23, 59, 59)
+    Time.zone.local(year, month, day, 23, 59, 59).to_time
   end
 
   def punctuation_day(year, month, day)

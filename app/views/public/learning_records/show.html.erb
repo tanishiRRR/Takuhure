@@ -32,18 +32,18 @@
     <table class='col table table-bordered'>
       <thead>
         <tr>
-          <th style='width: 15%'></th>
+          <th style='width: 10%'></th>
           <th style='width: 15%'>時間</th>
           <th style='width: 15%'>開始時間</th>
           <th style='width: 15%'>終了時間</th>
-          <th style='width: 25%'>内容</th>
-          <th style='width: 15%'></th>
+          <th style='width: 25%'>メモ書き</th>
+          <th style='width: 20%'></th>
         </tr>
       </thead>
       <tbody>
-        <% @learning_records.each do |learning_record| %>
+        <% @learning_records.each_with_index do |learning_record, i| %>
           <tr>
-            <td>学習時間</td>
+            <th>学習時間<%= i + 1 %></th>
             <td>
               <%= ((learning_record.end_time - learning_record.start_time)/(60*60*60)).round(2) %>時間
             </td>
@@ -56,5 +56,26 @@
       </tbody>
     </table>
   </div>
+
+  <%= form_with model: @learning_record, url: learning_records_path, method: :post, local: true do |f| %>
+    <div class='row mt-3'>
+      <table class='col table table-bordered'>
+        <tbody>
+          <tr>
+            <td style='border-left: none !important; width: 10%'></td>
+            <td style='width: 15%'></td>
+            <td style='width: 15%'><%= f.text_field :start_time, class: 'form-control' %></td>
+            <td style='width: 15%'><%= f.text_field :end_time, class: 'form-control' %></td>
+            <td style='width: 25%'><%= f.text_area :content_memo, placeholder: 'メモ書き', class: 'form-control' %></td>
+            <td class='text-center' style='width: 20%'>
+              <%= f.hidden_field :date, :value => @date %>
+              <%= f.hidden_field :is_record, :value => false %>
+              <%= f.submit '学習時間を追加する', class: 'btn btn-primary' %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 
 </div>
