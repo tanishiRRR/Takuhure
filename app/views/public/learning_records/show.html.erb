@@ -73,7 +73,7 @@
             <td class='text-center' style='width: 20%'>
               <%= f.hidden_field :date, :value => @date %>
               <%= f.hidden_field :is_record, :value => false %>
-              <%= f.submit '学習時間を追加する', class: 'btn btn-success' %>
+              <%= f.submit '学習時間を追加する', disabled: true, class: 'js-submit btn btn-success' %>
             </td>
           </tr>
         </tbody>
