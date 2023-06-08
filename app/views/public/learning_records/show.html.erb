@@ -67,8 +67,8 @@
           <tr>
             <td style='border-left: none !important; width: 10%'></td>
             <td style='width: 15%'></td>
-            <td style='width: 15%'><%= f.time_field :start_time_option, class: 'form-control' %></td>
-            <td style='width: 15%'><%= f.time_field :end_time_option, class: 'form-control' %></td>
+            <td style='width: 15%'><%= f.time_field :start_time_option, required: true, class: 'form-control' %></td>
+            <td style='width: 15%'><%= f.time_field :end_time_option, required: true, class: 'form-control' %></td>
             <td style='width: 25%'><%= f.text_area :content_memo, placeholder: 'メモ書き', class: 'form-control' %></td>
             <td class='text-center' style='width: 20%'>
               <%= f.hidden_field :date, :value => @date %>
