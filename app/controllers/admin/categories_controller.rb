@@ -13,11 +13,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_categories_path, success: 'カテゴリーを作成しました'
     else
       @categories = Category.all
-      if @category.category_name.empty?
-        flash.now[:warning] = 'カテゴリ名を入力してください'
-      else
-        flash.now[:warning] = '既に登録済みのカテゴリ名は入力できません'
-      end
+      flash.now[:warning] = '既に登録済みのカテゴリ名は入力できません'
       render :index
     end
   end
@@ -31,11 +27,7 @@ class Admin::CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to admin_categories_path, success: 'カテゴリーを編集しました'
     else
-      if @category.category_name.empty?
-        flash.now[:warning] = 'カテゴリ名を入力してください'
-      else
-        flash.now[:warning] = '既に登録済みのカテゴリ名は入力できません'
-      end
+      flash.now[:warning] = '既に登録済みのカテゴリ名は入力できません'
       render :edit
     end
   end
