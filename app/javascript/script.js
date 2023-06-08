@@ -6,12 +6,12 @@ $(function () {
   // constによって値書き換えを禁止した変数を宣言
   const $submitbtn = $('#js-submit');
   $("input").on("change", function () {
-  if (
-    $("input[name='start_time_option']").val() < $("input[name='end_time_option']").val()
-    ){
-      $submitbtn.prop('disabled', false);
-    } else {
-      $submitbtn.prop('disabled', true);
-    }
+    if (
+      $('#learning_record_start_time_option').val() < $('#learning_record_end_time_option').val()
+      ){
+        $submitbtn.prop('disabled', false);
+      } else {
+        $submitbtn.prop('disabled', true);
+      }
   });
 });
