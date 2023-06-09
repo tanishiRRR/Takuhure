@@ -16,8 +16,8 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.end_user_id = current_end_user.id
-    if @question.save!
-      redirect_to question_path(params[:id]), success: '質問を投稿しました'
+    if @question.save
+      redirect_to question_path(@question.id), success: '質問を投稿しました'
     else
       flash.now[:warning] = 'カテゴリーを選択してください'
       render :new
