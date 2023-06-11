@@ -101,6 +101,9 @@ class Public::LearningRecordsController < ApplicationController
     @learning_record.end_time = Time.zone.local(@learning_record.date.year, @learning_record.date.month, @learning_record.date.day, params[:learning_record][:end_time_option].slice(0,2).to_i, params[:learning_record][:end_time_option].slice(3,2).to_i, 00).to_time
     if @learning_record.update(learning_record_params)
       redirect_to learning_record_path(@learning_record.date), success: '学習情報を編集しました'
+    else
+      flash.now[:warning] = '終了時間は開始時間より遅い時間を入力してください'
+      render :edit
     end
   end
 

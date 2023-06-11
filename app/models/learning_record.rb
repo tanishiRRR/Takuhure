@@ -3,6 +3,10 @@ class LearningRecord < ApplicationRecord
   # 会員
   belongs_to :end_user
 
+  validates :end_user_id, presence: true
+  validates :start_time, presence: true
+  validates :date, presence: true
+  validates :is_record, presence: true
   validate :no_registration_time
 
   def no_registration_time
