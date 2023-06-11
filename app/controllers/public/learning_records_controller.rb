@@ -29,7 +29,7 @@ class Public::LearningRecordsController < ApplicationController
       if @learning_record.save
         redirect_to learning_record_path(params[:learning_record][:date]), success: '学習情報を保存しました'
       else
-        @learning_records = current_end_user.learning_records.where(date:  @learning_record.date).order(start_time: :asc)
+        @learning_records = current_end_user.learning_records.where(date: @learning_record.date).order(start_time: :asc)
         @date = @learning_record.date
         flash.now[:warning] = '終了時間は開始時間より遅い時間を入力してください'
         render :show

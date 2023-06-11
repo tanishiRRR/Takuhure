@@ -6,7 +6,9 @@ class LearningRecord < ApplicationRecord
   validate :no_registration_time
 
   def no_registration_time
-    errors.add(:base, '終了時刻は、開始時間より前に設定できない') unless start_time < end_time
+    if end_time.present?
+      errors.add(:base, '終了時刻は、開始時間より前に設定できない') unless start_time < end_time
+    end
   end
 
   # 0時を超えた場合の開始時間
