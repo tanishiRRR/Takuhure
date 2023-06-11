@@ -3,6 +3,12 @@ class LearningRecord < ApplicationRecord
   # 会員
   belongs_to :end_user
 
+  validate :no_registration_time
+
+  def no_registration_time
+    errors.add(:base, '終了時刻は、開始時間より前に設定できない') unless start_time < end_time
+  end
+
   # 0時を超えた場合の開始時間
   def punctuation_time_start(year, month, day)
     Time.zone.local(year, month, day, 00, 00 ,00).to_time
