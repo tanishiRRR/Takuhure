@@ -2,7 +2,7 @@ class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-
+    @questions = current_end_user.questions.all
   end
 
   def top

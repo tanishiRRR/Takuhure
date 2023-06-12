@@ -1,0 +1,34 @@
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>質問投稿一覧</h4>
+  </div>
+
+  <div class='row mt-3'>
+    <table class='table table-bordered offset-1 col-10'>
+      <thead>
+        <tr>
+          <th style='width: 15%'>質問投稿日</th>
+          <th style='width: 30%'>タイトル</th>
+          <th style='width: 15%'>カテゴリ</th>
+          <th class='text-center' style='width: 10%'></th>
+          <th class='text-center' style='width: 15%'></th>
+          <th class='text-center' style='width: 15%'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><%= question.date %></td>
+            <td><%= question.title %></td>
+            <td><%= question.category.category_name %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
