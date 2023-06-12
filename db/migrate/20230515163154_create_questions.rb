@@ -8,6 +8,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.string :title,        null: false                  # タイトル
       t.text :question,       null: false                  # 質問内容
       t.boolean :is_answer,   null: false, default: false  # 回答フラグ
+      t.date :date,           null: false                  # 質問日
 
       t.timestamps
     end

@@ -16,5 +16,7 @@ class Question < ApplicationRecord
   validates :category_id, presence: true
   validates :title, presence: true
   validates :question, presence: true
+  # presence: trueで設定すると、booleanの値がfalseのときエラーが出る
+  validates :is_answer, inclusion: {in: [true, false]}
 
 end

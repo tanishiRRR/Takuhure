@@ -16,6 +16,7 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.end_user_id = current_end_user.id
+    @question.date = Date.current
     if @question.save
       redirect_to question_path(@question.id), success: '質問を投稿しました'
     else
@@ -25,7 +26,8 @@ class Public::QuestionsController < ApplicationController
   end
 
   def show
-    @question = current_end_user.questions.find_by(params[:id])
+    @question = current_end_user.questions.find(params[:id])
+    @end_user = current_end_user
   end
 
   def destroy
@@ -35,7 +37,7 @@ class Public::QuestionsController < ApplicationController
   private
 
     def question_params
-      params.require(:question).permit(:end_user_id, :category_id, :title, :question, :is_answer)
+      params.require(:question).permit(:end_user_id, :category_id, :title, :question, :is_answer, :date)
     end
 
 end
