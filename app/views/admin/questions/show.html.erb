@@ -1,2 +1,13 @@
-<h1>Admin::Questions#show</h1>
-<p>Find me in app/views/admin/questions/show.html.erb</p>
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>Q&A詳細</h4>
+  </div>
+
+  <div class='row mt-5'>
+    <div class='col'>
+      <%= @question.title %>
+      <%= @question.question %>
+    </div>
+  </div>
+</div>

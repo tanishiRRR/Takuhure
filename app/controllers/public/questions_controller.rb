@@ -19,13 +19,13 @@ class Public::QuestionsController < ApplicationController
     if @question.save
       redirect_to question_path(@question.id), success: '質問を投稿しました'
     else
-      flash.now[:warning] = 'カテゴリーを選択してください'
+      flash.now[:warning] = '全て入力してください'
       render :new
     end
   end
 
   def show
-
+    @question = current_end_user.questions.find_by(params[:id])
   end
 
   def destroy
