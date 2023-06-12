@@ -11,9 +11,9 @@
           <th style='width: 15%'>質問投稿日</th>
           <th style='width: 30%'>タイトル</th>
           <th style='width: 15%'>カテゴリ</th>
-          <th class='text-center' style='width: 10%'></th>
-          <th class='text-center' style='width: 15%'></th>
-          <th class='text-center' style='width: 15%'></th>
+          <th style='width: 10%'></th>
+          <th style='width: 15%'></th>
+          <th style='width: 15%'></th>
         </tr>
       </thead>
       <tbody>
@@ -22,9 +22,9 @@
             <td><%= question.date %></td>
             <td><%= question.title %></td>
             <td><%= question.category.category_name %></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class='text-center'><%= link_to '詳細', question_path(question), class: 'btn btn-primary btn-sm' %></td>
+            <td class='text-center'><%= link_to '質問に補足する', new_supplemental_question_path(question), class: 'btn btn-success btn-sm' %></td>
+            <td class='text-center'><%= link_to '質問を取り消す', question_path(question), class: 'btn btn-danger btn-sm' %></td>
           </tr>
         <% end %>
       </tbody>
