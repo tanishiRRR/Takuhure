@@ -31,7 +31,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def destroy
-
+    @question = current_end_user.question.find(params[:id])
   end
 
   private
