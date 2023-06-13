@@ -32,9 +32,9 @@ class Public::QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = current_end_user.question.find(params[:id])
+    @question = current_end_user.questions.find(params[:id])
     if @question.destroy
-      redirect_to questions_path(@learning_record.date), danger: '学習情報を削除しました'
+      redirect_to questions_path, danger: '質問を削除しました'
     end
   end
 
