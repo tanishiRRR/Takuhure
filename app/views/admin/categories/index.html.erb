@@ -24,7 +24,7 @@
         <% @categories.each do |category| %>
           <tr>
             <td><%= category.category_name %></td>
-            <td class='text-center'><%= link_to '編集する', edit_admin_category_path(category), class: 'btn btn-success btn-sm pl-5 pr-5' %></td>
+            <td class='text-center'><%= link_to '編集する', edit_admin_category_path(category), method: :get, class: 'btn btn-success btn-sm pl-5 pr-5' %></td>
           </tr>
         <% end %>
       </tbody>
