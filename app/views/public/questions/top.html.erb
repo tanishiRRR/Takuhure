@@ -4,4 +4,21 @@
     <h4 class='border border-dark bg-secondary text-white p-2'>Q&A</h4>
   </div>
 
+  <div class='row mt-3'>
+    <div class=" col-4 dropdown">
+      <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        カテゴリー検索
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <% @categories.each do |category| %>
+          <%= link_to category.category_name, questions_path, class: 'dropdown-item' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='col-4'>
+      <%= link_to '一覧を見る', questions_path, class: 'btn btn-outline-dark pl-5 pr-5' %>
+    </div>
+  </div>
+
 </div>

@@ -6,6 +6,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def top
+    @categories = Category.all
 
   end
 
