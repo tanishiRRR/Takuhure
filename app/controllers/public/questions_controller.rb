@@ -33,6 +33,9 @@ class Public::QuestionsController < ApplicationController
 
   def destroy
     @question = current_end_user.question.find(params[:id])
+    if @question.destroy
+      redirect_to questions_path(@learning_record.date), danger: '学習情報を削除しました'
+    end
   end
 
   private

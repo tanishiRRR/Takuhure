@@ -7,9 +7,11 @@ class Question < ApplicationRecord
   belongs_to :category
 
   # 質問補足
+  # dependent: :destroyによって、questionsテーブルにあるレコードを削除した時にsupplemental_questionsテーブルにあるレコードも一緒に削除してくれる
   has_many :supplemental_questions, dependent: :destroy
 
   # 回答
+  # dependent: :destroyによって、questionsテーブルにあるレコードを削除した時にanswersテーブルにあるレコードも一緒に削除してくれる
   has_many :answers, dependent: :destroy
 
   validates :end_user_id, presence: true
