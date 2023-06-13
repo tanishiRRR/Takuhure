@@ -35,7 +35,8 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:index, :create, :new, :show, :destroy]
 
-    get 'search' => 'posts#search'
+    get 'search' => 'searches#search'
+    resources :searches, only: [:index, :show]
   end
 
   # 管理者用

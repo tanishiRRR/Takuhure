@@ -8,7 +8,7 @@
     <div class='col-4'>
       <%= form_with url: search_path, method: :get, local: true do |f| %>
         <div class='row'>
-          <%= f.text_field :keyword, value: @keyword, class: 'col-9 form-control input-group-prepend', placeholder: 'キーワードを入力' %>
+          <%= f.text_field :keyword, class: 'col-9 form-control input-group-prepend', placeholder: 'キーワードを入力' %>
           <!--f.submitではなくbutton_tagでtype: 'submit'でやればアイコンが出てくる-->
           <%= button_tag type: 'submit', class: 'col-3 btn btn-outline-success' do %>
             <i class="fas fa-search"></i>検索
@@ -23,13 +23,13 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <% @categories.each do |category| %>
-          <%= link_to category.category_name, questions_path, method: :get, class: 'dropdown-item' %>
+          <%= link_to category.category_name, searches_path, method: :get, class: 'dropdown-item' %>
         <% end %>
       </div>
     </div>
 
     <div class='col-4 text-center'>
-      <%= link_to '一覧を見る', questions_path, method: :get, class: 'btn btn-outline-dark pl-5 pr-5' %>
+      <%= link_to 'Q&A一覧', searches_path, method: :get, class: 'btn btn-outline-dark pl-5 pr-5' %>
     </div>
   </div>
 
