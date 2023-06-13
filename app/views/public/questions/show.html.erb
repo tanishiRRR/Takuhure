@@ -1,7 +1,7 @@
 <div class='container'>
 
   <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>Q&A詳細</h4>
+    <h4 class='border border-dark bg-secondary text-white p-2'>質問詳細</h4>
   </div>
 
   <div class='row'>
@@ -63,55 +63,7 @@
   </div>
 
   <div class='row mt-5'>
-    <%= link_to '回答を入力する', new_supplemental_question_path, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
-  </div>
-
-  <div class='row mt-5'>
-    <h5 class='ml-5 p-2'>一番いいねが多いアンサー</h5>
-  </div>
-
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
-        <!--画像-->
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <!--名前--><br>
-          <!--投稿日-->
-        </p>
-      </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
-          <tr>
-            <th style='width: 20%'>回答</th>
-            <td style='width: 80%'><!--回答--></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class='row mt-5'>
-    <h5 class='ml-5 p-2'>その他のアンサー</h5>
-  </div>
-
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
-        <!--画像-->
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <!--名前--><br>
-          <!--投稿日-->
-        </p>
-      </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
-          <tr>
-            <th style='width: 20%'>回答</th>
-            <td style='width: 80%'><!--回答--></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    <%= link_to 'Q&A詳細ページへ', question_and_answer_path(@question), class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
 </div>
