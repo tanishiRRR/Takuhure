@@ -59,6 +59,9 @@
           </tr>
         </table>
       </div>
+      <div class='row mb-3'>
+        <%= link_to '補足を取り消す', supplemental_question_path, method: :delete, class: 'offset-8 col-3 btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %>
+      </div>
     </div>
   </div>
 
