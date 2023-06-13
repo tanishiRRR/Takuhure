@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     resources :learning_records
 
     resources :comments, only: [:index, :create, :new, :show, :destroy]
+
+    get 'search' => 'posts#search'
   end
 
   # 管理者用
