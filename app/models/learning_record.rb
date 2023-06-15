@@ -6,7 +6,7 @@ class LearningRecord < ApplicationRecord
   validates :end_user_id, presence: true
   validates :start_time, presence: true
   validates :date, presence: true
-  validates :is_record, presence: true
+  validates :is_record, inclusion: {in: [true, false]}
   validate :no_registration_time
 
   def no_registration_time
