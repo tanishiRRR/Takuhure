@@ -18,6 +18,10 @@
             <td style='width: 80%'><%= question.title %></td>
           </tr>
           <tr>
+            <td style='width: 20%'>カテゴリー</td>
+            <td style='width: 80%'><%= question.category.category_name %></td>
+          </tr>
+          <tr>
             <td style='width: 20%'>内容</td>
             <td style='width: 80%'><%= truncate(question.question, :length => 50) %></td>
           </tr>

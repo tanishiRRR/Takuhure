@@ -38,9 +38,11 @@
     </div>
   </div>
 
-  <div class='row mt-2'>
-    <h5 class='ml-5 p-2'>質問補足</h5>
-  </div>
+  <% if @supplemental_questions.exists? %>
+    <div class='row mt-2'>
+      <h5 class='ml-5 p-2'>質問補足</h5>
+    </div>
+  <% end %>
 
   <div class='row mt-1'>
     <% @supplemental_questions.each do |supplemental_question| %>

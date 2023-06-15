@@ -1,8 +1,14 @@
 <div class='container'>
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>Q&A一覧</h4>
-  </div>
+  <% if params[:category_id].present? %>
+    <div class='row mt-3'>
+      <h4 class='border border-dark bg-secondary text-white p-2'>Q&A一覧(<%= Category.find(params[:category_id]).category_name %>)</h4>
+    </div>
+  <% else %>
+    <div class='row mt-3'>
+      <h4 class='border border-dark bg-secondary text-white p-2'>Q&A一覧</h4>
+    </div>
+  <% end %>
 
   <div class='row border border-dark mt-5'>
     <table class='col table table-borderless mb-0'>
@@ -18,6 +24,10 @@
             <td style='width: 80%'><%= question.title %></td>
           </tr>
           <tr>
+            <td style='width: 20%'>カテゴリー</td>
+            <td style='width: 80%'><%= question.category.category_name %></td>
+          </tr>
+          <tr>
             <td style='width: 20%'>内容</td>
             <td style='width: 80%'><%= question.question %></td>
           </tr>
@@ -29,5 +39,15 @@
       </tbody>
     </table>
   </div>
+
+  <% if @questions.empty? %>
+    <div class='row mt-5'>
+      <div class='col'>
+        <h3 class='text-center' style="color:red;">
+          該当する質問はありません
+        </h3>
+      </div>
+    </div>
+  <% end %>
 
 </div>

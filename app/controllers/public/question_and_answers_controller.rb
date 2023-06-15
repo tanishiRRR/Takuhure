@@ -2,7 +2,11 @@ class Public::QuestionAndAnswersController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-    @questions = Question.all
+    if params[:category_id].present?
+      @questions = Question.where(category_id: params[:category_id])
+    else
+      @questions = Question.all
+    end
   end
 
   def show
