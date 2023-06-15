@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get 'questions/top' => 'questions#top'
     resources :questions, only: [:index, :create, :new, :show, :destroy]
 
-    resources :supplemental_questions, only: [:create, :new, :destroy]
+    resources :supplemental_questions, only: [:create, :destroy]
 
     resources :answers, only: [:index, :create, :new, :show, :destroy]
 
@@ -36,7 +36,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :new, :show, :destroy]
 
     get 'search' => 'searches#search'
-    resources :searches, only: [:index, :show]
 
     resources :question_and_answers, only: [:index, :show]
   end

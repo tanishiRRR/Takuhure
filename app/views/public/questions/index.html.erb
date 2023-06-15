@@ -23,7 +23,6 @@
             <td><%= question.title %></td>
             <td><%= question.category.category_name %></td>
             <td class='text-center'><%= link_to '詳細', question_path(question), method: :get, class: 'btn btn-primary btn-sm' %></td>
-            <td class='text-center'><%= link_to '質問に補足する', new_supplemental_question_path, method: :get, class: 'btn btn-success btn-sm' %></td>
             <td class='text-center'><%= link_to '質問を取り消す', question_path(question), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %></td>
           </tr>
         <% end %>

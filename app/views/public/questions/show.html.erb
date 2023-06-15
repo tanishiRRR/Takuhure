@@ -65,6 +65,15 @@
     </div>
   </div>
 
+  <%= form_with model: @supplemental_question, url: supplemental_questions_path(question_id: @question.id), method: :post, local: true do |f| %>
+    <div class='row mt-5'>
+      <%= f.text_area :supplemental_question, required: true, placeholder: '質問に補足したいことを入力してください', class: 'offset-1 col-10 form-control' %>
+    </div>
+    <div class='row mt-3'>
+      <%= f.submit '補足する', class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
+    </div>
+  <% end %>
+
   <div class='row mt-5'>
     <%= link_to 'Q&A詳細ページへ', question_and_answer_path(@question), class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
