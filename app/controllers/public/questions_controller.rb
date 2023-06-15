@@ -27,9 +27,10 @@ class Public::QuestionsController < ApplicationController
   end
 
   def show
-    @question = current_end_user.questions.find(params[:id])
+    @question = Question.find(params[:id])
     @end_user = current_end_user
     @supplemental_question = SupplementalQuestion.new
+    @supplemental_questions = SupplementalQuestion.where(question_id: params[:id]).order(created_at: :asc)
   end
 
   def destroy

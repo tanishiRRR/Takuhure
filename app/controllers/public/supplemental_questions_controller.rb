@@ -8,13 +8,20 @@ class Public::SupplementalQuestionsController < ApplicationController
       redirect_to question_path(params[:question_id]), success: '補足内容を追加しました'
     else
       @end_user = current_end_user
-      @question = current_end_user.questions.find(params[:question_id])
+      @question = Question.find(params[:question_id])
+      @supplemental_questions = SupplementalQuestion.where(question_id: params[:question_id]).order(created_at: :asc)
       flash.now[:warning] = '補足内容を入力してください'
-      render :new
+      render 'public/questions/show'
     end
   end
 
   def destroy
+    @supplemental_question = SupplementalQuestion.find(params[:id])
+    # リダイレクト用に質問IDを定義する。
+    @question_id = @supplemental_question.question_id
+    if @supplemental_question.destroy
+      redirect_to question_path(@question_id), danger: '補足を削除しました'
+    end
   end
 
   private

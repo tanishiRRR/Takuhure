@@ -4,6 +4,6 @@ class SupplementalQuestion < ApplicationRecord
   belongs_to :question
 
   validates :question_id, presence: true
-  # validates :supplemental_question, present: true
+  validates :supplemental_question, presence: true
 
 end
