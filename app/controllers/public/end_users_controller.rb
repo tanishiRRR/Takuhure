@@ -3,6 +3,7 @@ class Public::EndUsersController < ApplicationController
   # authenticate_user!は、deviseで使える。
   # 各アクションが動く前にログインしているかしていないかを判断し、ログインしていなければアクションを動かすことなくログインページが表示されるようする
   before_action :authenticate_end_user!
+  # ゲストログインユーザーはマイページの編集及び退会ができないようにする
   before_action :check_guest, only: [:update, :withdraw]
 
   def show

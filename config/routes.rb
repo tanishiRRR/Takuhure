@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:index, :create, :new, :show, :destroy]
 
-    get 'search' => 'searches#search'
+    get 'searches' => 'searches#search'
 
     resources :question_and_answers, only: [:index, :show]
   end

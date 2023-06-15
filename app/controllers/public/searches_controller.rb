@@ -7,6 +7,7 @@ class Public::SearchesController < ApplicationController
       @keyword = params[:keyword]
       @questions = Question.search(@keyword)
     else
+      redirect_to questions_top_path, danger: 'キーワードを入力してください'
     end
   end
 end

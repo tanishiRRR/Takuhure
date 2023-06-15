@@ -58,10 +58,12 @@
         </div>
         <div class='row mt-3'>
           <table class='table table-borderless offset-1 col-10'>
-            <tr>
-              <th style='width: 20%'>質問補足内容</th>
-              <td style='width: 80%'><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
-            </tr>
+            <tbody>
+              <tr>
+                <th style='width: 20%'>質問補足内容</th>
+                <td style='width: 80%'><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div class='row mb-3'>

@@ -1,0 +1,33 @@
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>Q&A検索結果</h4>
+  </div>
+
+  <div class='row border border-dark mt-5'>
+    <table class='col table table-borderless mb-0'>
+      <thead>
+        <tr>
+          <th class='text-center' colspan="2">回答済み/回答受付中</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr class='border-top border-dark'>
+            <td style='width: 20%'>タイトル</td>
+            <td style='width: 80%'><%= question.title %></td>
+          </tr>
+          <tr>
+            <td style='width: 20%'>内容</td>
+            <td style='width: 80%'><%= question.question %></td>
+          </tr>
+          <tr>
+            <td style='width: 20%'>投稿日</td>
+            <td style='width: 80%'><%= question.date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

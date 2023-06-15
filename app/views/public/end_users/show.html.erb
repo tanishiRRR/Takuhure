@@ -5,8 +5,7 @@
   </div>
 
   <div class='row mt-3'>
-    <div class='col-3'><p class='font-weight-bold'>登録情報</p></div>
-    <div class='col-9'><%= link_to '編集する', end_users_information_edit_path, class: 'btn btn-success btn-sm pl-5 pr-5' %></div>
+    <p class='font-weight-bold'>登録情報</p>
   </div>
 
   <div class='row'>
@@ -39,13 +38,7 @@
   </div>
 
   <div class='row mt-5'>
-    <div class='col-3'><p class='font-weight-bold'>質問投稿一覧</p></div>
-    <div class='col-9'><%= link_to '一覧を見る', questions_path, method: :get, class: 'btn btn-primary btn-sm pl-5 pr-5' %></div>
-  </div>
-
-  <div class='row'>
-    <div class='col-3'><p class='font-weight-bold'>回答投稿一覧</p></div>
-    <div class='col-9'><%= link_to '一覧を見る', answers_path, method: :get, class: 'btn btn-primary btn-sm pl-5 pr-5' %></div>
+    <%= link_to '編集する', end_users_information_edit_path, method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
 </div>

@@ -23,7 +23,7 @@ class Question < ApplicationRecord
 
   # 検索機能によ検索した場合
   def self.search(keyword)
-    Question.where(['title like? OR question like?', '%'+keyword+'%', '%'+keyword+'%'])
+    where(['title like? OR question like?', '%'+keyword+'%', '%'+keyword+'%'])
   end
 
 end
