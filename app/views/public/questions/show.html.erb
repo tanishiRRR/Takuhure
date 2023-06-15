@@ -50,10 +50,10 @@
     <% @supplemental_questions.each do |supplemental_question| %>
       <div class='offset-1 col-10 border border-dark mt-2'>
         <div class='row ml-1 mt-1'>
-          <!--画像-->
+          <%= image_tag @end_user.get_profile_image(150,150) %>
           <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-            <!--名前--><br>
-            <!--投稿日-->
+            <%= @end_user.account_name %><br>
+            <%= I18n.l supplemental_question.created_at, format: :short_day %>
           </p>
         </div>
         <div class='row mt-3'>
