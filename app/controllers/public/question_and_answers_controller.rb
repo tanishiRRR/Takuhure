@@ -3,9 +3,9 @@ class Public::QuestionAndAnswersController < ApplicationController
 
   def index
     if params[:category_id].present?
-      @questions = Question.where(category_id: params[:category_id])
+      @questions = Question.where(category_id: params[:category_id]).order(created_at: :asc)
     else
-      @questions = Question.all
+      @questions = Question.all.order(created_at: :asc)
     end
   end
 

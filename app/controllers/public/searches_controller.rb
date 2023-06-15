@@ -5,7 +5,7 @@ class Public::SearchesController < ApplicationController
   def search
     if params[:keyword].present?
       @keyword = params[:keyword]
-      @questions = Question.search(@keyword)
+      @questions = Question.search(@keyword).order(created_at: :asc)
     else
       redirect_to questions_top_path, danger: 'キーワードを入力してください'
     end
