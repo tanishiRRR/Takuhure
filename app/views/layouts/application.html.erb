@@ -16,7 +16,7 @@
       <header class='sticky-top'>
         <!--navbar-expand-mdでナビゲーションバーとハンバーガーメニューの切り替え-->
         <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
-          <%= link_to '宅フレ！', new_admin_session_path , class: 'navbar-brand' %>
+          <%= link_to '宅フレ！', admin_root_path , class: 'navbar-brand' %>
           <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon'></span>
           </button>
@@ -47,7 +47,7 @@
     <% elsif end_user_signed_in? %>
       <header class='sticky-top'>
         <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
-          <%= link_to '宅フレ！', root_path , class: 'navbar-brand' %>
+          <%= link_to '宅フレ！', end_users_my_page_path , class: 'navbar-brand' %>
           <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon'></span>
           </button>
