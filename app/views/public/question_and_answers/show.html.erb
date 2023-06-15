@@ -11,9 +11,9 @@
   <div class='row mt-1'>
     <div class='offset-1 col-10 border border-dark'>
       <div class='row ml-1 mt-1'>
-        <%= image_tag @end_user.get_profile_image(150,150) %>
+        <%= image_tag @question.end_user.get_profile_image(150,150) %>
         <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <%= @end_user.account_name %><br>
+          <%= @question.end_user.account_name %><br>
           <%= I18n.l @question.date, format: :default %>
         </p>
       </div>
@@ -38,32 +38,36 @@
     </div>
   </div>
 
-  <div class='row mt-5'>
+  <div class='row mt-2'>
     <h5 class='ml-5 p-2'>質問補足</h5>
   </div>
 
   <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
-        <!--画像-->
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <!--名前--><br>
-          <!--投稿日-->
-        </p>
+    <% @supplemental_questions.each do |supplemental_question| %>
+      <div class='offset-1 col-10 border border-dark mt-2'>
+        <div class='row ml-1 mt-1'>
+          <%= image_tag @question.end_user.get_profile_image(150,150) %>
+          <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+            <%= @question.end_user.account_name %><br>
+            <%= I18n.l supplemental_question.created_at, format: :short_day %>
+          </p>
+        </div>
+        <div class='row mt-3'>
+          <table class='table table-borderless offset-1 col-10'>
+            <tbody>
+              <tr>
+                <th style='width: 20%'>質問補足内容</th>
+                <td style='width: 80%'><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
-          <tr>
-            <th style='width: 20%'>質問補足内容</th>
-            <td style='width: 80%'><!--質問補足内容--></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    <% end %>
   </div>
 
   <div class='row mt-5'>
-    <%= link_to '回答を入力する', new_supplemental_question_path, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
+    <%= link_to '回答を入力する', new_answer_path,method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
   <div class='row mt-5'>

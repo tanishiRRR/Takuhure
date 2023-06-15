@@ -47,7 +47,7 @@
     <% elsif end_user_signed_in? %>
       <header class='sticky-top'>
         <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
-          <%= link_to '宅フレ！', end_users_my_page_path , class: 'navbar-brand' %>
+          <%= link_to '宅フレ！', learning_records_path , class: 'navbar-brand' %>
           <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon'></span>
           </button>
@@ -57,7 +57,7 @@
                 <%= link_to 'マイページ', end_users_my_page_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to '学習時間', new_learning_record_path, method: :get, class: 'nav-link' %>
+                <%= link_to '学習時間打刻', new_learning_record_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
                 <%= link_to 'Q&A', questions_top_path, method: :get, class: 'nav-link' %>

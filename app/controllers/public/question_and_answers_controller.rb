@@ -6,6 +6,8 @@ class Public::QuestionAndAnswersController < ApplicationController
   end
 
   def show
+    @question = Question.find(params[:id])
+    @supplemental_questions = @question.supplemental_questions.all
   end
 
 end
