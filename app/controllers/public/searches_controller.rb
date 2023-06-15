@@ -3,7 +3,10 @@ class Public::SearchesController < ApplicationController
 
   # 検索機能
   def search
-    @keyword = params[:keyword]
-    @questions = Question.search(@keyword)
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      @questions = Question.search(@keyword)
+    else
+    end
   end
 end

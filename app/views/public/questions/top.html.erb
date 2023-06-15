@@ -23,13 +23,13 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <% @categories.each do |category| %>
-          <%= link_to category.category_name, searches_path, method: :get, class: 'dropdown-item' %>
+          <%= link_to category.category_name, search_path, method: :get, class: 'dropdown-item' %>
         <% end %>
       </div>
     </div>
 
     <div class='col-4 text-center'>
-      <%= link_to 'Q&A一覧', searches_path, method: :get, class: 'btn btn-outline-dark pl-5 pr-5' %>
+      <%= link_to 'Q&A一覧', search_path, method: :get, class: 'btn btn-outline-dark pl-5 pr-5' %>
     </div>
   </div>
 
