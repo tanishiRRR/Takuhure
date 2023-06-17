@@ -44,7 +44,7 @@
 
   <%= form_with model: @answer, url: answers_path(question_id: @question.id), method: :post, local: true do |f| %>
     <div class='row'>
-      <%= f.text_area :answer, required: true, placeholder: '回答を入力してください', class: 'offset-1 col-10 form-control' %>
+      <%= f.text_area :answer, required: true, rows: '5', placeholder: '回答を入力してください', class: 'offset-1 col-10 form-control' %>
     </div>
     <div class='row mt-3 mb-5'>
       <%= f.submit '回答する', class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>

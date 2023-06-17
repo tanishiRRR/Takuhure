@@ -14,6 +14,7 @@ class Public::QuestionAndAnswersController < ApplicationController
     @question = Question.find(params[:id])
     @answers = Answer.all.where(question_id: params[:id])
     @supplemental_questions = @question.supplemental_questions.all
+    @comment = Comment.new
   end
 
 end

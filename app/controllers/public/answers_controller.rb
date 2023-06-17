@@ -8,6 +8,7 @@ class Public::AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @question = Question.find(params[:question_id])
+    @comment = Comment.new
     if @question.end_user_id == current_end_user.id
       @answers = Answer.all.where(question_id: params[:question_id])
       @supplemental_questions = @question.supplemental_questions.all
