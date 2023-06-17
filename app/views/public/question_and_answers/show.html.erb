@@ -99,25 +99,26 @@
   <div class='row mt-5'>
     <h5 class='ml-5 p-2'>その他のアンサー</h5>
   </div>
-
+  <% @answers.each do |answer| %>
   <div class='row mt-1'>
     <div class='offset-1 col-10 border border-dark'>
       <div class='row ml-1 mt-1'>
-        <!--画像-->
+        <%= image_tag answer.end_user.get_profile_image(150,150) %>
         <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <!--名前--><br>
-          <!--投稿日-->
+          <%= answer.end_user.account_name %><br>
+          <%= I18n.l answer.created_at, format: :short_day %>
         </p>
       </div>
       <div class='row mt-3'>
         <table class='table table-borderless offset-1 col-10'>
           <tr>
             <th style='width: 20%'>回答</th>
-            <td style='width: 80%'><!--回答--></td>
+            <td style='width: 80%'><%= safe_join(answer.answer.split("\n"), tag(:br)) %></td>
           </tr>
         </table>
       </div>
     </div>
   </div>
+  <% end %>
 
 </div>

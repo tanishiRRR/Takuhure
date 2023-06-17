@@ -7,11 +7,11 @@ class LearningRecord < ApplicationRecord
   validates :start_time, presence: true
   validates :date, presence: true
   validates :is_record, inclusion: {in: [true, false]}
-  validate :no_registration_time
+  validate :do_not_registration_time
 
-  def no_registration_time
+  def do_not_registration_time
     if end_time.present?
-      errors.add(:base, '終了時刻は、開始時間より前に設定できない') unless start_time < end_time
+      errors.add('終了時間は、開始時間より遅い時間を入力してください') unless start_time < end_time
     end
   end
 

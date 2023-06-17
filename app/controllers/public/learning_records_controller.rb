@@ -31,7 +31,7 @@ class Public::LearningRecordsController < ApplicationController
       else
         @learning_records = current_end_user.learning_records.where(date: @learning_record.date).order(start_time: :asc)
         @date = @learning_record.date
-        flash.now[:warning] = '終了時間は開始時間より遅い時間を入力してください'
+        flash.now[:warning] = '終了時間は、開始時間より遅い時間を入力してください'
         render :show
       end
     else
