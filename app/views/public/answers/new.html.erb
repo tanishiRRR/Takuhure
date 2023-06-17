@@ -1,2 +1,54 @@
-<h1>Public::Answers#new</h1>
-<p>Find me in app/views/public/answers/new.html.erb</p>
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>回答投稿フォーム</h4>
+  </div>
+
+  <div class='row'>
+    <h5 class='ml-5 p-2'>質問</h5>
+  </div>
+
+  <div class='row mt-1'>
+    <div class='offset-1 col-10 border border-dark'>
+      <div class='row ml-1 mt-1'>
+        <%= image_tag @question.end_user.get_profile_image(150,150) %>
+        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+          <%= @question.end_user.account_name %><br>
+          <%= I18n.l @question.date, format: :default %>
+        </p>
+      </div>
+      <div class='row mt-3'>
+        <table class='table table-borderless offset-1 col-10'>
+          <tbody>
+            <tr>
+              <th style='width: 20%'>タイトル</th>
+              <td style='width: 80%'><%= @question.title %></td>
+            </tr>
+            <tr>
+              <th style='width: 20%'>カテゴリー</th>
+              <td style='width: 80%'><%= @question.category.category_name %></td>
+            </tr>
+            <tr>
+              <th style='width: 20%'>質問内容</th>
+              <td style='width: 80%'><%= safe_join(@question.question.split("\n"), tag(:br)) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='row mt-5'>
+    <h5 class='ml-5 p-2'>回答フォーム</h5>
+  </div>
+
+  <%= form_with model: @answer, url: answers_path(question_id: @question.id), method: :post, local: true do |f| %>
+    <div class='row'>
+      <%= f.text_area :answer, required: true, placeholder: '回答を入力してください', class: 'offset-1 col-10 form-control' %>
+    </div>
+    <div class='row mt-3 mb-5'>
+      <%= f.submit '回答する', class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
+    </div>
+  <% end %>
+
+</div>

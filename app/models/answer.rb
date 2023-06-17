@@ -1,7 +1,7 @@
 class Answer < ApplicationRecord
 
   # 会員
-  belongs_to :end_uer
+  belongs_to :end_user
 
   # 質問
   belongs_to :question

@@ -2,7 +2,7 @@ class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-    @questions = current_end_user.questions.all
+    @questions = current_end_user.questions.all.order(created_at: :asc)
   end
 
   def top
@@ -34,7 +34,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = current_end_user.questions.find(params[:id])
+    @question = Questions.find(params[:id])
     if @question.destroy
       redirect_to questions_path, danger: '質問を削除しました'
     end
