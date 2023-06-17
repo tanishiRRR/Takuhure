@@ -128,7 +128,7 @@
     <% end %>
   </div>
   <div>
-    <%= form_with model: [answer, @comment] do |f| %>
+    <%= form_with model: @comment, url: answer_comments_path(answer_id: answer.id), method: :post, local: true do |f| %>
       <%= f.text_area :comment, placeholder: "コメントをここに" %>
       <%= f.submit "送信する" %>
     <% end %>

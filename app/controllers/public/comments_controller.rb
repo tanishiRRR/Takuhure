@@ -9,11 +9,11 @@ class Public::CommentsController < ApplicationController
   end
 
   def create
-    answer = Answer.find(params[:answer_id])
     comment = Comment.new(comment_params)
     comment.end_user_id = current_end_user.id
-    comment.answer_id = answer.id
+    comment.answer_id = params[:answer_id]
     comment.save
+    redirect_to question_and_answer_path(comment.answer.question.id)
   end
 
   def show

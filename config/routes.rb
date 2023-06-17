@@ -28,9 +28,11 @@ Rails.application.routes.draw do
 
     resources :supplemental_questions, only: [:create, :destroy]
 
-    resources :answers, only: [:index, :create, :new, :show, :destroy]
+    resources :answers, only: [:index, :create, :new, :show, :destroy] do
+      resources :comments, only: [:create]
+    end
 
-    resources :comments, only: [:index, :new, :create, :show, :destroy]
+    resources :comments, only: [:index, :new, :show, :destroy]
 
     patch 'learning_records' => 'learning_records#end_count'
     resources :learning_records
