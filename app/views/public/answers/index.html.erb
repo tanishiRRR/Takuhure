@@ -22,7 +22,7 @@
             <td><%= I18n.l answer.created_at, format: :short_day %></td>
             <td><%= answer.question.title %></td>
             <td><%= answer.question.category.category_name %></td>
-            <td><%= truncate(answer.answer, :length => 50) %></td>
+            <td><%= truncate(answer.answer, :length => 30) %></td>
             <td class='text-center'><%= link_to '詳細', answer_path(answer), method: :get, class: 'btn btn-primary btn-sm' %></td>
             <td class='text-center'><%= link_to '回答を取り消す', answer_path(answer), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %></td>
           </tr>

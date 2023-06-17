@@ -31,7 +31,7 @@
             <td style='width: 20%'>内容</td>
             <td style='width: 80%'>
               <%= link_to question_and_answer_path(question), method: :get, class: 'text-dark' do %>
-                <%= truncate(question.question, :length => 50) %>
+                <%= truncate(question.question, :length => 30) %>
               <% end %>
             </td>
           </tr>

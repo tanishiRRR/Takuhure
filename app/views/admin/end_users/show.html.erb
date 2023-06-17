@@ -44,15 +44,19 @@
   </div>
 
   <div class='row mt-5'>
-    <%= link_to '会員情報を編集する', edit_admin_end_user_path(@end_user), class: 'offset-3 col-4 btn btn-success pl-5 pr-5' %>
+    <%= link_to '会員情報を編集する', edit_admin_end_user_path(@end_user), method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
   <div class='row mt-5'>
-    <%= link_to '質問投稿一覧を見る', admin_questions_path, class: 'offset-3 col-4 btn btn-primary pl-5 pr-5' %>
+    <%= link_to '投稿質問一覧を見る', admin_questions_path(end_user_id: @end_user.id), method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
   <div class='row mt-3'>
-    <%= link_to '回答投稿一覧を見る', admin_answers_path, class: 'offset-3 col-4 btn btn-primary pl-5 pr-5' %>
+    <%= link_to '投稿回答一覧を見る', admin_answers_path, method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+  </div>
+
+  <div class='row mt-3'>
+    <%= link_to '投稿コメント一覧を見る', admin_comments_path, method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
 </div>

@@ -1,13 +1,71 @@
 <div class='container'>
 
   <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>Q&A詳細</h4>
+    <h4 class='border border-dark bg-secondary text-white p-2'>質問詳細</h4>
+  </div>
+
+  <div class='row'>
+    <h5 class='ml-5 p-2'>質問</h5>
+  </div>
+
+  <div class='row mt-1'>
+    <div class='offset-1 col-10 border border-dark'>
+      <div class='row ml-1 mt-1'>
+        <%= image_tag @question.end_user.get_profile_image(150,150) %>
+        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+          <%= @question.end_user.account_name %><br>
+          <%= I18n.l @question.date, format: :default %>
+        </p>
+      </div>
+      <div class='row mt-3'>
+        <table class='table table-borderless offset-1 col-10'>
+          <tbody>
+            <tr>
+              <th style='width: 15%'>タイトル</th>
+              <td style='width: 85%'><%= @question.title %></td>
+            </tr>
+            <tr>
+              <th>カテゴリー</th>
+              <td><%= @question.category.category_name %></td>
+            </tr>
+            <tr>
+              <td colspan='2'><%= safe_join(@question.question.split("\n"), tag(:br)) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <div class='row mt-5'>
-    <div class='col'>
-      <%= @question.title %>
-      <%= @question.question %>
-    </div>
+    <h5 class='ml-5 p-2'>質問補足</h5>
   </div>
+
+  <div class='row mt-1'>
+    <% @question.supplemental_questions.each do |supplemental_question| %>
+      <div class='offset-1 col-10 border border-dark mt-2'>
+        <div class='row ml-1 mt-1'>
+          <%= image_tag @question.end_user.get_profile_image(150,150) %>
+          <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+            <%= @question.end_user.account_name %><br>
+            <%= I18n.l supplemental_question.created_at, format: :short_day %>
+          </p>
+        </div>
+        <div class='row'>
+          <table class='table table-borderless offset-1 col-10'>
+            <tbody>
+              <tr>
+                <td><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='row mt-5'>
+    <%= link_to 'この質問を取り消す', admin_question_path(@question), method: :delete, class: 'offset-4 col-4 btn btn-danger', data: {confirm: "削除しますか？"} %>
+  </div>
+
 </div>
