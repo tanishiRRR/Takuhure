@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
 
-    resources :comments, only: [:index, :new, :show, :destroy]
+    resources :comments, only: [:index, :destroy]
 
     patch 'learning_records' => 'learning_records#end_count'
     resources :learning_records

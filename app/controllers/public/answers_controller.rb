@@ -8,17 +8,16 @@ class Public::AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @question = Question.find(params[:question_id])
+    @supplemental_questions = @question.supplemental_questions.all
     if @question.end_user_id == current_end_user.id
       @answers = Answer.all.where(question_id: params[:question_id])
       @supplemental_questions = @question.supplemental_questions.all
-      flash.now[:warning] = '自分の質問に回答をすることはできません'
-      render 'public/question_and_answers/show'
+      redirect_to question_and_answer_path(params[:question_id]), warning: '自分の質問に回答をすることはできません'
     elsif @question.answers.exists?(end_user_id: current_end_user.id)
       # elseにすると上記条件式がfalseでもquestion_and_answerのページに留まってしまい、answerのページに遷移できない
       @answers = Answer.all.where(question_id: params[:question_id])
       @supplemental_questions = @question.supplemental_questions.all
-      flash.now[:warning] = 'すでに回答済みです'
-      render 'public/question_and_answers/show'
+      redirect_to question_and_answer_path(params[:question_id]), warning: 'すでに回答済みです'
     end
   end
 
@@ -37,6 +36,7 @@ class Public::AnswersController < ApplicationController
 
   def show
     @answer = Answer.find(params[:id])
+    @supplemental_questions = @answer.question.supplemental_questions.all
   end
 
   def destroy

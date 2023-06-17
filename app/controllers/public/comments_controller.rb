@@ -5,9 +5,6 @@ class Public::CommentsController < ApplicationController
     @comments = current_end_user.comments.all.order(created_at: :asc)
   end
 
-  def new
-  end
-
   def create
     comment = Comment.new(comment_params)
     comment.end_user_id = current_end_user.id
@@ -16,12 +13,11 @@ class Public::CommentsController < ApplicationController
     redirect_to question_and_answer_path(comment.answer.question.id)
   end
 
-  def show
-    @comment = Comment.find(params[:id])
-  end
-
   def destroy
     @comment = Comment.find(params[:id])
+    if @comment.destroy
+      redirect_to comments_path, danger: '質問を削除しました'
+    end
   end
 
   private

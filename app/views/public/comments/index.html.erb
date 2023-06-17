@@ -1,2 +1,34 @@
-<h1>Public::Comments#index</h1>
-<p>Find me in app/views/public/comments/index.html.erb</p>
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>コメント一覧</h4>
+  </div>
+
+  <div class='row mt-3'>
+    <table class='table table-bordered offset-1 col-10'>
+      <thead>
+        <tr>
+          <th style='width: 15%'>コメント投稿日</th>
+          <th style='width: 15%'>質問タイトル</th>
+          <th style='width: 15%'>カテゴリ</th>
+          <th style='width: 15%'>投稿内容</th>
+          <th style='width: 20%'></th>
+          <th style='width: 20%'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= I18n.l comment.created_at, format: :short_day %></td>
+            <td><%= comment.answer.question.title %></td>
+            <td><%= comment.answer.question.category.category_name %></td>
+            <td><%= truncate(comment.comment, :length => 50) %></td>
+            <td class='text-center'><%= link_to 'Q&A詳細ページ', question_and_answer_path(comment.answer.question.id), method: :get, class: 'btn btn-primary btn-sm' %></td>
+            <td class='text-center'><%= link_to 'コメントを取り消す', comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
