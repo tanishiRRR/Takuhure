@@ -2,6 +2,7 @@ class Public::QuestionAndAnswersController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
+    @categories = Category.all
     if params[:category_id].present?
       @questions = Question.where(category_id: params[:category_id]).order(created_at: :asc)
     else

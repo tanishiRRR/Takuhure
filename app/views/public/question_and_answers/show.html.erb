@@ -96,9 +96,11 @@
     </div>
   </div>
 
-  <div class='row mt-5'>
-    <h5 class='ml-5 p-2'>その他のアンサー</h5>
-  </div>
+  <% if @answers.exists? %>
+    <div class='row mt-5'>
+      <h5 class='ml-5 p-2'>その他のアンサー</h5>
+    </div>
+  <% end %>
   <% @answers.each do |answer| %>
   <div class='row mt-1'>
     <div class='offset-1 col-10 border border-dark'>

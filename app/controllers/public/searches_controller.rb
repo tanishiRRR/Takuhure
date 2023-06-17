@@ -3,6 +3,7 @@ class Public::SearchesController < ApplicationController
 
   # 検索機能
   def search
+    @categories = Category.all
     if params[:keyword].present?
       @keyword = params[:keyword]
       @questions = Question.search(@keyword).order(created_at: :asc)
