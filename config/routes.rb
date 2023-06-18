@@ -30,9 +30,12 @@ Rails.application.routes.draw do
 
     resources :answers, only: [:index, :create, :new, :show, :destroy] do
       resources :comments, only: [:create]
+      # resourceと単数形にすると、/:idがURLに含まれなくなる
+      resource :favorites, only: [:create, :destroy]
     end
 
     resources :comments, only: [:index, :destroy]
+    resources :favorites, only: [:index]
 
     patch 'learning_records' => 'learning_records#end_count'
     resources :learning_records
@@ -40,6 +43,7 @@ Rails.application.routes.draw do
     get 'searches' => 'searches#search'
 
     resources :question_and_answers, only: [:index, :show]
+
   end
 
   # 管理者用

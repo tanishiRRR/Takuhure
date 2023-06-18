@@ -70,33 +70,7 @@
     <%= link_to '回答を入力する', new_answer_path(question_id: @question.id), method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
-  <div class='row mt-5'>
-    <h5 class='ml-5 p-2'>一番いいねが多いアンサー</h5>
-  </div>
-
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
-        <!--画像-->
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <!--名前--><br>
-          <!--投稿日-->
-        </p>
-      </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
-          <tbody>
-            <tr>
-              <th style='width: 20%'>回答</th>
-              <td style='width: 80%'><!--回答--></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <% if @answers.exists? %>
+  <% if @answers.any? %>
     <div class='row mt-5'>
       <h5 class='ml-5 p-2'>その他のアンサー</h5>
     </div>
@@ -120,6 +94,23 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class='row'>
+        <div class='offset-1 col-10'>
+          <% if answer.favorited_by?(current_end_user) %>
+            <p>
+              <%= link_to answer_favorites_path(answer), method: :delete do %>
+                ♥<%= answer.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to answer_favorites_path(answer), method: :post do %>
+                ♡<%= answer.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
