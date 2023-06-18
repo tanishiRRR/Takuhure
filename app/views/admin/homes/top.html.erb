@@ -27,8 +27,14 @@
               <% end %>
             </td>
             <td><%= end_user.email %></td>
-            <td>時間</td>
-            <td class='<%= end_user.is_deleted ? 'text-muted' : 'font-weight-bold text-success' %>'>
+            <td>
+              <% total_time = 0 %>
+              <% end_user.learning_records.each do |learning_record| %>
+                <%total_time += learning_record.end_time - learning_record.start_time %>
+              <% end %>
+              <%= (total_time/(60*60)).round(2) %>時間
+            </td>
+            <td class='<%= end_user.is_deleted ? 'text-muted' : 'font-weight-bold text-success' %> text-center'>
               <%= end_user.is_deleted ? '退会' : '有効' %>
             </td>
           </tr>

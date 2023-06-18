@@ -11,13 +11,14 @@ class Admin::CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find(params[:id])
+    @answer = Answer.find(params[:id])
+    @comments = Comment.where(answer_id: params[:id]).order(created_at: :asc)
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
-      redirect_to admin_comments_path(end_user_id: @answer.end_user.id), danger: 'コメントを削除しました'
+      redirect_to admin_comments_path(end_user_id: @comment.end_user.id), danger: 'コメントを削除しました'
     end
   end
 
