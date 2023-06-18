@@ -11,9 +11,9 @@
   <div class='row mt-1'>
     <div class='offset-1 col-10 border border-dark'>
       <div class='row ml-1 mt-1'>
-        <%= image_tag @end_user.get_profile_image(150,150) %>
+        <%= image_tag @question.end_user.get_profile_image(150,150) %>
         <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <%= @end_user.account_name %><br>
+          <%= @question.end_user.account_name %><br>
           <%= I18n.l @question.date, format: :default %>
         </p>
       </div>
@@ -49,9 +49,9 @@
     <% @supplemental_questions.each do |supplemental_question| %>
       <div class='offset-1 col-10 border border-dark mt-2'>
         <div class='row ml-1 mt-1'>
-          <%= image_tag @end_user.get_profile_image(150,150) %>
+          <%= image_tag @question.end_user.get_profile_image(150,150) %>
           <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-            <%= @end_user.account_name %><br>
+            <%= @question.end_user.account_name %><br>
             <%= I18n.l supplemental_question.created_at, format: :short_day %>
           </p>
         </div>

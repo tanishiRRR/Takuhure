@@ -27,7 +27,6 @@ class Public::QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @end_user = current_end_user
     @supplemental_question = SupplementalQuestion.new
     @supplemental_questions = SupplementalQuestion.where(question_id: params[:id]).order(created_at: :asc)
   end
