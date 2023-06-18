@@ -37,14 +37,14 @@
     </div>
   </div>
 
-  <% if @supplemental_questions.exists? %>
+  <% if @question.supplemental_questions.exists? %>
     <div class='row mt-2'>
       <h5 class='ml-5 p-2'>質問補足内容</h5>
     </div>
   <% end %>
 
   <div class='row mt-1'>
-    <% @supplemental_questions.each do |supplemental_question| %>
+    <% @question.supplemental_questions.each do |supplemental_question| %>
       <div class='offset-1 col-10 border border-dark mt-2'>
         <div class='row ml-1 mt-1'>
           <%= image_tag @question.end_user.get_profile_image(100,100) %>

@@ -2,7 +2,7 @@ class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-    @questions = current_end_user.questions.all.order(created_at: :asc)
+    @questions = current_end_user.questions.order(created_at: :asc)
   end
 
   def top

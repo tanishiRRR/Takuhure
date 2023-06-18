@@ -2,7 +2,7 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-    @favorites = current_end_user.favorites.all.order(created_at: :asc)
+    @favorites = current_end_user.favorites.order(created_at: :asc)
   end
 
   def create
@@ -10,7 +10,7 @@ class Public::FavoritesController < ApplicationController
     favorite = Favorite.new
     favorite.end_user_id = current_end_user.id
     favorite.answer_id = params[:answer_id]
-    favorite.save!
+    favorite.save
     redirect_to question_and_answer_path(answer.question.id)
   end
 
