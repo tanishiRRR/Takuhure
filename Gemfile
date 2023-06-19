@@ -64,3 +64,4 @@ gem 'enum_help'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails-i18n'
 gem 'byebug'
+gem 'rakuten_web_service'
