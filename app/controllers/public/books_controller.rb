@@ -4,6 +4,7 @@ class Public::BooksController < ApplicationController
   def new
   end
 
+  # RakutenWebService::Books::Bookにsearchメソッドを使い、引数にtitle:と指定することでタイトルで検索できる。
   def index
     if params[:keyword]
       @books = RakutenWebService::Books::Book.search(title: params[:keyword])
