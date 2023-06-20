@@ -119,8 +119,12 @@ ActiveRecord::Schema.define(version: 2023_05_17_115049) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reference_books", force: :cascade do |t|
+  create_table "reference_books", primary_key: "isbn", force: :cascade do |t|
     t.integer "end_user_id", null: false
+    t.string "title"
+    t.string "author"
+    t.string "url"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
