@@ -18,7 +18,7 @@ class EndUser < ApplicationRecord
   # いいね
   has_many :favorites
   # 参考書
-  has_many :reference_books
+  has_many :reference_books, primary_key: 'isbn'
 
   enum is_study: {learning: 0, learning_retake: 1, pass: 2}
 
