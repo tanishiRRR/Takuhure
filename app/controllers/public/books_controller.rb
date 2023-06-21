@@ -10,14 +10,20 @@ class Public::BooksController < ApplicationController
 
   def create
     book = RakutenWebService::Books::Book.search(isbn: params[:id])
-    reference_book = ReferenceBook.new
-    reference_book.isbn = params[:id]
-    reference_book.end_user_id = current_end_user.id
-    byebug
-    reference_book.title = book.title
-    reference_book.author = book.author
-    reference_book.url = book.item_url
-    reference_book.image_url = book.medium_image_url
+    if book.count < 1
+      redirect_to books_path, warning: 'データが見つかりませんでした'
+    else
+      reference_book = ReferenceBook.new
+      # reference_book.isbnがidと被ってしまうためisbnについては記載しない
+      # reference_book.isbn = params[:id]
+      reference_book.end_user_id = current_end_user.id
+      reference_book.title = book.first.title
+      reference_book.author = book.first.author
+      reference_book.url = book.first.item_url
+      reference_book.image_url = book.first.large_image_url
+      reference_book.save
+      redirect_to end_users_my_page_path, success: '参考書を保存しました'
+    end
   end
 
 end

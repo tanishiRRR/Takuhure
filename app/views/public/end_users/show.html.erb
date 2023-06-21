@@ -45,6 +45,32 @@
     <p class='font-weight-bold'>使用参考書</p>
   </div>
 
+  <% if @reference_books.any? %>
+    <div class='row mt-5'>
+      <table class='table offset-2 col-8'>
+        <thead>
+          <tr>
+            <th style='width: 30%'></th>
+            <th style='width: 30%'>タイトル</th>
+            <th style='width: 30%'>著者名</th>
+            <th style='width: 10%'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reference_books.each do |reference_book| %>
+            <tr>
+              <td><%= link_to (image_tag(reference_book.image_url)), reference_book.url %></td>
+              <td><%= reference_book.title %></td>
+              <td><%= reference_book.author %></td>
+              <td class='text-center'>削除</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+
   <div class='row mt-5'>
     <%= link_to '追加する', books_path, method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
