@@ -22,7 +22,12 @@ class Public::AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.end_user_id = current_end_user.id
     @answer.question_id = params[:question_id]
+    question = Question.find(params[:question_id])
     if @answer.save
+      # 回答待ちの質問を回答済みにする
+      if question.is_answer == false
+        question.update(is_answer: true)
+      end
       redirect_to answer_path(@answer.id), success: '回答を投稿しました'
     else
       @question = Question.find(params[:question_id])
@@ -36,10 +41,13 @@ class Public::AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    if @answer.destroy
-      redirect_to answers_path, danger: '回答を削除しました'
+    answer = Answer.find(params[:id])
+    # 回答していた質問が、回答を一つも持たなくなった場合、回答待ちへ変更する
+    answer.destroy
+    unless answer.question.answers.any?
+      answer.question.update(is_answer: false)
     end
+    redirect_to answers_path, danger: '回答を削除しました'
   end
 
   private
