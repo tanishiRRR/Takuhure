@@ -26,4 +26,11 @@ class Public::BooksController < ApplicationController
     end
   end
 
+  def destroy
+    @reference_book = ReferenceBook.find(params[:id])
+    if @reference_book.destroy
+      redirect_to end_users_my_page_path, danger: '参考書を削除しました'
+    end
+  end
+
 end

@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
     resources :question_and_answers, only: [:index, :show]
 
-    resources :books, only: [:create, :index]
+    resources :books, only: [:create, :destroy, :index]
   end
 
   # 管理者用
