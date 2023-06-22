@@ -51,9 +51,9 @@
         <thead>
           <tr>
             <th style='width: 30%'></th>
-            <th style='width: 30%'>タイトル</th>
-            <th style='width: 30%'>著者名</th>
-
+            <th style='width: 20%'>タイトル</th>
+            <th style='width: 20%'>著者名</th>
+            <th style='width: 20%'></th>
             <th style='width: 10%'></th>
           </tr>
         </thead>
@@ -63,6 +63,17 @@
               <td><%= link_to (image_tag(reference_book.image_url)), reference_book.url %></td>
               <td><%= reference_book.title %></td>
               <td><%= reference_book.author %></td>
+              <td>
+                <div class='progress'>
+                  <div class='progress-bar' role='progressbar' style='width: #{reference_book.progress}%;' aria-valuenow='#{reference_book.progress}' aria-valuemin='0' aria-valuemax='100'><%= reference_book.progress %>%</div>
+                </div>
+                <%= form_with model: reference_book, url: book_path(reference_book), method: :patch, local: true do |f| %>
+                  <div class='mt-2'>
+                    <%= f.number_field :progress , in: 0..100 %>%
+                    <%= f.submit class: 'btn btn-secondary btn-sm form-control'%>
+                  </div>
+                <% end %>
+              </td>
               <td class='text-center'><%= link_to '削除', book_path(reference_book), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %> </td>
             </tr>
           <% end %>

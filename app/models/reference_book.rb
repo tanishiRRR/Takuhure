@@ -5,4 +5,6 @@ class ReferenceBook < ApplicationRecord
   # 会員
   belongs_to :end_user
 
+  # 進捗度は0～100％の間
+  validates :progress, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 end
