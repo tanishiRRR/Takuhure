@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     get   'end_users/unsubscribe' => 'end_users#unsubscribe'
     patch 'end_users/withdraw' => 'end_users#withdraw'
 
-    get 'questions/top' => 'questions#top'
     resources :questions, only: [:index, :create, :new, :show, :destroy]
 
     resources :supplemental_questions, only: [:create, :destroy]

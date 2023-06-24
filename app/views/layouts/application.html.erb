@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Takuhure</title>
+    <title>宅フレ！</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -60,7 +60,7 @@
                 <%= link_to '学習時間打刻', new_learning_record_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to 'Q&A', questions_top_path, method: :get, class: 'nav-link' %>
+                <%= link_to 'Q&A', question_and_answers_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
                 <%= link_to '投稿質問一覧', questions_path, method: :get, class: 'nav-link' %>
