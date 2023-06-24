@@ -17,11 +17,7 @@
         <tr>
           <td>総学習時間</td>
           <td>
-            <% total_time = 0 %>
-            <% @learning_records.each do |learning_record| %>
-              <% total_time += learning_record.end_time - learning_record.start_time %>
-            <% end %>
-            <%= (total_time/(60*60)).round(2) %>時間
+            <%= LearningRecord.total_day_time(@date).round(2) %>時間
           </td>
         </tr>
       </tbody>
@@ -45,11 +41,11 @@
           <tr>
             <th>学習時間<%= i + 1 %></th>
             <td>
-              <%= ((learning_record.end_time - learning_record.start_time)/(60*60)).round(2) %>時間
+              <%= ((learning_record.end_time - learning_record.start_time)/(60*60)).round(2) if learning_record.end_time.present? %>時間
             </td>
             <td><%= I18n.l learning_record.start_time, format: :short_time %></td>
-            <td><%= I18n.l learning_record.end_time, format: :short_time %></td>
-            <td><%= safe_join(learning_record.content_memo.split("\n"), tag(:br)) %></td>
+            <td><%= I18n.l learning_record.end_time, format: :short_time if learning_record.end_time.present? %></td>
+            <td><%= safe_join(learning_record.content_memo.split("\n"), tag(:br)) if learning_record.content_memo.present? %></td>
             <td class='text-center'>
               <%= link_to '編集', edit_learning_record_path(learning_record), class: 'btn btn-success btn-sm pl-3 pr-3' %>
               <%= link_to '削除', learning_record_path(learning_record), method: :delete, class: 'btn btn-danger btn-sm pl-3 pr-3', data: {confirm: "削除しますか？"} %>

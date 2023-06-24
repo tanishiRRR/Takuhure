@@ -26,11 +26,14 @@ class LearningRecord < ApplicationRecord
   end
 
   def self.total_day_time(day)
-
     day_time = where(date: day)
     subtotal = 0
     day_time.each do |day_time|
-      subtotal += day_time.end_time - day_time.start_time
+      if day_time.end_time.present?
+        subtotal += day_time.end_time - day_time.start_time
+      else
+        subtotal += 0
+      end
     end
     subtotal/(60*60)
   end
@@ -43,7 +46,11 @@ class LearningRecord < ApplicationRecord
     end
     subtotal = 0
     month_time.each do |month_time|
-      subtotal += month_time.end_time - month_time.start_time
+      if month_time.end_time.present?
+        subtotal += month_time.end_time - month_time.start_time
+      else
+        subtotal += 0
+      end
     end
     subtotal/(60*60)
   end
