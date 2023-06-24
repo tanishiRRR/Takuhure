@@ -30,7 +30,11 @@
             <td>
               <% total_time = 0 %>
               <% end_user.learning_records.each do |learning_record| %>
-                <%total_time += learning_record.end_time - learning_record.start_time %>
+                <% if learning_record.end_time.present? %>
+                  <%total_time += learning_record.end_time - learning_record.start_time %>
+                <% else %>
+                  <%total_time += 0 %>
+                <% end %>
               <% end %>
               <%= (total_time/(60*60)).round(2) %>時間
             </td>
