@@ -26,13 +26,25 @@ Rails.application.routes.draw do
     get 'questions/top' => 'questions#top'
     resources :questions, only: [:index, :create, :new, :show, :destroy]
 
-    resources :supplemental_questions, only: [:create, :new, :destroy]
+    resources :supplemental_questions, only: [:create, :destroy]
 
-    resources :answers, only: [:index, :create, :new, :show, :destroy]
+    resources :answers, only: [:index, :create, :new, :show, :destroy] do
+      resources :comments, only: [:create]
+      # resourceと単数形にすると、/:idがURLに含まれなくなる
+      resource :favorites, only: [:create, :destroy]
+    end
 
+    resources :comments, only: [:index, :destroy]
+    resources :favorites, only: [:index]
+
+    patch 'learning_records' => 'learning_records#end_count'
     resources :learning_records
 
-    resources :comments, only: [:index, :create, :new, :show, :destroy]
+    get 'searches' => 'searches#search'
+
+    resources :question_and_answers, only: [:index, :show]
+
+    resources :books, only: [:create, :destroy, :update, :index]
   end
 
   # 管理者用

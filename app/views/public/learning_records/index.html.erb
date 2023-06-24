@@ -1,2 +1,71 @@
-<h1>Public::LearningRecords#index</h1>
-<p>Find me in app/views/public/learning_records/index.html.erb</p>
+<div class='container'>
+
+  <div class='row mt-3'>
+    <h4 class='border border-dark bg-secondary text-white p-2'>学習記録一覧</h4>
+  </div>
+
+  <div class='row mt-3'>
+    <div class='col-3'>
+      <p>総学習時間</p>
+      <p class='text-center'>
+        <% total_time = 0 %>
+        <% @learning_records.each do |learning_record| %>
+          <%total_time += learning_record.end_time - learning_record.start_time %>
+        <% end %>
+        <%= (total_time/(60*60)).round(2) %>時間
+      </p>
+    </div>
+
+    <div class='col-3'>
+      <p>今月</p>
+      <p class='text-center'><%= @learning_records.total_month_time(@time.year, @time.month).round(2) %>時間</p>
+    </div>
+
+    <div class='col-3'>
+      <p>先月</p>
+      <p class='text-center'><%= @learning_records.total_month_time(@time.prev_month.year, @time.prev_month.month).round(2) %>時間</p>
+    </div>
+
+    <div class='col-3'>
+      <div>
+        <p>表示年月日</p>
+        <p class='text-center'>
+          <%= link_to '<', learning_records_path(year: @time.prev_month.year, month: @time.prev_month.month), class: 'text-reset h5 pr-4' %>
+          <%= I18n.l @time, format: :short_month %>
+          <%= link_to '>', learning_records_path(year: @time.next_month.year, month: @time.next_month.month), class: 'text-reset h5 pl-4' %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class='row mt-5'>
+    <div class='col-2'></div>
+    <table class='col-8 table table-bordered'>
+      <thead>
+        <tr>
+          <th style='width: 20%'>日付</th>
+          <th style='width: 10%'>曜日</th>
+          <th style='width: 40%'>学習時間</th>
+          <th style='width: 30%'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% days = ["日", "月", "火", "水", "木", "金", "土"] %>
+        <% date = @time.to_date %>
+        <% (date.beginning_of_month..date.end_of_month).each do |day| %>
+          <tr>
+            <td><%= I18n.l day, format: :short_day %></td>
+            <td><%= days[day.wday] %></td>
+            <td>
+              <% if @learning_records.total_day_time(day) != 0 %>
+                <%= @learning_records.total_day_time(day).round(2) %>時間
+              <% end %>
+            </td>
+            <td class='text-center'><%= link_to '詳細', learning_record_path(day), class: 'btn btn-success btn-sm  pl-5 pr-5' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

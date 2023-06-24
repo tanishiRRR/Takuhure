@@ -5,12 +5,11 @@
   </div>
 
   <div class='row mt-3'>
-    <div class='col-3'><p class='font-weight-bold'>登録情報</p></div>
-    <div class='col-5'><%= link_to '編集する', end_users_information_edit_path, class: 'btn btn-success btn-sm pl-5 pr-5' %></div>
+    <p class='font-weight-bold'>登録情報</p>
   </div>
 
   <div class='row'>
-    <div class="col-4">
+    <div class='col'>
       <%= image_tag @end_user.get_profile_image(150,150) %>
     </div>
   </div>
@@ -19,8 +18,8 @@
     <table class='col table table-bordered border-black'>
       <tbody>
         <tr>
-          <td>アカウント名</td>
-          <td><%= @end_user.account_name %></td>
+          <td style='width: 25%'>アカウント名</td>
+          <td style='width: 75%'><%= @end_user.account_name %></td>
         </tr>
         <tr>
           <td>メールアドレス</td>
@@ -39,13 +38,53 @@
   </div>
 
   <div class='row mt-5'>
-    <div class='col-3'><p class='font-weight-bold'>質問投稿一覧</p></div>
-    <div class='col-5'><%= link_to '一覧を見る', questions_path, class: 'btn btn-primary btn-sm pl-5 pr-5' %></div>
+    <%= link_to '編集する', end_users_information_edit_path, method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
-  <div class='row'>
-    <div class='col-3'><p class='font-weight-bold'>回答投稿一覧</p></div>
-    <div class='col-5'><%= link_to '一覧を見る', answers_path, class: 'btn btn-primary btn-sm pl-5 pr-5' %></div>
+  <div class='row mt-3'>
+    <p class='font-weight-bold'>使用参考書</p>
+  </div>
+
+  <% if @reference_books.any? %>
+    <div class='row mt-5'>
+      <table class='table offset-2 col-8'>
+        <thead>
+          <tr>
+            <th style='width: 30%'></th>
+            <th style='width: 20%'>タイトル</th>
+            <th style='width: 20%'>著者名</th>
+            <th style='width: 20%'>進捗度</th>
+            <th style='width: 10%'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reference_books.each do |reference_book| %>
+            <tr>
+              <td><%= link_to (image_tag(reference_book.image_url)), reference_book.url %></td>
+              <td><%= reference_book.title %></td>
+              <td><%= reference_book.author %></td>
+              <td>
+                <div class='progress'>
+                  <div class='progress-bar' role='progressbar' style="width: <%= reference_book.progress %>%;" aria-valuenow="<%= reference_book.progress %>" aria-valuemin='0' aria-valuemax='100'><%= reference_book.progress %>%</div>
+                </div>
+                <%= form_with model: reference_book, url: book_path(reference_book), method: :patch, local: true do |f| %>
+                  <div class='mt-2'>
+                    <%= f.number_field :progress , in: 0..100 %>%
+                    <%= f.submit class: 'btn btn-secondary btn-sm form-control'%>
+                  </div>
+                <% end %>
+              </td>
+              <td class='text-center'><%= link_to '削除', book_path(reference_book), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+
+  <div class='row mt-5 mb-3'>
+    <%= link_to '追加する', books_path, method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
 </div>

@@ -18,7 +18,7 @@ class EndUser < ApplicationRecord
   # いいね
   has_many :favorites
   # 参考書
-  has_many :reference_books
+  has_many :reference_books, primary_key: 'isbn'
 
   enum is_study: {learning: 0, learning_retake: 1, pass: 2}
 
@@ -26,8 +26,7 @@ class EndUser < ApplicationRecord
   # emailは基本的にpresence: true, uniqueness: trueがかかっているから記述の必要なし
   # validates :email, presence: true, uniqueness: true  # uniqueness:trueでテーブル全体での重複を防ぐ(一つの名前のラベル名しか保存できないようにする)
   validates :is_study, presence: true
-  # 編集の時だけバリデーションの対象にするためにupdateメソッドのみ指定
-  # nilを許さないのでコメントアウト
+  # 編集の時だけバリデーションの対象にするためにupdateメソッドのみ指定。しかし、nilを許さないのでコメントアウト
   # validates :exam_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/}, on: :update  # 日付の正規表(YYYY-MM-DD)
 
   def get_profile_image(width, height)

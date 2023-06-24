@@ -1,11 +1,14 @@
 class Public::EndUsersController < ApplicationController
+
   # authenticate_user!は、deviseで使える。
   # 各アクションが動く前にログインしているかしていないかを判断し、ログインしていなければアクションを動かすことなくログインページが表示されるようする
   before_action :authenticate_end_user!
+  # ゲストログインユーザーはマイページの編集及び退会ができないようにする
   before_action :check_guest, only: [:update, :withdraw]
 
   def show
     @end_user = current_end_user
+    @reference_books = ReferenceBook.where(end_user_id: current_end_user.id)
   end
 
   def edit
@@ -35,7 +38,7 @@ class Public::EndUsersController < ApplicationController
   private
 
     def end_user_params
-      params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, :profile_image )
+      params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, :profile_image)
     end
 
     def check_guest

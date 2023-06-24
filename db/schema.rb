@@ -99,10 +99,11 @@ ActiveRecord::Schema.define(version: 2023_05_17_115049) do
 
   create_table "learning_records", force: :cascade do |t|
     t.integer "end_user_id", null: false
-    t.time "start_time", null: false
-    t.time "end_time", null: false
-    t.text "content_memo", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time"
     t.date "date", null: false
+    t.text "content_memo"
+    t.boolean "is_record", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -112,13 +113,19 @@ ActiveRecord::Schema.define(version: 2023_05_17_115049) do
     t.integer "category_id", null: false
     t.string "title", null: false
     t.text "question", null: false
-    t.boolean "is_ansewer", default: false, null: false
+    t.boolean "is_answer", default: false, null: false
+    t.date "date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reference_books", force: :cascade do |t|
+  create_table "reference_books", primary_key: "isbn", force: :cascade do |t|
     t.integer "end_user_id", null: false
+    t.string "title"
+    t.string "author"
+    t.string "url"
+    t.string "image_url"
+    t.integer "progress"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
