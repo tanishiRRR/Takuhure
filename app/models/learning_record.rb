@@ -15,22 +15,18 @@ class LearningRecord < ApplicationRecord
     end
   end
 
-  # 0時を超えた場合の開始時間
-  def punctuation_time_start(year, month, day)
-    Time.zone.local(year, month, day, 00, 00 ,00).to_time
-  end
-
-  # 0時を超えた処理後、さらに0時をまたぐときの終了時間
-  def punctuation_time_end(year, month, day)
+  # 0時をまたぐ場合、日付を区切るための終了時間
+  def self.punctuation_time_end(year, month, day)
     Time.zone.local(year, month, day, 23, 59, 59).to_time
   end
 
-  # 日付を超えた場合の日付の処理
-  def punctuation_day(year, month, day)
+  # 日付をまたいだ場合の日付の処理
+  def self.punctuation_day(year, month, day)
     Date.new(year, month, day)
   end
 
   def self.total_day_time(day)
+
     day_time = where(date: day)
     subtotal = 0
     day_time.each do |day_time|

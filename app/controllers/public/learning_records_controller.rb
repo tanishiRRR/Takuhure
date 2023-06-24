@@ -57,7 +57,9 @@ class Public::LearningRecordsController < ApplicationController
       end
     # 0時を超えた場合
     else
-      @learning_record.end_time = punctuation_time_end(@learning_record.start_time.year, @learning_record.start_time.month, @learning_record.start_time.day)
+      # 日付をまたぐ場合、一回またぐ前の最終時間23時59分59秒で区切って保存する。
+      # punctuation_time_endを作動させるには、コントローラー側から見てどのモデルかわかるように指定してあげる必要がある。
+      @learning_record.end_time = LearningRecord.punctuation_time_end(@learning_record.start_time.year, @learning_record.start_time.month, @learning_record.start_time.day)
       if @learning_record.update(learning_record_params)
         # 日付が一致するまでレコードを作成する。
         k = 0
@@ -66,10 +68,10 @@ class Public::LearningRecordsController < ApplicationController
           learning_record_over.end_user_id = current_end_user.id
           # 学習開始日翌日以降の00時00分00秒を表すために区切り時間23時59分59秒にプラス1秒する。
           learning_record_over.start_time = @learning_record.end_time + 24*60*60*k + 1
-          learning_record_over.date = punctuation_day(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
+          learning_record_over.date = LearningRecord.punctuation_day(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
           i = Time.current.day - learning_record_over.start_time.day
           if i != 0
-            learning_record_over.end_time = punctuation_time_end(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
+            learning_record_over.end_time = LearningRecord.punctuation_time_end(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
           else
             learning_record_over.end_time = Time.current.to_time
           end
