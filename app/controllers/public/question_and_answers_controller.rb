@@ -4,9 +4,12 @@ class Public::QuestionAndAnswersController < ApplicationController
   def index
     @categories = Category.all
     if params[:category_id].present?
-      @questions = Question.where(category_id: params[:category_id]).order(created_at: :asc)
+      questions = Question.where(category_id: params[:category_id])
+      @answered_questions = questions.where(is_answer: true).order(created_at: :asc)
+      @looking_for_answers_questions = question.where(is_answer: false).order(created_at: :asc)
     else
-      @questions = Question.all.order(created_at: :asc)
+      @answered_questions = Question.where(is_answer: true).order(created_at: :asc)
+      @looking_for_answers_questions = Question.where(is_answer: false).order(created_at: :asc)
     end
   end
 
