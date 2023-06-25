@@ -31,4 +31,4 @@ function showClock1() {
 }
 // setInterval('実行する内容',実行間隔);で数値の単位は「ミリ秒」で表記される。
 // 1秒ごとに処理を行いたければ「1000」と記述。
-setInterval('showClock1()',1000);
+setInterval(showClock1, 1000);
