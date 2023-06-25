@@ -45,6 +45,7 @@ class Public::EndUsersController < ApplicationController
 
   def withdraw
     @end_user = current_end_user
+    # is_deleteのステータスをtrue(退会)にして保存
     @end_user.update(is_deleted: true)
     reset_session  #この記述で現在のログイン状況をリセットすることができる
     redirect_to root_path, success: '退会しました'
