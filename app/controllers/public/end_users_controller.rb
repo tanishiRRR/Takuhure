@@ -11,6 +11,15 @@ class Public::EndUsersController < ApplicationController
   # ゲストログインユーザーはマイページの編集及び退会ができないようにする
   before_action :check_guest, only: [:update, :withdraw]
 
+  def my_page
+    @end_user = current_end_user
+    @reference_books = ReferenceBook.where(end_user_id: current_end_user.id)
+  end
+
+  def index
+    @end_users = EndUser.where(is_study: 2)
+  end
+
   def show
     @end_user = current_end_user
     @reference_books = ReferenceBook.where(end_user_id: current_end_user.id)
@@ -53,7 +62,7 @@ class Public::EndUsersController < ApplicationController
     end
 
     def check_guest
-      @end_user =current_end_user
+      @end_user = current_end_user
       if @end_user.email == 'guest@example.com'
         redirect_to end_users_my_page_path, danger: 'ゲストユーザーの編集・退会はできません'
       end
