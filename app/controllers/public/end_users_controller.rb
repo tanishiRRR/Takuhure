@@ -6,7 +6,7 @@ class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
 
   # 他人には扱うことができないようにする設定
-  before_action :customer_scan, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+  before_action :end_user_scan, only: [:show, :edit, :update, :unsubscribe, :withdraw]
 
   # ゲストログインユーザーはマイページの編集及び退会ができないようにする
   before_action :check_guest, only: [:update, :withdraw]
