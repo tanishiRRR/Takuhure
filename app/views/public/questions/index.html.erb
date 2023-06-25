@@ -1,18 +1,18 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>質問一覧</h4>
+  <div class="row mt-3">
+    <h4 class="border border-dark bg-secondary text-white p-2">質問一覧</h4>
   </div>
 
-  <div class='row mt-3'>
-    <table class='table table-bordered offset-1 col-10'>
+  <div class="row mt-3">
+    <table class="table table-bordered offset-1 col-10">
       <thead>
         <tr>
-          <th style='width: 15%'>質問投稿日</th>
-          <th style='width: 35%'>タイトル</th>
-          <th style='width: 20%'>カテゴリ</th>
-          <th style='width: 10%'></th>
-          <th style='width: 20%'></th>
+          <th style="width: 15%">質問投稿日</th>
+          <th style="width: 35%">タイトル</th>
+          <th style="width: 20%">カテゴリ</th>
+          <th style="width: 10%"></th>
+          <th style="width: 20%"></th>
         </tr>
       </thead>
       <tbody>
@@ -21,8 +21,8 @@
             <td><%= question.date %></td>
             <td><%= question.title %></td>
             <td><%= question.category.category_name %></td>
-            <td class='text-center'><%= link_to '詳細', question_path(question), method: :get, class: 'btn btn-primary btn-sm' %></td>
-            <td class='text-center'><%= link_to '質問を取り消す', question_path(question), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %></td>
+            <td class="text-center"><%= link_to "詳細", question_path(question.id), method: :get, class: "btn btn-primary btn-sm" %></td>
+            <td class="text-center"><%= link_to "質問を取り消す", question_path(question), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "削除しますか？"} %></td>
           </tr>
         <% end %>
       </tbody>
