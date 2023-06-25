@@ -18,7 +18,9 @@ function showClock1() {
   // 年月日等必要情報を抜き出す
   var month = double_digit(realtime.getMonth() + 1);
   var date = double_digit(realtime.getDate());
-  var day = realtime.getDay();
+  var day_number = realtime.getDay();
+  var days = ["日", "月", "火", "水", "木", "金", "土"]
+  var day = days[day_number]
   var hour = double_digit(realtime.getHours());
   var minutes  = double_digit(realtime.getMinutes());
   var seconds  = double_digit(realtime.getSeconds());
