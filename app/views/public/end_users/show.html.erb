@@ -1,27 +1,27 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>
+  <div class="row mt-3">
+    <h4 class="border border-dark bg-secondary text-white p-2">
       <%= @end_user.account_name %>さんの情報
     </h4>
   </div>
 
-  <div class='row mt-3'>
-    <p class='font-weight-bold'>登録情報</p>
+  <div class="row mt-3">
+    <p class="font-weight-bold">登録情報</p>
   </div>
 
-  <div class='row'>
-    <div class='col'>
+  <div class="row">
+    <div class="col">
       <%= image_tag @end_user.get_profile_image(150,150) %>
     </div>
   </div>
 
-  <div class='row mt-3'>
-    <table class='col table table-bordered border-black'>
+  <div class="row mt-3">
+    <table class="col table table-bordered border-black">
       <tbody>
         <tr>
-          <td style='width: 25%'>アカウント名</td>
-          <td style='width: 75%'><%= @end_user.account_name %></td>
+          <td style="width: 25%">アカウント名</td>
+          <td style="width: 75%"><%= @end_user.account_name %></td>
         </tr>
         <tr>
           <td>学習ステータス</td>
@@ -45,19 +45,19 @@
     </table>
   </div>
 
-  <div class='row mt-3'>
-    <p class='font-weight-bold'>使用参考書</p>
+  <div class="row mt-3">
+    <p class="font-weight-bold">使用参考書</p>
   </div>
 
   <% if @reference_books.any? %>
-    <div class='row mt-5'>
-      <table class='table offset-2 col-8'>
+    <div class="row mt-5">
+      <table class="table offset-2 col-8">
         <thead>
           <tr>
-            <th style='width: 30%'></th>
-            <th style='width: 20%'>タイトル</th>
-            <th style='width: 20%'>著者名</th>
-            <th style='width: 20%'>進捗度</th>
+            <th style="width: 30%"></th>
+            <th style="width: 20%">タイトル</th>
+            <th style="width: 20%">著者名</th>
+            <th style="width: 20%">進捗度</th>
           </tr>
         </thead>
         <tbody>
@@ -67,8 +67,8 @@
               <td><%= reference_book.title %></td>
               <td><%= reference_book.author %></td>
               <td>
-                <div class='progress'>
-                  <div class='progress-bar' role='progressbar' style="width: <%= reference_book.progress %>%;" aria-valuenow="<%= reference_book.progress %>" aria-valuemin='0' aria-valuemax='100'><%= reference_book.progress %>%</div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: <%= reference_book.progress %>%;" aria-valuenow="<%= reference_book.progress %>" aria-valuemin="0" aria-valuemax="100"><%= reference_book.progress %>%</div>
                 </div>
               </td>
             </tr>
