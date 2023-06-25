@@ -20,7 +20,7 @@ class EndUser < ApplicationRecord
   # 参考書
   has_many :reference_books, primary_key: 'isbn'
 
-  enum is_study: {learning: 0, learning_retake: 1, pass: 2}
+  enum is_study: {learning: 0, pass: 1}
 
   validates :account_name, presence: true  # presence: trueで入力済みかを検証
   # emailは基本的にpresence: true, uniqueness: trueがかかっているから記述の必要なし

@@ -17,7 +17,8 @@ class Public::EndUsersController < ApplicationController
   end
 
   def index
-    @end_users = EndUser.where(is_study: 2)
+    # EndUserから合格者一覧を取得する
+    @end_users = EndUser.where(is_study: 1)
   end
 
   def show

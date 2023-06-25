@@ -3,7 +3,6 @@ ja:
     end_user:
       is_study:
         learning: "学習中"
-        learning_retake: "学習中(再受験)"
         pass: "合格"
 
   activerecord:
