@@ -21,8 +21,8 @@ class Public::EndUsersController < ApplicationController
   end
 
   def show
-    @end_user = current_end_user
-    @reference_books = ReferenceBook.where(end_user_id: current_end_user.id)
+    @end_user = EndUser.find(params[:id])
+    @reference_books = ReferenceBook.where(end_user_id: @end_user.id)
   end
 
   def edit

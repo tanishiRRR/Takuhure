@@ -1,7 +1,9 @@
 <div class='container'>
 
   <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>マイページ</h4>
+    <h4 class='border border-dark bg-secondary text-white p-2'>
+      <%= @end_user.account_name %>さんの情報
+    </h4>
   </div>
 
   <div class='row mt-3'>
@@ -22,23 +24,25 @@
           <td style='width: 75%'><%= @end_user.account_name %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
-          <td><%= @end_user.email %></td>
-        </tr>
-        <tr>
           <td>学習ステータス</td>
           <td><%= @end_user.is_study_i18n %></td>
         </tr>
         <tr>
-          <td>受験予定日</td>
-          <td><%= @end_user.exam_date.strftime("%Y年%m月%d日") if @end_user.exam_date.present? %></td>
+          <td>総学習時間</td>
+          <td>
+            <% total_time = 0 %>
+            <% @end_user.learning_records.each do |learning_record| %>
+              <% if learning_record.end_time.present? %>
+                <%total_time += learning_record.end_time - learning_record.start_time %>
+              <% else %>
+                <%total_time += 0 %>
+              <% end %>
+            <% end %>
+            <%= (total_time/(60*60)).round(2) %>時間
+          </td>
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class='row mt-5'>
-    <%= link_to '編集する', end_users_information_edit_path, method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
   </div>
 
   <div class='row mt-3'>
@@ -54,7 +58,6 @@
             <th style='width: 20%'>タイトル</th>
             <th style='width: 20%'>著者名</th>
             <th style='width: 20%'>進捗度</th>
-            <th style='width: 10%'></th>
           </tr>
         </thead>
         <tbody>
@@ -67,14 +70,7 @@
                 <div class='progress'>
                   <div class='progress-bar' role='progressbar' style="width: <%= reference_book.progress %>%;" aria-valuenow="<%= reference_book.progress %>" aria-valuemin='0' aria-valuemax='100'><%= reference_book.progress %>%</div>
                 </div>
-                <%= form_with model: reference_book, url: book_path(reference_book), method: :patch, local: true do |f| %>
-                  <div class='mt-2'>
-                    <%= f.number_field :progress , in: 0..100 %>%
-                    <%= f.submit class: 'btn btn-secondary btn-sm form-control'%>
-                  </div>
-                <% end %>
               </td>
-              <td class='text-center'><%= link_to '削除', book_path(reference_book), method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %> </td>
             </tr>
           <% end %>
         </tbody>
@@ -84,7 +80,7 @@
 
 
   <div class='row mt-5 mb-3'>
-    <%= link_to '追加する', books_path, method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+    <%= link_to '一覧に戻る', end_users_path, method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
   </div>
 
 </div>

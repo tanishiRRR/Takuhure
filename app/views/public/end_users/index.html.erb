@@ -17,12 +17,12 @@
         <% @end_users.each do |end_user| %>
           <tr>
             <td>
-              <%= link_to admin_end_user_path(end_user.id) do %>
+              <%= link_to end_user_path(end_user.id), method: :get do %>
                 <%= image_tag end_user.get_profile_image(60,60) %>
               <% end %>
             </td>
             <td>
-              <%= link_to admin_end_user_path(end_user.id) do %>
+              <%= link_to end_user_path(end_user.id), method: :get do %>
                 <%= end_user.account_name %>
               <% end %>
             </td>
