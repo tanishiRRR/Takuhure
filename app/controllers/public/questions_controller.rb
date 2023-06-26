@@ -1,5 +1,6 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
+  # 他人には扱うことができないようにする設定
   before_action :end_user_scan, only: [:show, :create, :destroy]
 
   def index
