@@ -1,9 +1,9 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :end_user_scan, only: [:create, :destroy]
+  before_action :end_user_scan, only: [:show, :create, :destroy]
 
   def index
-    @questions = current_end_user.questions.order(created_at: :asc)
+    @questions = current_end_user.questions.order(created_at: :asc).page(params[:page]).per(10)
   end
 
   def new
