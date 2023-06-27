@@ -40,7 +40,7 @@ class Public::LearningRecordsController < ApplicationController
       if @learning_record.save
         redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
       else
-        flash.now[:warning] = 'もう一度開始ボタンを押してください'
+        flash.now[:warning] = '開始ボタンを押してください'
         render :new
       end
     end
