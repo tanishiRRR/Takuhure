@@ -18,7 +18,7 @@ class Public::EndUsersController < ApplicationController
 
   def index
     # EndUserから合格者一覧を取得する
-    @end_users = EndUser.where(is_study: 1)
+    @end_users = EndUser.where(is_study: 1).page(params[:page]).per(15)
   end
 
   def show
