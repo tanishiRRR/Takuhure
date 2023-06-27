@@ -1,15 +1,15 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>学習情報</h4>
+  <div class="row mt-3">
+    <h4 class="border border-dark bg-secondary text-white p-2">学習情報</h4>
   </div>
 
-  <div class='row mt-5'>
-    <table class='col table table-bordered'>
+  <div class="row mt-5">
+    <table class="col table table-bordered">
       <tbody>
         <tr>
-          <td style='width: 15%'>日付</td>
-          <td style='width: 85%'>
+          <td style="width: 15%">日付</td>
+          <td style="width: 85%">
             <% days = ["日", "月", "火", "水", "木", "金", "土"] %>
             <%= I18n.l @date, format: :default %>(<%= days[@date.wday] %>)
           </td>
@@ -24,16 +24,16 @@
     </table>
   </div>
 
-  <div class='row mt-5'>
-    <table class='col table table-bordered'>
+  <div class="row mt-5">
+    <table class="col table table-bordered">
       <thead>
         <tr>
-          <th style='width: 10%'></th>
-          <th style='width: 15%'>時間</th>
-          <th style='width: 15%'>開始時間</th>
-          <th style='width: 15%'>終了時間</th>
-          <th style='width: 25%'>メモ書き</th>
-          <th style='width: 20%'></th>
+          <th style="width: 10%"></th>
+          <th style="width: 15%">時間</th>
+          <th style="width: 15%">開始時間</th>
+          <th style="width: 15%">終了時間</th>
+          <th style="width: 25%">メモ書き</th>
+          <th style="width: 20%"></th>
         </tr>
       </thead>
       <tbody>
@@ -46,9 +46,9 @@
             <td><%= I18n.l learning_record.start_time, format: :short_time %></td>
             <td><%= I18n.l learning_record.end_time, format: :short_time if learning_record.end_time.present? %></td>
             <td><%= safe_join(learning_record.content_memo.split("\n"), tag(:br)) if learning_record.content_memo.present? %></td>
-            <td class='text-center'>
-              <%= link_to '編集', edit_learning_record_path(learning_record), class: 'btn btn-success btn-sm pl-3 pr-3' %>
-              <%= link_to '削除', learning_record_path(learning_record), method: :delete, class: 'btn btn-danger btn-sm pl-3 pr-3', data: {confirm: "削除しますか？"} %>
+            <td class="text-center">
+              <%= link_to "編集", edit_learning_record_path(learning_record), method: :get, class: "btn btn-success btn-sm pl-3 pr-3" %>
+              <%= link_to "削除", learning_record_path(learning_record), method: :delete, class: "btn btn-danger btn-sm pl-3 pr-3", data: {confirm: "削除しますか？"} %>
             </td>
           </tr>
         <% end %>
@@ -57,19 +57,19 @@
   </div>
 
   <%= form_with model: @learning_record, url: learning_records_path, method: :post, local: true do |f| %>
-    <div class='row mt-3'>
-      <table class='col table table-bordered'>
+    <div class="row mt-3">
+      <table class="col table table-bordered">
         <tbody>
           <tr>
-            <td style='border-left: none !important; width: 10%'></td>
-            <td style='width: 15%'></td>
-            <td style='width: 15%'><%= f.time_field :start_time_option, required: true, class: 'form-control' %></td>
-            <td style='width: 15%'><%= f.time_field :end_time_option, required: true, class: 'form-control' %></td>
-            <td style='width: 25%'><%= f.text_area :content_memo, placeholder: 'メモ書き', class: 'form-control' %></td>
-            <td class='text-center' style='width: 20%'>
+            <td style="border-left: none !important; width: 10%"></td>
+            <td style="width: 15%"></td>
+            <td style="width: 15%"><%= f.time_field :start_time_option, required: true, class: "form-control" %></td>
+            <td style="width: 15%"><%= f.time_field :end_time_option, required: true, class: "form-control" %></td>
+            <td style="width: 25%"><%= f.text_area :content_memo, placeholder: "メモ書き", class: "form-control" %></td>
+            <td class="text-center" style="width: 20%">
               <%= f.hidden_field :date, :value => @date %>
               <%= f.hidden_field :is_record, :value => false %>
-              <%= f.submit '学習時間を追加する', class: 'btn btn-success' %>
+              <%= f.submit "学習時間を追加する", class: "btn btn-success" %>
             </td>
           </tr>
         </tbody>
@@ -77,8 +77,8 @@
     </div>
   <% end %>
 
-  <div class='row mt-5'>
-    <%= link_to '学習記録一覧に戻る', learning_records_path, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+  <div class="row mt-5">
+    <%= link_to "学習記録一覧に戻る", learning_records_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
   </div>
 
 </div>

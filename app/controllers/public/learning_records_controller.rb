@@ -1,6 +1,8 @@
 class Public::LearningRecordsController < ApplicationController
   before_action :authenticate_end_user!
 
+  before_action :end_user_scan, only: [:create, :edit, :update, :destroy]
+
   def index
     if params[:month].present?
       @time = Time.zone.local(params[:year],params[:month],1,00,00,00).to_time
@@ -45,11 +47,11 @@ class Public::LearningRecordsController < ApplicationController
   end
 
   def end_count
-    @learning_record = current_end_user.learning_records.find_by(is_record: 'true')
-    @learning_record.end_time = Time.current.to_time
+    learning_record = current_end_user.learning_records.find_by(is_record: 'true')
+    learning_record.end_time = Time.current.to_time
     # 0時を超えない場合
-    if @learning_record.end_time.day == @learning_record.start_time.day
-      if @learning_record.update(learning_record_params)
+    if learning_record.end_time.day == learning_record.start_time.day
+      if learning_record.update(learning_record_params)
         redirect_to new_learning_record_path, success: '終了時刻を正常に打刻しました'
       else
         flash.now[:warning] = 'もう一度終了ボタンを押してください'
@@ -59,11 +61,12 @@ class Public::LearningRecordsController < ApplicationController
     else
       # 日付をまたぐ場合、一回またぐ前の最終時間23時59分59秒で区切って保存する。
       # punctuation_time_endを作動させるには、コントローラー側から見てどのモデルかわかるように指定してあげる必要がある。
-      @learning_record.end_time = LearningRecord.punctuation_time_end(@learning_record.start_time.year, @learning_record.start_time.month, @learning_record.start_time.day)
-      if @learning_record.update(learning_record_params)
+      learning_record.end_time = LearningRecord.punctuation_time_end(learning_record.start_time.year, learning_record.start_time.month, learning_record.start_time.day)
+      if learning_record.update(learning_record_params)
         # 日付が一致するまでレコードを作成する。
+        i = Time.current.day - learning_record.start_time.day
         k = 0
-        while i == 0 do
+        while i != 0 do
           learning_record_over = LearningRecord.new(learning_record_params)
           learning_record_over.end_user_id = current_end_user.id
           # 学習開始日翌日以降の00時00分00秒を表すために区切り時間23時59分59秒にプラス1秒する。
@@ -80,6 +83,7 @@ class Public::LearningRecordsController < ApplicationController
         end
         redirect_to new_learning_record_path, success: '終了時刻を正常に打刻しました'
       else
+        @learning_record = LearningRecord.new
         flash.now[:warning] = 'もう一度終了ボタンを押してください'
         render :new
       end
@@ -120,6 +124,12 @@ class Public::LearningRecordsController < ApplicationController
 
     def learning_record_params
       params.require(:learning_record).permit(:end_user_id, :start_time, :end_time, :date, :content_memo, :is_record)
+    end
+
+    def end_user_scan
+      unless current_end_user
+        redirect_to end_users_my_page_path
+      end
     end
 
 end
