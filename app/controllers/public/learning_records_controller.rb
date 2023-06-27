@@ -70,7 +70,7 @@ class Public::LearningRecordsController < ApplicationController
           learning_record_over = LearningRecord.new(learning_record_params)
           learning_record_over.end_user_id = current_end_user.id
           # 学習開始日翌日以降の00時00分00秒を表すために区切り時間23時59分59秒にプラス1秒する。
-          learning_record_over.start_time = @learning_record.end_time + 24*60*60*k + 1
+          learning_record_over.start_time = learning_record.end_time + 24*60*60*k + 1
           learning_record_over.date = LearningRecord.punctuation_day(learning_record_over.start_time.year, learning_record_over.start_time.month, learning_record_over.start_time.day)
           i = Time.current.day - learning_record_over.start_time.day
           if i != 0
