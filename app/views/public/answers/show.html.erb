@@ -1,35 +1,35 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>回答詳細</h4>
+  <div class="row mt-3">
+    <h4 class="border border-dark bg-secondary text-white p-2">回答詳細</h4>
   </div>
 
-  <div class='row'>
-    <h5 class='ml-5 p-2'>質問</h5>
+  <div class="row">
+    <h5 class="ml-5 p-2">質問</h5>
   </div>
 
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
+  <div class="row mt-1">
+    <div class="offset-1 col-10 border border-dark">
+      <div class="row ml-1 mt-1">
         <%= image_tag @answer.question.end_user.get_profile_image(150,150) %>
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+        <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
           <%= @answer.question.end_user.account_name %><br>
           <%= I18n.l @answer.question.date, format: :default %>
         </p>
       </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
+      <div class="row mt-3">
+        <table class="table table-borderless offset-1 col-10">
           <tbody>
             <tr>
-              <th style='width: 20%'>タイトル</th>
-              <td style='width: 80%'><%= @answer.question.title %></td>
+              <th style="width: 20%">タイトル</th>
+              <td style="width: 80%"><%= @answer.question.title %></td>
             </tr>
             <tr>
-              <th style='width: 20%'>カテゴリー</th>
-              <td style='width: 80%'><%= @answer.question.category.category_name %></td>
+              <th style="width: 20%">カテゴリー</th>
+              <td style="width: 80%"><%= @answer.question.category.category_name %></td>
             </tr>
             <tr>
-              <td colspan='2'><%= safe_join(@answer.question.question.split("\n"), tag(:br)) %></td>
+              <td colspan="2"><%= safe_join(@answer.question.question.split("\n"), tag(:br)) %></td>
             </tr>
           </tbody>
         </table>
@@ -38,22 +38,22 @@
   </div>
 
   <% if @answer.question.supplemental_questions.exists? %>
-    <div class='row mt-2'>
-      <h5 class='ml-5 p-2'>質問補足内容</h5>
+    <div class="row mt-2">
+      <h5 class="ml-5 p-2">質問補足内容</h5>
     </div>
   <% end %>
-  <div class='row mt-1'>
+  <div class="row mt-1">
     <% @answer.question.supplemental_questions.each do |supplemental_question| %>
-      <div class='offset-1 col-10 border border-dark mt-2'>
-        <div class='row ml-1 mt-1'>
+      <div class="offset-1 col-10 border border-dark mt-2">
+        <div class="row ml-1 mt-1">
           <%= image_tag supplemental_question.question.end_user.get_profile_image(100,100) %>
-          <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+          <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
             <%= supplemental_question.question.end_user.account_name %><br>
             <%= I18n.l supplemental_question.created_at, format: :short_day %>
           </p>
         </div>
-        <div class='row'>
-          <table class='table table-borderless offset-1 col-10'>
+        <div class="row">
+          <table class="table table-borderless offset-1 col-10">
             <tbody>
               <tr>
                 <td><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
@@ -65,21 +65,21 @@
     <% end %>
   </div>
 
-  <div class='row mt-5'>
-    <h5 class='ml-5 p-2'>回答</h5>
+  <div class="row mt-5">
+    <h5 class="ml-5 p-2">回答</h5>
   </div>
 
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark mt-2'>
-      <div class='row ml-1 mt-1'>
+  <div class="row mt-1">
+    <div class="offset-1 col-10 border border-dark mt-2">
+      <div class="row ml-1 mt-1">
         <%= image_tag @answer.end_user.get_profile_image(150,150) %>
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+        <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
           <%= @answer.end_user.account_name %><br>
           <%= I18n.l @answer.created_at, format: :short_day %>
         </p>
       </div>
-      <div class='row'>
-        <table class='table table-borderless offset-1 col-10'>
+      <div class="row">
+        <table class="table table-borderless offset-1 col-10">
           <tbody>
             <tr>
               <td><%= safe_join(@answer.answer.split("\n"), tag(:br)) %></td>
@@ -90,8 +90,8 @@
     </div>
   </div>
 
-  <div class='row mt-5 mb-5'>
-    <%= link_to 'Q&A詳細ページへ', question_and_answer_path(@answer.question_id), method: :get, class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+  <div class="row mt-5">
+    <%= link_to "Q&A詳細ページへ", question_and_answer_path(@answer.question_id), method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
   </div>
 
 </div>

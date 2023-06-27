@@ -1,15 +1,17 @@
 class Public::AnswersController < ApplicationController
   before_action :authenticate_end_user!
 
+  before_action :end_user_scan, only: [:create, :show, :destroy]
+
   def index
-    @answers = current_end_user.answers.all.order(created_at: :asc)
+    @answers = current_end_user.answers.order(created_at: :asc).page(params[:page]).per(10)
   end
 
   def new
     @answer = Answer.new
     @question = Question.find(params[:question_id])
     if @question.end_user_id == current_end_user.id
-      @answers = Answer.all.where(question_id: params[:question_id])
+      @answers = Answer.where(question_id: params[:question_id])
       redirect_to question_and_answer_path(params[:question_id]), warning: '自分の質問に回答をすることはできません'
     elsif @question.answers.exists?(end_user_id: current_end_user.id)
       # elseにすると上記条件式がfalseでもquestion_and_answerのページに留まってしまい、answerのページに遷移できない
@@ -52,8 +54,14 @@ class Public::AnswersController < ApplicationController
 
   private
 
-  def answer_params
-    params.require(:answer).permit(:end_user_id, :question_id, :answer)
-  end
+    def answer_params
+      params.require(:answer).permit(:end_user_id, :question_id, :answer)
+    end
+
+    def end_user_scan
+      unless current_end_user
+        redirect_to end_users_my_page_path
+      end
+    end
 
 end

@@ -9,8 +9,12 @@ class Public::CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.end_user_id = current_end_user.id
     comment.answer_id = params[:answer_id]
-    comment.save
-    redirect_to question_and_answer_path(comment.answer.question.id)
+    if comment.save
+      redirect_to question_and_answer_path(comment.answer.question.id)
+    else
+      answer = Answer.find(params[:answer_id])
+      redirect_to question_and_answer_path(answer.question.id), warning: '空のコメントは投稿できません'
+    end
   end
 
   def destroy
