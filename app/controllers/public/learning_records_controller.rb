@@ -4,8 +4,11 @@ class Public::LearningRecordsController < ApplicationController
   before_action :end_user_scan, only: [:edit, :update, :destroy]
 
   def index
+    # 先月や来月等、今月以外のデータを見る場合の処理をifで分岐
+    # 先月や来月等のデータを見る場合
     if params[:month].present?
       @time = Time.zone.local(params[:year],params[:month],1,00,00,00).to_time
+    # 今月のデータを見る場合
     else
       @time = Time.current
     end
@@ -24,9 +27,9 @@ class Public::LearningRecordsController < ApplicationController
       # 年月日指定を指定して、Time型を作成する
       @learning_record.start_time = Time.zone.local(params[:learning_record][:date].slice(0,4).to_i, params[:learning_record][:date].slice(5,2).to_i, params[:learning_record][:date].slice(8,2).to_i, params[:learning_record][:start_time_option].slice(0,2).to_i, params[:learning_record][:start_time_option].slice(3,2).to_i, 00).to_time
       @learning_record.end_time = Time.zone.local(params[:learning_record][:date].slice(0,4).to_i, params[:learning_record][:date].slice(5,2).to_i, params[:learning_record][:date].slice(8,2).to_i, params[:learning_record][:end_time_option].slice(0,2).to_i, params[:learning_record][:end_time_option].slice(3,2).to_i, 00).to_time
-      # byebug
     end
     # 手動で学習記録を保存する場合の処理をifで分岐
+    # 手動で学習記録を保存する場合
     if params[:learning_record][:end_time_option].present?
       if @learning_record.save
         redirect_to learning_record_path(params[:learning_record][:date]), success: '学習情報を保存しました'
@@ -37,6 +40,7 @@ class Public::LearningRecordsController < ApplicationController
         render :show
       end
     else
+    # 打刻機能で学習記録を保存する場合
       if @learning_record.save
         redirect_to new_learning_record_path, success: '開始時刻を正常に打刻しました'
       else
@@ -46,6 +50,7 @@ class Public::LearningRecordsController < ApplicationController
     end
   end
 
+  # 打刻機能で終了を押したときの定義
   def end_count
     learning_record = current_end_user.learning_records.find_by(is_record: 'true')
     learning_record.end_time = Time.current.to_time
@@ -114,9 +119,9 @@ class Public::LearningRecordsController < ApplicationController
   end
 
   def destroy
-    @learning_record = LearningRecord.find(params[:id])
-    if @learning_record.destroy
-      redirect_to learning_record_path(@learning_record.date), danger: '学習情報を削除しました'
+    learning_record = LearningRecord.find(params[:id])
+    if learning_record.destroy
+      redirect_to learning_record_path(learning_record.date), danger: '学習情報を削除しました'
     end
   end
 
