@@ -1,7 +1,7 @@
 class Public::AnswersController < ApplicationController
   before_action :authenticate_end_user!
 
-  before_action :end_user_scan, only: [:show, :destroy]
+  before_action :end_user_scan, only: [:destroy]
 
   def index
     @answers = current_end_user.answers.order(created_at: :desc).page(params[:page]).per(10)
@@ -30,16 +30,12 @@ class Public::AnswersController < ApplicationController
       if question.is_answer == false
         question.update(is_answer: true)
       end
-      redirect_to answer_path(@answer.id), success: '回答を投稿しました'
+      redirect_to question_and_answer_path(params[:question_id]), success: '回答を投稿しました'
     else
       @question = Question.find(params[:question_id])
       flash.now[:warning] = '回答を入力してください'
       render :new
     end
-  end
-
-  def show
-    @answer = Answer.find(params[:id])
   end
 
   def destroy

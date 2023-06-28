@@ -1,35 +1,35 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>Q&A詳細</h4>
+  <div class="row mt-3">
+    <h4 class="border border-dark bg-secondary text-white p-2">Q&A詳細</h4>
   </div>
 
-  <div class='row'>
-    <h5 class='ml-5 p-2'>質問</h5>
+  <div class="row">
+    <h5 class="ml-5 p-2">質問</h5>
   </div>
 
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
+  <div class="row mt-1">
+    <div class="offset-1 col-10 border border-dark">
+      <div class="row ml-1 mt-1">
         <%= image_tag @question.end_user.get_profile_image(100,100) %>
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+        <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
           <%= @question.end_user.account_name %><br>
           <%= I18n.l @question.date, format: :default %>
         </p>
       </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
+      <div class="row mt-3">
+        <table class="table table-borderless offset-1 col-10">
           <tbody>
             <tr>
-              <th style='width: 15%'>タイトル</th>
-              <td style='width: 85%'><%= @question.title %></td>
+              <th style="width: 15%">タイトル</th>
+              <td style="width: 85%"><%= @question.title %></td>
             </tr>
             <tr>
               <th>カテゴリー</th>
               <td><%= @question.category.category_name %></td>
             </tr>
             <tr>
-              <td colspan='2'><%= safe_join(@question.question.split("\n"), tag(:br)) %></td>
+              <td colspan="2"><%= safe_join(@question.question.split("\n"), tag(:br)) %></td>
             </tr>
           </tbody>
         </table>
@@ -38,118 +38,118 @@
   </div>
 
   <% if @supplemental_questions.exists? %>
-    <div class='row mt-2'>
-      <h5 class='ml-5 p-2'>質問補足内容</h5>
+    <div class="row mt-2">
+      <h5 class="ml-5 p-2">質問補足内容</h5>
+    </div>
+
+    <div class="row mt-1">
+      <% @supplemental_questions.each do |supplemental_question| %>
+        <div class="offset-1 col-10 border border-dark mt-2">
+          <div class="row ml-1 mt-1">
+            <%= image_tag @question.end_user.get_profile_image(100,100) %>
+            <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
+              <%= @question.end_user.account_name %><br>
+              <%= I18n.l supplemental_question.created_at, format: :short_day %>
+            </p>
+          </div>
+          <div class="row mt-3">
+            <table class="table table-borderless offset-1 col-10">
+              <tbody>
+                <tr>
+                  <td><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
-  <div class='row mt-1'>
-    <% @supplemental_questions.each do |supplemental_question| %>
-      <div class='offset-1 col-10 border border-dark mt-2'>
-        <div class='row ml-1 mt-1'>
-          <%= image_tag @question.end_user.get_profile_image(100,100) %>
-          <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-            <%= @question.end_user.account_name %><br>
-            <%= I18n.l supplemental_question.created_at, format: :short_day %>
-          </p>
-        </div>
-        <div class='row mt-3'>
-          <table class='table table-borderless offset-1 col-10'>
-            <tbody>
-              <tr>
-                <td><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <div class='row mt-5'>
-    <%= link_to '回答を入力する', new_answer_path(question_id: @question.id), method: :get, class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
+  <div class="row mt-5">
+    <%= link_to "回答を入力する", new_answer_path(question_id: @question.id), method: :get, class: "offset-4 col-4 btn btn-success pl-5 pr-5" %>
   </div>
 
   <% if @answers.any? %>
-    <div class='row mt-5'>
-      <h5 class='ml-5 p-2'>アンサー(いいねが多い順)</h5>
+    <div class="row mt-5">
+      <h5 class="ml-5 p-2">アンサー(いいねが多い順)</h5>
     </div>
-  <% end %>
 
-  <% @answers.each do |answer| %>
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
-        <%= image_tag answer.end_user.get_profile_image(100,100) %>
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-          <%= answer.end_user.account_name %><br>
-          <%= I18n.l answer.created_at, format: :short_day %>
-        </p>
-      </div>
-      <div class='row'>
-        <table class='table table-borderless offset-1 col-10'>
-          <tbody>
-            <tr>
-              <td><%= safe_join(answer.answer.split("\n"), tag(:br)) %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class='row'>
-        <div class='offset-1 col-10'>
-          <% if answer.favorited_by?(current_end_user) %>
-            <p>
-              <%= link_to answer_favorites_path(answer), method: :delete do %>
-                ♥<%= answer.favorites.count %> いいね
-              <% end %>
+    <% @answers.each do |answer| %>
+      <div class="row mt-1">
+        <div class="offset-1 col-10 border border-dark">
+          <div class="row ml-1 mt-1">
+            <%= image_tag answer.end_user.get_profile_image(100,100) %>
+            <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
+              <%= answer.end_user.account_name %><br>
+              <%= I18n.l answer.created_at, format: :short_day %>
             </p>
-            <% else %>
-            <p>
-              <%= link_to answer_favorites_path(answer), method: :post do %>
-                ♡<%= answer.favorites.count %> いいね
+          </div>
+          <div class="row">
+            <table class="table table-borderless offset-1 col-10">
+              <tbody>
+                <tr>
+                  <td><%= safe_join(answer.answer.split("\n"), tag(:br)) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="offset-1 col-10">
+              <% if answer.favorited_by?(current_end_user) %>
+                <p>
+                  <%= link_to answer_favorites_path(answer), method: :delete do %>
+                    ♥<%= answer.favorites.count %> いいね
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to answer_favorites_path(answer), method: :post do %>
+                    ♡<%= answer.favorites.count %> いいね
+                  <% end %>
+                </p>
               <% end %>
-            </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <div class="offset-2 col-9">
+          <div class="row">
+            <p>コメント件数：<%= answer.comments.count %></p>
+          </div>
+          <% answer.comments.each do |comment| %>
+            <div class="row">
+              <%= image_tag comment.end_user.get_profile_image(80,80) %>
+              <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
+                <%= comment.end_user.account_name %><br>
+                <%= I18n.l comment.created_at, format: :short_day %>
+              </p>
+            </div>
+            <div class="row">
+              <table class="table table-borderless offset-1 col-10 mb-0">
+                <tr>
+                  <td><%= safe_join(comment.comment.split("\n"), tag(:br)) %></td>
+                </tr>
+              </table>
+            </div>
+          <% end %>
+
+          <%= form_with model: [answer, @comment], local: true do |f| %>
+          <!--form_withに対して、[@answer,@comment]のように、配列でインスタンス変数を2つ指定している点に注意すること。
+          コメントは、answerに結びついたcommentであるため、2つ用意する必要があります。
+          また、commentをcreateするためのリクエストは、ルーティングもネスト（親子関係）しているため、上記2つの情報が必要になる。-->
+            <div class="row mt-3">
+              <%= f.text_area :comment, required: true, rows: "2", placeholder: "コメントはここへ", class: "col-10 form-control" %>
+            </div>
+            <div class="row mt-3 mb-3">
+              <%= f.submit "コメントする", class: "offset-4 col-2 btn btn-secondary btn-sm" %>
+            </div>
           <% end %>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class='row mt-1'>
-    <div class='offset-2 col-9'>
-      <div class='row'>
-        <p>コメント件数：<%= answer.comments.count %></p>
-      </div>
-      <% answer.comments.each do |comment| %>
-        <div class='row'>
-          <%= image_tag comment.end_user.get_profile_image(80,80) %>
-          <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
-            <%= comment.end_user.account_name %><br>
-            <%= I18n.l comment.created_at, format: :short_day %>
-          </p>
-        </div>
-        <div class='row'>
-          <table class='table table-borderless offset-1 col-10 mb-0'>
-            <tr>
-              <td><%= safe_join(comment.comment.split("\n"), tag(:br)) %></td>
-            </tr>
-          </table>
-        </div>
-      <% end %>
-
-      <%= form_with model: [answer, @comment], local: true do |f| %>
-      <!--form_withに対して、[@answer,@comment]のように、配列でインスタンス変数を2つ指定している点に注意すること。
-      コメントは、answerに結びついたcommentであるため、2つ用意する必要があります。
-      また、commentをcreateするためのリクエストは、ルーティングもネスト（親子関係）しているため、上記2つの情報が必要になる。-->
-        <div class='row mt-3'>
-          <%= f.text_area :comment, required: true, rows: '2', placeholder: 'コメントはここへ', class: 'col-10 form-control' %>
-        </div>
-        <div class='row mt-3 mb-3'>
-          <%= f.submit 'コメントする', class: 'offset-4 col-2 btn btn-secondary btn-sm' %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+    <% end %>
   <% end %>
 
 </div>
