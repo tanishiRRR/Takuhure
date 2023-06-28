@@ -5,9 +5,6 @@ class Public::EndUsersController < ApplicationController
   # ログインしていなければアクションを動かすことなくログインページが表示されるようする
   before_action :authenticate_end_user!
 
-  # 他人には扱うことができないようにする設定
-  before_action :end_user_scan, only: [:edit, :update, :unsubscribe, :withdraw]
-
   # ゲストログインユーザーはマイページの編集及び退会ができないようにする
   before_action :check_guest, only: [:update, :withdraw]
 
@@ -55,12 +52,6 @@ class Public::EndUsersController < ApplicationController
 
     def end_user_params
       params.require(:end_user).permit(:account_name, :email, :is_study, :exam_date, :is_deleted, :profile_image)
-    end
-
-    def end_user_scan
-      unless current_end_user
-        redirect_to end_users_my_page_path
-      end
     end
 
     def check_guest

@@ -2,7 +2,7 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_end_user!
 
   def index
-    @favorites = current_end_user.favorites.order(created_at: :asc)
+    @favorites = current_end_user.favorites.order(created_at: :desc)
   end
 
   def create

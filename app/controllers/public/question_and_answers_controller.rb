@@ -5,11 +5,11 @@ class Public::QuestionAndAnswersController < ApplicationController
     @categories = Category.all
     if params[:category_id].present?
       questions = Question.where(category_id: params[:category_id])
-      @answered_questions = questions.where(is_answer: true).order(created_at: :asc)
-      @looking_for_answers_questions = questions.where(is_answer: false).order(created_at: :asc)
+      @answered_questions = questions.where(is_answer: true).order(created_at: :desc)
+      @looking_for_answers_questions = questions.where(is_answer: false).order(created_at: :desc)
     else
-      @answered_questions = Question.where(is_answer: true).order(created_at: :asc)
-      @looking_for_answers_questions = Question.where(is_answer: false).order(created_at: :asc)
+      @answered_questions = Question.where(is_answer: true).order(created_at: :desc)
+      @looking_for_answers_questions = Question.where(is_answer: false).order(created_at: :desc)
     end
   end
 

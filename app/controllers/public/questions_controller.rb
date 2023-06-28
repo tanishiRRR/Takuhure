@@ -1,10 +1,10 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
   # 他人には扱うことができないようにする設定
-  before_action :end_user_scan, only: [:show, :create, :destroy]
+  before_action :end_user_scan, only: [:show, :destroy]
 
   def index
-    @questions = current_end_user.questions.order(created_at: :asc).page(params[:page]).per(10)
+    @questions = current_end_user.questions.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -30,8 +30,8 @@ class Public::QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
-    if @question.destroy
+    question = Question.find(params[:id])
+    if question.destroy
       redirect_to questions_path, danger: '質問を削除しました'
     end
   end

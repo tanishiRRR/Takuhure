@@ -1,10 +1,10 @@
 class Public::AnswersController < ApplicationController
   before_action :authenticate_end_user!
 
-  before_action :end_user_scan, only: [:create, :show, :destroy]
+  before_action :end_user_scan, only: [:show, :destroy]
 
   def index
-    @answers = current_end_user.answers.order(created_at: :asc).page(params[:page]).per(10)
+    @answers = current_end_user.answers.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new

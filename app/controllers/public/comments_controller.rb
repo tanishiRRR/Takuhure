@@ -1,8 +1,10 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_end_user!
 
+  before_action :end_user_scan, only: [:destroy]
+
   def index
-    @comments = current_end_user.comments.all.order(created_at: :asc)
+    @comments = current_end_user.comments.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def create
@@ -18,8 +20,8 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    if @comment.destroy
+    comment = Comment.find(params[:id])
+    if comment.destroy
       redirect_to comments_path, danger: '質問を削除しました'
     end
   end
@@ -33,5 +35,11 @@ class Public::CommentsController < ApplicationController
       # ストロングパラメータに書かないといけないのはフォームから飛んできたデータ。
       # end_user_idとanswer_idはフォームから飛んでこないので書かなくてもOK。
       # (書いても作動はする)
+    end
+
+    def end_user_scan
+      unless current_end_user
+        redirect_to end_users_my_page_path
+      end
     end
 end

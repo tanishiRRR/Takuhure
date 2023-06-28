@@ -1,7 +1,7 @@
 class Public::LearningRecordsController < ApplicationController
   before_action :authenticate_end_user!
 
-  before_action :end_user_scan, only: [:create, :edit, :update, :destroy]
+  before_action :end_user_scan, only: [:edit, :update, :destroy]
 
   def index
     if params[:month].present?

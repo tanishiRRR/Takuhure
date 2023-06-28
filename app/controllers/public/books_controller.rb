@@ -2,7 +2,7 @@ class Public::BooksController < ApplicationController
   before_action :authenticate_end_user!
 
   # 他人には扱うことができないようにする設定
-  before_action :end_user_scan, only: [:create, :update, :destroy]
+  before_action :end_user_scan, only: [:update, :destroy]
 
   # RakutenWebService::Books::Bookにsearchメソッドを使い、引数にtitle:と指定することでタイトルで検索できる。
   def index
