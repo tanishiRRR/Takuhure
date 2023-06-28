@@ -4,7 +4,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @category = Category.new
-    @categories = Category.all
+    @categories = Category.all.page(params[:page]).per(20)
   end
 
   def create

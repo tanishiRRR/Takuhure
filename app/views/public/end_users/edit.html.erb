@@ -13,12 +13,12 @@
 
     <div class="form-group row">
       <%= f.label :account_name, "アカウント名", class: "col-2 form-label" %>
-      <%= f.text_field :account_name, autofocus: true, placeholder: "samplename", class: "col-10 form-control" %>
+      <%= f.text_field :account_name,  required: true, autofocus: true, placeholder: "samplename", class: "col-10 form-control" %>
     </div>
 
     <div class="form-group row">
       <%= f.label :email, "メールアドレス", class: "col-2 form-label" %>
-      <%= f.email_field :email, placeholder: "sample@example.com", class: "col-10 form-control" %>
+      <%= f.email_field :email,  required: true, placeholder: "sample@example.com", class: "col-10 form-control" %>
     </div>
 
     <div class="form-group row">

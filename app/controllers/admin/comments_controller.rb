@@ -4,9 +4,9 @@ class Admin::CommentsController < ApplicationController
 
   def index
     if params[:end_user_id].present?
-      @comments = Comment.where(end_user_id: params[:end_user_id]).order(created_at: :asc)
+      @comments = Comment.where(end_user_id: params[:end_user_id]).order(created_at: :asc).page(params[:page]).per(20)
     else
-      @comments = Comment.all.order(created_at: :asc)
+      @comments = Comment.all.order(created_at: :asc).page(params[:page]).per(20)
     end
   end
 
