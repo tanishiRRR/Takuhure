@@ -44,7 +44,12 @@
           <tr>
             <th>学習時間<%= i + 1 %></th>
             <td>
-              <%= ((learning_record.end_time - learning_record.start_time)/(60*60)).round(2) if learning_record.end_time.present? %>時間
+              <% if learning_record.end_time.present? %>
+                <% learning_time = learning_record.end_time - learning_record.start_time %>
+                <% learning_time_hour = learning_time.div(60*60) %>
+                <% learning_time_minutes = (learning_time % (60*60)).div(60) %>
+                <%= learning_time_hour %>時間<%= learning_time_minutes %>分
+              <% end %>
             </td>
             <td><%= I18n.l learning_record.start_time, format: :short_time %></td>
             <td><%= I18n.l learning_record.end_time, format: :short_time if learning_record.end_time.present? %></td>

@@ -39,6 +39,7 @@ class LearningRecord < ApplicationRecord
     subtotal
   end
 
+  # その月の総学習時間(秒換算)
   def self.total_month_time(year, month)
     if month < 10
       month_time = where("date LIKE ?", "#{year}-0#{month}%")
@@ -53,7 +54,7 @@ class LearningRecord < ApplicationRecord
         subtotal += 0
       end
     end
-    subtotal/(60*60)
+    subtotal
   end
 
 end
