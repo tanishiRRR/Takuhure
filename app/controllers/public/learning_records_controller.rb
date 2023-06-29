@@ -12,7 +12,7 @@ class Public::LearningRecordsController < ApplicationController
     else
       @time = Time.current
     end
-    @learning_records = current_end_user.learning_records.all
+    @learning_records = current_end_user.learning_records
   end
 
   def new
@@ -97,8 +97,12 @@ class Public::LearningRecordsController < ApplicationController
 
   def show
     @learning_record = LearningRecord.new
+    # params[:id]には、"2023-06-13"のように年月日の順で"○○○○-○○-○○"が与えられる。
+    # 1文字目(順番は0)から4文字が"年"、6文字目(順番は5)から2文字が"月"、9文字目(順番は8)から2文字が"日"を表す。
     @date = Date.new(params[:id].slice(0,4).to_i, params[:id].slice(5,2).to_i, params[:id].slice(8,2).to_i)
-    @learning_records = current_end_user.learning_records.where(date: params[:id]).order(start_time: :asc)
+    @learning_records = current_end_user.learning_records
+    # その日の学習記録一覧
+    @learning_records_day = current_end_user.learning_records.where(date: params[:id]).order(start_time: :asc)
   end
 
   def edit

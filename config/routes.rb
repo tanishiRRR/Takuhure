@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   devise_for :end_users, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',
-    mailer: 'public/mailers',
     passwords: 'public/passwords'
   }
 

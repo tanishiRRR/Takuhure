@@ -25,6 +25,7 @@ class LearningRecord < ApplicationRecord
     Date.new(year, month, day)
   end
 
+  # その日の総学習時間(秒換算)
   def self.total_day_time(day)
     day_time = where(date: day)
     subtotal = 0
@@ -35,7 +36,7 @@ class LearningRecord < ApplicationRecord
         subtotal += 0
       end
     end
-    subtotal/(60*60)
+    subtotal
   end
 
   def self.total_month_time(year, month)
