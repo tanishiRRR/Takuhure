@@ -1,33 +1,33 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>パスワード再設定</h4>
+  <div class="row mt-3">
+    <h4 class="border border-dark bg-secondary text-white p-2">パスワード再設定</h4>
   </div>
 
   <%= form_with model: @end_user, url: end_user_password_path, method: :patch, local: true do |f| %>
 
-    <div class='form-group row mt-3'>
-      <%= f.label :password,class: 'col-3 form-label' do %>
+    <div class="form-group row mt-3">
+      <%= f.label :password,class: "col-3 form-label" do %>
         新しいパスワード
         <% if @minimum_password_length %>
           （<%= @minimum_password_length %>文字以上）
         <% end %>
       <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'col-9 form-control' %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "col-9 form-control" %>
     </div>
 
-    <div class='form-group row'>
-      <%= f.label :password_confirmation, 'パスワード（確認用）', class: 'form-label col-3' %>
-      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'col-9 form-control' %>
+    <div class="form-group row">
+      <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label col-3" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-9 form-control" %>
     </div>
 
     <!--隠しフィールドでトークンもパラメーターで送る。これにより
     DBに保存されているリセットトークンとここから送られたトークンが一致するか確認している。%>-->
     <%= f.hidden_field :reset_password_token %>
 
-    <div class='row'>
-      <div class='offset-3 col-9 pl-0'>
-        <%= f.submit 'パスワードを変更する', class: 'btn btn-success pl-5 pr-5' %>
+    <div class="row">
+      <div class="offset-3 col-9 pl-0">
+        <%= f.submit "パスワードを変更する", class: "btn btn-success pl-5 pr-5" %>
       </div>
     </div>
   <% end %>
