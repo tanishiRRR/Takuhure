@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="border border-dark bg-secondary text-white p-2">学習記録一覧</h4>
+    <h4>学習記録一覧</h4>
   </div>
 
   <div class="row mt-3">
@@ -89,6 +89,10 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div class="row mt-3">
+    <%= link_to "打刻画面へ", new_learning_record_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
   </div>
 
 </div>

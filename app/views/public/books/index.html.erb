@@ -2,7 +2,9 @@
 
   <% if params[:keyword].present? %>
     <div class="row mt-3">
-      <h4 class="border border-dark bg-secondary text-white p-2">検索結果</h4>
+      <h4>
+        検索結果（検索ワード：<%= params[:keyword] %>）
+      </h4>
     </div>
   <% else %>
     <div class="row mt-3">
@@ -42,12 +44,14 @@
               <td><%= book.author %></td>
               <td><%= book.publisher_name %></td>
               <td><%= book.sales_date %></td>
-              <td class="text-center"><%= link_to "参考書に登録", books_path(id: book.isbn), method: :post, class: "btn btn-primary btn-sm" %></td>
+              <td class="text-center"><%= link_to "参考書に登録", books_path(id: book.isbn), method: :post, class: "btn btn-success btn-sm" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   <% end %>
-
+  <div class="row mt-3">
+    <%= link_to "マイページに戻る", end_users_my_page_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+  </div>
 </div>

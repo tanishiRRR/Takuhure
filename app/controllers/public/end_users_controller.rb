@@ -6,7 +6,7 @@ class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
 
   # ゲストログインユーザーはマイページの編集及び退会ができないようにする
-  before_action :check_guest, only: [:update, :withdraw]
+  before_action :check_guest, only: [:edit, :update, :withdraw]
 
   def my_page
     @end_user = current_end_user
@@ -57,7 +57,7 @@ class Public::EndUsersController < ApplicationController
     def check_guest
       @end_user = current_end_user
       if @end_user.email == 'guest@example.com'
-        redirect_to end_users_my_page_path, danger: 'ゲストユーザーの編集・退会はできません'
+        redirect_to end_users_my_page_path, danger: 'ゲストユーザーの会員情報編集・退会はできません'
       end
     end
 
