@@ -38,7 +38,9 @@
                 <%total_time += 0 %>
               <% end %>
             <% end %>
-            <%= (total_time/(60*60)).round(2) %>時間
+            <% total_time_hour = total_time.div(60*60) %>
+            <% total_time_minutes = (total_time % (60*60)).div(60) %>
+            <%= total_time_hour %>時間<%= total_time_minutes %>分
           </td>
         </tr>
       </tbody>
