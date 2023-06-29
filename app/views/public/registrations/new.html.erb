@@ -8,12 +8,12 @@
 
     <div class="form-group row mt-3">
       <%= f.label :account_name, "アカウント名", class: "col-3 form-label" %>
-      <%= f.text_field :account_name, autofocus: true, autocomplete: "username", placeholder: "samplename", class: "col-9 form-control" %>
+      <%= f.text_field :account_name, autofocus: true, autocomplete: "username", required: true, placeholder: "samplename", class: "col-9 form-control" %>
     </div>
 
     <div class="form-group row">
       <%= f.label :email, "メールアドレス", class: "col-3 form-label" %>
-      <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: "col-9 form-control" %>
+      <%= f.email_field :email, autocomplete: "email", required: true, placeholder: "sample@example.com", class: "col-9 form-control" %>
     </div>
 
     <div class="form-group row">
@@ -23,12 +23,12 @@
           （<%= @minimum_password_length %>文字以上）
         <% end %>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "col-9 form-control" %>
+      <%= f.password_field :password, autocomplete: "new-password", required: true, class: "col-9 form-control" %>
     </div>
 
     <div class="form-group row">
       <%= f.label :password_confirmation, "パスワード（確認用）", class: "col-3 form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-9 form-control" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "col-9 form-control" %>
     </div>
 
     <div class="row">

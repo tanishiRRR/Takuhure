@@ -13,12 +13,12 @@
           （<%= @minimum_password_length %>文字以上）
         <% end %>
       <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "col-9 form-control" %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, class: "col-9 form-control" %>
     </div>
 
     <div class="form-group row">
       <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label col-3" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-9 form-control" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "col-9 form-control" %>
     </div>
 
     <!--隠しフィールドでトークンもパラメーターで送る。これにより
