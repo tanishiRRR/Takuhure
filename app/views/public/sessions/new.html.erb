@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="border border-dark bg-secondary text-white p-2">ログイン</h4>
+    <h4>ログイン</h4>
   </div>
 
   <%= form_with model: @end_user, url: end_user_session_path, method: :post, local: true do |f| %>
@@ -32,13 +32,13 @@
 
     <div class="row">
       <div class="offset-2 col-10 pl-0">
-        <%= f.submit "ログイン", class: "btn btn-primary pl-5 pr-5" %>
+        <%= f.submit "ログイン", class: "btn btn-success pl-5 pr-5" %>
       </div>
     </div>
   <% end %>
 
   <div class="row mt-5">
-    <h4 class="border border-dark bg-secondary text-white p-2">会員登録がお済みでない方</h4>
+    <h4>会員登録がお済みでない方</h4>
   </div>
 
   <div class="row mt-3">
