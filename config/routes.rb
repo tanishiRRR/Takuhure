@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_for :end_users, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',
-    passwords: 'public/passwords'
+    passwords: 'public/passwords',
   }
 
   scope module: :public do
