@@ -18,8 +18,7 @@ class Public::QuestionsController < ApplicationController
     if @question.save
       redirect_to question_path(@question.id), success: '質問を投稿しました'
     else
-      flash.now[:warning] = '全て入力してください'
-      render :new
+      redirect_to new_question_path, warning: '全て入力してください'
     end
   end
 
@@ -32,7 +31,7 @@ class Public::QuestionsController < ApplicationController
   def destroy
     question = Question.find(params[:id])
     if question.destroy
-      redirect_to questions_path, danger: '質問を削除しました'
+      redirect_to questions_path, success: '質問を削除しました'
     end
   end
 

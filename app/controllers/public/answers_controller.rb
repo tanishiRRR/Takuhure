@@ -33,8 +33,7 @@ class Public::AnswersController < ApplicationController
       redirect_to question_and_answer_path(params[:question_id]), success: '回答を投稿しました'
     else
       @question = Question.find(params[:question_id])
-      flash.now[:warning] = '回答を入力してください'
-      render :new
+      redirect_to new_answer_path(question_id: params[:question_id]), warning: '回答を入力してください'
     end
   end
 
@@ -45,7 +44,7 @@ class Public::AnswersController < ApplicationController
     unless answer.question.answers.any?
       answer.question.update(is_answer: false)
     end
-    redirect_to answers_path, danger: '回答を削除しました'
+    redirect_to answers_path, success: '回答を削除しました'
   end
 
   private

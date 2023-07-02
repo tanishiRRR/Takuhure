@@ -12,7 +12,7 @@ class Public::CommentsController < ApplicationController
     comment.end_user_id = current_end_user.id
     comment.answer_id = params[:answer_id]
     if comment.save
-      redirect_to question_and_answer_path(comment.answer.question.id)
+      redirect_to question_and_answer_path(comment.answer.question.id), success:'コメントを投稿しました'
     else
       answer = Answer.find(params[:answer_id])
       redirect_to question_and_answer_path(answer.question.id), warning: '空のコメントは投稿できません'
@@ -22,7 +22,7 @@ class Public::CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     if comment.destroy
-      redirect_to comments_path, danger: '質問を削除しました'
+      redirect_to comments_path, success: 'コメントを削除しました'
     end
   end
 

@@ -1,11 +1,13 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="border border-dark bg-secondary text-white p-2">質問詳細</h4>
+    <h4>
+      質問詳細
+    </h4>
   </div>
 
   <div class="row">
-    <h5 class="ml-5 p-2">質問</h5>
+    <h5 class="ml-5 mt-3">質問</h5>
   </div>
 
   <div class="row mt-1">
@@ -38,11 +40,11 @@
   </div>
 
   <div class="row mt-5">
-    <%= link_to "Q&A詳細ページへ", question_and_answer_path(@question), method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "Q&A詳細画面へ", question_and_answer_path(@question), method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
   <div class="row mt-5">
-    <h5 class="ml-5 p-2">質問補足</h5>
+    <h5 class="ml-5">質問補足</h5>
   </div>
 
   <div class="row mt-1">
@@ -75,9 +77,13 @@
     <div class="row mt-1">
       <%= f.text_area :supplemental_question, required: true, rows: "5", placeholder: "質問に補足したいことを入力してください", class: "offset-1 col-10 form-control" %>
     </div>
-    <div class="row mt-3 mb-5">
-      <%= f.submit "補足する", class: "offset-4 col-4 btn btn-success pl-5 pr-5" %>
+    <div class="row mt-3">
+      <%= f.submit "質問に補足する", class: "offset-4 col-4 btn btn-success pl-5 pr-5" %>
     </div>
   <% end %>
+
+  <div class="row mt-3">
+    <%= link_to "Q&A一覧画面に戻る", questions_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
 
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="border border-dark bg-secondary text-white p-2">回答一覧</h4>
+    <h4>回答一覧</h4>
   </div>
 
   <div class="row mt-3">
@@ -23,7 +23,7 @@
             <td><%= answer.question.title %></td>
             <td><%= answer.question.category.category_name %></td>
             <td><%= truncate(answer.answer, :length => 30) %></td>
-            <td class="text-center"><%= link_to "Q&A詳細ページ", question_and_answer_path(answer.question.id), method: :get, class: "btn btn-primary btn-sm" %></td>
+            <td class="text-center"><%= link_to "Q&A詳細画面", question_and_answer_path(answer.question.id), method: :get, class: "btn btn-primary btn-sm" %></td>
             <td class="text-center"><%= link_to "回答を取り消す", answer_path(answer), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "削除しますか？"} %></td>
           </tr>
         <% end %>
