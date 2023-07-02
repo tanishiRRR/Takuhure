@@ -84,7 +84,9 @@
                 <%= total_day_time_hour %>時間<%= total_day_time_minutes %>分
               <% end %>
             </td>
-            <td class="text-center"><%= link_to "詳細", learning_record_path(day), method: :get, class: "btn btn-primary btn-sm" %></td>
+            <td class="text-center">
+              <%= link_to "詳細", learning_record_path(day), method: :get, class: "btn btn-primary btn-sm" %>
+            </td>
           </tr>
         <% end %>
       </tbody>
