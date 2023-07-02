@@ -15,7 +15,7 @@
     <!--flex-row : 左から横並び-->
     <div class="col d-flex flex-row justify-content-center">
       <div>
-        <%= link_to "マイページに戻る", end_users_my_page_path, method: :get, class: "btn btn-primary pl-5 pr-5" %>
+        <%= link_to "マイページに戻る", end_users_my_page_path, method: :get, class: "btn btn-primary" %>
       </div>
       <div class="ml-5">
         <%= link_to "退会する", end_users_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか"}, class: "btn btn-danger pl-5 pr-5" %>
