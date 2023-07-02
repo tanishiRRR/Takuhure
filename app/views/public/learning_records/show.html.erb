@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="p-2">学習情報</h4>
+    <h4>学習情報</h4>
   </div>
 
   <div class="row mt-5">
@@ -55,7 +55,7 @@
             <td><%= I18n.l learning_record.end_time, format: :short_time if learning_record.end_time.present? %></td>
             <td><%= safe_join(learning_record.content_memo.split("\n"), tag(:br)) if learning_record.content_memo.present? %></td>
             <td class="text-center">
-              <%= link_to "編集", edit_learning_record_path(learning_record), method: :get, class: "btn btn-success btn-sm pl-3 pr-3" %>
+              <%= link_to "編集", edit_learning_record_path(learning_record), method: :get, class: "btn btn-primary btn-sm pl-3 pr-3" %>
               <%= link_to "削除", learning_record_path(learning_record), method: :delete, class: "btn btn-danger btn-sm pl-3 pr-3", data: {confirm: "削除しますか？"} %>
             </td>
           </tr>
@@ -73,7 +73,7 @@
             <td style="width: 15%"></td>
             <td style="width: 15%"><%= f.time_field :start_time_option, required: true, class: "form-control" %></td>
             <td style="width: 15%"><%= f.time_field :end_time_option, required: true, class: "form-control" %></td>
-            <td style="width: 25%"><%= f.text_area :content_memo, placeholder: "メモ書き", class: "form-control" %></td>
+            <td style="width: 25%"><%= f.text_area :content_memo, placeholder: "メモ書き（任意）", class: "form-control" %></td>
             <td class="text-center" style="width: 20%">
               <%= f.hidden_field :date, :value => @date %>
               <%= f.hidden_field :is_record, :value => false %>
@@ -86,7 +86,7 @@
   <% end %>
 
   <div class="row mt-5">
-    <%= link_to "学習記録一覧に戻る", learning_records_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "学習記録一覧に戻る", learning_records_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
 </div>

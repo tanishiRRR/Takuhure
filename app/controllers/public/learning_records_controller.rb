@@ -34,10 +34,7 @@ class Public::LearningRecordsController < ApplicationController
       if @learning_record.save
         redirect_to learning_record_path(params[:learning_record][:date]), success: '学習情報を保存しました'
       else
-        @learning_records = current_end_user.learning_records.where(date: @learning_record.date).order(start_time: :asc)
-        @date = @learning_record.date
-        flash.now[:warning] = '終了時間は、開始時間より遅い時間を入力してください'
-        render :show
+        redirect_to learning_record_path(params[:learning_record][:date]), warning: '終了時間は、開始時間より遅い時間を入力してください'
       end
     else
     # 打刻機能で学習記録を保存する場合
@@ -125,7 +122,7 @@ class Public::LearningRecordsController < ApplicationController
   def destroy
     learning_record = LearningRecord.find(params[:id])
     if learning_record.destroy
-      redirect_to learning_record_path(learning_record.date), danger: '学習情報を削除しました'
+      redirect_to learning_record_path(learning_record.date), success: '学習情報を削除しました'
     end
   end
 

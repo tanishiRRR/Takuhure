@@ -50,9 +50,9 @@
       <div>
         <p>表示年月日</p>
         <p class="text-center">
-          <%= link_to "<", learning_records_path(year: @time.prev_month.year, month: @time.prev_month.month), method: :get, class: "text-reset h5 pr-4" %>
+          <%= link_to "<", learning_records_path(year: @time.prev_month.year, month: @time.prev_month.month), method: :get, class: "h5 pr-4" %>
           <%= I18n.l @time, format: :short_month %>
-          <%= link_to ">", learning_records_path(year: @time.next_month.year, month: @time.next_month.month), method: :get, class: "text-reset h5 pl-4" %>
+          <%= link_to ">", learning_records_path(year: @time.next_month.year, month: @time.next_month.month), method: :get, class: "h5 pl-4" %>
         </p>
       </div>
     </div>
@@ -63,10 +63,10 @@
     <table class="col-8 table table-bordered">
       <thead>
         <tr>
-          <th style="width: 20%">日付</th>
-          <th style="width: 10%">曜日</th>
-          <th style="width: 40%">学習時間</th>
-          <th style="width: 30%"></th>
+          <th style="width: 25%">日付</th>
+          <th style="width: 15%">曜日</th>
+          <th style="width: 45%">学習時間</th>
+          <th style="width: 15%"></th>
         </tr>
       </thead>
       <tbody>
@@ -84,7 +84,7 @@
                 <%= total_day_time_hour %>時間<%= total_day_time_minutes %>分
               <% end %>
             </td>
-            <td class="text-center"><%= link_to "詳細", learning_record_path(day), method: :get, class: "btn btn-success btn-sm  pl-5 pr-5" %></td>
+            <td class="text-center"><%= link_to "詳細", learning_record_path(day), method: :get, class: "btn btn-primary btn-sm" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -92,7 +92,7 @@
   </div>
 
   <div class="row mt-3">
-    <%= link_to "打刻画面へ", new_learning_record_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "学習時間打刻画面へ", new_learning_record_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
 </div>
