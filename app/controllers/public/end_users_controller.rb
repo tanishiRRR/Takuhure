@@ -32,6 +32,7 @@ class Public::EndUsersController < ApplicationController
     if @end_user.update(end_user_params)
       redirect_to end_users_my_page_path, success: '登録情報を編集しました'
     else
+      flash.now[:warning] = '必須項目を入力してください'
       render :edit
     end
   end

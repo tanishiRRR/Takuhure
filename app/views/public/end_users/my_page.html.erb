@@ -38,7 +38,7 @@
   </div>
 
   <div class="row mt-5">
-    <%= link_to "会員情報を編集する", end_users_information_edit_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "会員情報を編集する", end_users_information_edit_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
   <div class="row mt-3">
@@ -70,7 +70,7 @@
                 <%= form_with model: reference_book, url: book_path(reference_book), method: :patch, local: true do |f| %>
                   <div class="mt-2">
                     <%= f.number_field :progress , in: 0..100 %>%
-                    <%= f.submit class: "btn btn-secondary btn-sm form-control"%>
+                    <%= f.submit class: "btn btn-success btn-sm form-control mt-2"%>
                   </div>
                 <% end %>
               </td>
@@ -83,7 +83,7 @@
   <% end %>
 
   <div class="row mt-5 mb-3">
-    <%= link_to "追加する", books_path, method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "追加する", books_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
 </div>
