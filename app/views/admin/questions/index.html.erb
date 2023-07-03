@@ -2,11 +2,15 @@
 
   <% if params[:end_user_id].present? %>
     <div class="row mt-3">
-      <h4 class="border border-dark bg-secondary text-white p-2"><%= EndUser.find(params[:end_user_id]).account_name %>さんのQ&A一覧</h4>
+      <h4>
+        <%= EndUser.find(params[:end_user_id]).account_name %>さんのQ&A一覧
+      </h4>
     </div>
   <% else %>
     <div class="row mt-3">
-      <h4 class="border border-dark bg-secondary text-white p-2">質問一覧</h4>
+      <h4>
+        質問一覧
+      </h4>
     </div>
   <% end %>
 
@@ -24,7 +28,7 @@
       <tbody>
         <% @questions.each do |question| %>
           <tr>
-            <td><%= question.date %></td>
+            <td><%= question.date.strftime("%Y/%m/%d") %></td>
             <td><%= question.title %></td>
             <td><%= question.category.category_name %></td>
             <td><%= truncate(question.question, :length => 30) %></td>

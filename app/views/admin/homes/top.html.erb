@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="border border-dark bg-secondary text-white p-2">会員一覧</h4>
+    <h4>会員一覧</h4>
   </div>
 
   <div class="row mt-3">
@@ -32,7 +32,7 @@
               <% end %>
             </td>
             <td><%= end_user.email %></td>
-            <td><%= end_user.is_study %></td>
+            <td><%= end_user.is_study_i18n %></td>
             <td>
               <% total_time = 0 %>
               <% end_user.learning_records.each do |learning_record| %>

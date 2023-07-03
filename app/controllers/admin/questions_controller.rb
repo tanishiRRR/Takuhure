@@ -3,9 +3,9 @@ class Admin::QuestionsController < ApplicationController
 
   def index
     if params[:end_user_id].present?
-      @questions = Question.where(end_user_id: params[:end_user_id]).order(created_at: :asc).page(params[:page]).per(20)
+      @questions = Question.where(end_user_id: params[:end_user_id]).order(created_at: :desc).page(params[:page]).per(20)
     else
-      @questions = Question.all.order(created_at: :asc).page(params[:page]).per(20)
+      @questions = Question.order(created_at: :desc).page(params[:page]).per(20)
     end
   end
 

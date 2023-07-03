@@ -19,7 +19,7 @@
       <tbody>
         <% @questions.each do |question| %>
           <tr>
-            <td><%= question.date %></td>
+            <td><%= question.date.strftime("%Y/%m/%d") %></td>
             <td><%= question.title %></td>
             <td><%= question.category.category_name %></td>
             <td><%= truncate(question.question, :length => 30) %></td>

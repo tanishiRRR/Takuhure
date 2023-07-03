@@ -2,11 +2,13 @@
 
   <% if params[:end_user_id].present? %>
     <div class="row mt-3">
-      <h4 class="border border-dark bg-secondary text-white p-2"><%= EndUser.find(params[:end_user_id]).account_name %>さんの回答一覧</h4>
+      <h4>
+        <%= EndUser.find(params[:end_user_id]).account_name %>さんの回答一覧
+      </h4>
     </div>
   <% else %>
     <div class="row mt-3">
-      <h4 class="border border-dark bg-secondary text-white p-2">回答一覧</h4>
+      <h4>回答一覧</h4>
     </div>
   <% end %>
 

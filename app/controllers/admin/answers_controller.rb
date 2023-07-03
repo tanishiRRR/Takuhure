@@ -4,9 +4,9 @@ class Admin::AnswersController < ApplicationController
 
   def index
     if params[:end_user_id].present?
-      @answers = Answer.where(end_user_id: params[:end_user_id]).order(created_at: :asc).page(params[:page]).per(20)
+      @answers = Answer.where(end_user_id: params[:end_user_id]).order(created_at: :desc).page(params[:page]).per(20)
     else
-      @answers = Answer.all.order(created_at: :asc).page(params[:page]).per(20)
+      @answers = Answer.order(created_at: :desc).page(params[:page]).per(20)
     end
   end
 

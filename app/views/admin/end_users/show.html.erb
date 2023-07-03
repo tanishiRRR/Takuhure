@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4 class="border border-dark bg-secondary text-white p-2">
+    <h4>
       <%= @end_user.account_name %>さんの会員情報詳細
     </h4>
   </div>
@@ -44,19 +44,23 @@
   </div>
 
   <div class="row mt-5">
-    <%= link_to "会員情報を編集する", edit_admin_end_user_path(@end_user), method: :get, class: "offset-4 col-4 btn btn-success pl-5 pr-5" %>
-  </div>
-
-  <div class="row mt-5">
-    <%= link_to "投稿質問一覧を見る", admin_questions_path(end_user_id: @end_user.id), method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "会員情報を編集する", edit_admin_end_user_path(@end_user), method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
   <div class="row mt-3">
-    <%= link_to "投稿回答一覧を見る", admin_answers_path(end_user_id: @end_user.id), method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "投稿質問一覧を見る", admin_questions_path(end_user_id: @end_user.id), method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
   <div class="row mt-3">
-    <%= link_to "投稿コメント一覧を見る", admin_comments_path(end_user_id: @end_user.id), method: :get, class: "offset-4 col-4 btn btn-primary pl-5 pr-5" %>
+    <%= link_to "投稿回答一覧を見る", admin_answers_path(end_user_id: @end_user.id), method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
+
+  <div class="row mt-3">
+    <%= link_to "投稿コメント一覧を見る", admin_comments_path(end_user_id: @end_user.id), method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
+
+  <div class="row mt-3">
+    <%= link_to "会員一覧に戻る", admin_root_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
 </div>

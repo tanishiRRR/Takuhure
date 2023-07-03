@@ -4,7 +4,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @category = Category.new
-    @categories = Category.all.page(params[:page]).per(20)
+    @categories = Category.page(params[:page]).per(20)
   end
 
   def create
@@ -12,8 +12,12 @@ class Admin::CategoriesController < ApplicationController
     if @category.save
       redirect_to admin_categories_path, success: 'カテゴリーを作成しました'
     else
-      @categories = Category.all
-      flash.now[:warning] = '既に登録済みのカテゴリ名は入力できません'
+      @categories = Category.page(params[:page]).per(20)
+      if params[:category][:category_name].present?
+        flash.now[:warning] = '既に登録済みのカテゴリ名は入力できません'
+      else
+        flash.now[:warning] = 'カテゴリ名を入力してください'
+      end
       render :index
     end
   end
