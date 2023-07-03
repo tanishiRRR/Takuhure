@@ -1,20 +1,10 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_end_user!
+  # 他人には扱うことができないようにする設定
+  before_action :end_user_scan, only: [:show, :destroy]
 
   def index
-    @questions = current_end_user.questions.order(created_at: :asc)
-  end
-
-  def top
-    @categories = Category.all
-    if params[:category_id].present?
-      questions = Question.where(category_id: params[:category_id])
-      @answered_questions = questions.where(is_answer: true).order(created_at: :asc)
-      @looking_for_answers_questions = question.where(is_answer: false).order(created_at: :asc)
-    else
-      @answered_questions = Question.where(is_answer: true).order(created_at: :asc)
-      @looking_for_answers_questions = Question.where(is_answer: false).order(created_at: :asc)
-    end
+    @questions = current_end_user.questions.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -28,8 +18,7 @@ class Public::QuestionsController < ApplicationController
     if @question.save
       redirect_to question_path(@question.id), success: '質問を投稿しました'
     else
-      flash.now[:warning] = '全て入力してください'
-      render :new
+      redirect_to new_question_path, warning: '全て入力してください'
     end
   end
 
@@ -40,9 +29,9 @@ class Public::QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Questions.find(params[:id])
-    if @question.destroy
-      redirect_to questions_path, danger: '質問を削除しました'
+    question = Question.find(params[:id])
+    if question.destroy
+      redirect_to questions_path, success: '質問を削除しました'
     end
   end
 
@@ -50,6 +39,12 @@ class Public::QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:end_user_id, :category_id, :title, :question, :is_answer, :date)
+    end
+
+    def end_user_scan
+      unless current_end_user
+        redirect_to end_users_my_page_path
+      end
     end
 
 end

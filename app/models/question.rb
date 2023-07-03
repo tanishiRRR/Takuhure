@@ -21,7 +21,7 @@ class Question < ApplicationRecord
   # presence: trueで設定すると、booleanの値がfalseのときエラーが出る
   validates :is_answer, inclusion: {in: [true, false]}
 
-  # 検索機能によ検索した場合
+  # 検索機能の定義
   def self.search(keyword)
     where(['title like? OR question like?', '%'+keyword+'%', '%'+keyword+'%'])
   end

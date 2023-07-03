@@ -1,24 +1,26 @@
-<div class='container'>
+<div class="container">
 
   <% if params[:end_user_id].present? %>
-    <div class='row mt-3'>
-      <h4 class='border border-dark bg-secondary text-white p-2'><%= EndUser.find(params[:end_user_id]).account_name %>さんの回答一覧</h4>
+    <div class="row mt-3">
+      <h4>
+        <%= EndUser.find(params[:end_user_id]).account_name %>さんの回答一覧
+      </h4>
     </div>
   <% else %>
-    <div class='row mt-3'>
-      <h4 class='border border-dark bg-secondary text-white p-2'>回答一覧</h4>
+    <div class="row mt-3">
+      <h4>回答一覧</h4>
     </div>
   <% end %>
 
-  <div class='row mt-3'>
-    <table class='table table-bordered offset-1 col-10'>
+  <div class="row mt-3">
+    <table class="table table-bordered offset-1 col-10">
       <thead>
         <tr>
-          <th style='width: 15%'>回答投稿日</th>
-          <th style='width: 25%'>質問タイトル</th>
-          <th style='width: 15%'>カテゴリ</th>
-          <th style='width: 35%'>投稿内容</th>
-          <th style='width: 10%'></th>
+          <th style="width: 15%">回答投稿日</th>
+          <th style="width: 25%">質問タイトル</th>
+          <th style="width: 15%">カテゴリ</th>
+          <th style="width: 35%">投稿内容</th>
+          <th style="width: 10%"></th>
         </tr>
       </thead>
       <tbody>
@@ -28,11 +30,18 @@
             <td><%= answer.question.title %></td>
             <td><%= answer.question.category.category_name %></td>
             <td><%= truncate(answer.answer, :length => 30) %></td>
-            <td class='text-center'><%= link_to '詳細', admin_answer_path(answer), method: :get, class: 'btn btn-primary btn-sm' %></td>
+            <td class="text-center"><%= link_to "詳細", admin_answer_path(answer), method: :get, class: "btn btn-primary btn-sm" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+  <%= paginate @answers %>
+
+  <% if params[:end_user_id].present? %>
+    <div class="row mt-3">
+      <%= link_to "会員情報詳細に戻る", admin_end_user_path(params[:end_user_id]), method: :get, class: "offset-4 col-4 btn btn-primary" %>
+    </div>
+  <% end %>
 
 </div>

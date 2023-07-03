@@ -1,2 +1,21 @@
 @use '~bootstrap/scss/bootstrap';
-@use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.fade:not(.show) {
+  display: none !important;
+}
+
+// ページネーションを真ん中に表示
+.pagination {
+  justify-content: center;
+}
+
+// ヘッダー及びフッターの設定
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}

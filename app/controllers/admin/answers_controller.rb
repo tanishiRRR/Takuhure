@@ -4,9 +4,9 @@ class Admin::AnswersController < ApplicationController
 
   def index
     if params[:end_user_id].present?
-      @answers = Answer.where(end_user_id: params[:end_user_id]).order(created_at: :asc)
+      @answers = Answer.where(end_user_id: params[:end_user_id]).order(created_at: :desc).page(params[:page]).per(20)
     else
-      @answers = Answer.all.order(created_at: :asc)
+      @answers = Answer.order(created_at: :desc).page(params[:page]).per(20)
     end
   end
 
@@ -15,9 +15,9 @@ class Admin::AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    if @answer.destroy
-      redirect_to admin_answers_path(end_user_id: @answer.end_user.id), danger: '回答を削除しました'
+    answer = Answer.find(params[:id])
+    if answer.destroy
+      redirect_to admin_answers_path(end_user_id: answer.end_user.id), success: '回答を削除しました'
     end
   end
 end

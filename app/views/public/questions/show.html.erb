@@ -1,35 +1,37 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>質問詳細</h4>
+  <div class="row mt-3">
+    <h4>
+      質問詳細
+    </h4>
   </div>
 
-  <div class='row'>
-    <h5 class='ml-5 p-2'>質問</h5>
+  <div class="row">
+    <h5 class="ml-5 mt-3">質問</h5>
   </div>
 
-  <div class='row mt-1'>
-    <div class='offset-1 col-10 border border-dark'>
-      <div class='row ml-1 mt-1'>
+  <div class="row mt-1">
+    <div class="offset-1 col-10 border border-dark">
+      <div class="row ml-1 mt-1">
         <%= image_tag @question.end_user.get_profile_image(150,150) %>
-        <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+        <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
           <%= @question.end_user.account_name %><br>
           <%= I18n.l @question.date, format: :default %>
         </p>
       </div>
-      <div class='row mt-3'>
-        <table class='table table-borderless offset-1 col-10'>
+      <div class="row mt-3">
+        <table class="table table-borderless offset-1 col-10">
           <tbody>
             <tr>
-              <th style='width: 15%'>タイトル</th>
-              <td style='width: 85%'><%= @question.title %></td>
+              <th style="width: 15%">タイトル</th>
+              <td style="width: 85%"><%= @question.title %></td>
             </tr>
             <tr>
               <th>カテゴリー</th>
               <td><%= @question.category.category_name %></td>
             </tr>
             <tr>
-              <td colspan='2'><%= safe_join(@question.question.split("\n"), tag(:br)) %></td>
+              <td colspan="2"><%= safe_join(@question.question.split("\n"), tag(:br)) %></td>
             </tr>
           </tbody>
         </table>
@@ -37,26 +39,26 @@
     </div>
   </div>
 
-  <div class='row mt-5'>
-    <%= link_to 'Q&A詳細ページへ', question_and_answer_path(@question), class: 'offset-4 col-4 btn btn-primary pl-5 pr-5' %>
+  <div class="row mt-5">
+    <%= link_to "Q&A詳細画面へ", question_and_answer_path(@question), method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
-  <div class='row mt-5'>
-    <h5 class='ml-5 p-2'>質問補足</h5>
+  <div class="row mt-5">
+    <h5 class="ml-5">質問補足</h5>
   </div>
 
-  <div class='row mt-1'>
+  <div class="row mt-1">
     <% @supplemental_questions.each do |supplemental_question| %>
-      <div class='offset-1 col-10 border border-dark mt-2'>
-        <div class='row ml-1 mt-1'>
+      <div class="offset-1 col-10 border border-dark mt-2">
+        <div class="row ml-1 mt-1">
           <%= image_tag @question.end_user.get_profile_image(150,150) %>
-          <p class='d-flex align-items-center ml-3 mb-0' style='vertical-align:middle;'>
+          <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
             <%= @question.end_user.account_name %><br>
             <%= I18n.l supplemental_question.created_at, format: :short_day %>
           </p>
         </div>
-        <div class='row'>
-          <table class='table table-borderless offset-1 col-10'>
+        <div class="row">
+          <table class="table table-borderless offset-1 col-10">
             <tbody>
               <tr>
                 <td><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
@@ -64,20 +66,24 @@
             </tbody>
           </table>
         </div>
-        <div class='row mb-3'>
-          <%= link_to '補足を取り消す', supplemental_question_path(supplemental_question), method: :delete, class: 'offset-8 col-3 btn btn-danger btn-sm', data: {confirm: "削除しますか？"} %>
+        <div class="row mb-3">
+          <%= link_to "補足を取り消す", supplemental_question_path(supplemental_question), method: :delete, class: "offset-8 col-3 btn btn-danger btn-sm", data: {confirm: "削除しますか？"} %>
         </div>
       </div>
     <% end %>
   </div>
 
   <%= form_with model: @supplemental_question, url: supplemental_questions_path(question_id: @question.id), method: :post, local: true do |f| %>
-    <div class='row mt-1'>
-      <%= f.text_area :supplemental_question, required: true, rows: '5', placeholder: '質問に補足したいことを入力してください', class: 'offset-1 col-10 form-control' %>
+    <div class="row mt-1">
+      <%= f.text_area :supplemental_question, required: true, rows: "5", placeholder: "質問に補足したいことを入力してください", class: "offset-1 col-10 form-control" %>
     </div>
-    <div class='row mt-3 mb-5'>
-      <%= f.submit '補足する', class: 'offset-4 col-4 btn btn-success pl-5 pr-5' %>
+    <div class="row mt-3">
+      <%= f.submit "質問に補足する", class: "offset-4 col-4 btn btn-success pl-5 pr-5" %>
     </div>
   <% end %>
+
+  <div class="row mt-3">
+    <%= link_to "質問一覧画面に戻る", questions_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
 
 </div>

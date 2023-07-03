@@ -25,16 +25,21 @@ class LearningRecord < ApplicationRecord
     Date.new(year, month, day)
   end
 
+  # その日の総学習時間(秒換算)
   def self.total_day_time(day)
-
     day_time = where(date: day)
     subtotal = 0
     day_time.each do |day_time|
-      subtotal += day_time.end_time - day_time.start_time
+      if day_time.end_time.present?
+        subtotal += day_time.end_time - day_time.start_time
+      else
+        subtotal += 0
+      end
     end
-    subtotal/(60*60)
+    subtotal
   end
 
+  # その月の総学習時間(秒換算)
   def self.total_month_time(year, month)
     if month < 10
       month_time = where("date LIKE ?", "#{year}-0#{month}%")
@@ -43,9 +48,13 @@ class LearningRecord < ApplicationRecord
     end
     subtotal = 0
     month_time.each do |month_time|
-      subtotal += month_time.end_time - month_time.start_time
+      if month_time.end_time.present?
+        subtotal += month_time.end_time - month_time.start_time
+      else
+        subtotal += 0
+      end
     end
-    subtotal/(60*60)
+    subtotal
   end
 
 end

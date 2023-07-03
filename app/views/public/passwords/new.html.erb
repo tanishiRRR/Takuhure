@@ -1,24 +1,25 @@
-<div class='container'>
+<div class="container">
 
-  <div class='row mt-3'>
-    <h4 class='border border-dark bg-secondary text-white p-2'>パスワード再設定</h4>
+  <div class="row mt-3">
+    <h4>パスワード再設定</h4>
   </div>
 
   <%= form_with model: @end_user, url: end_user_password_path, method: :post, local: true do |f| %>
-    <div class='form-group row mt-3'>
-      <%= f.label :email, 'メールアドレス', class: 'col-2 form-label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'sample@example.com', class: 'col-10 form-control' %>
+    <div class="form-group row mt-3">
+      <%= f.label :email, "メールアドレス", class: "col-2 form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, placeholder: "sample@example.com", class: "col-10 form-control" %>
     </div>
 
-    <div class='row'>
-      <div class='offset-2 col-10 pl-0'>
+    <div class="row">
+      <div class="offset-2 col-10 pl-0">
         <p>入力されたメールアドレスにパスワード再設定メールを送信します。</p>
       </div>
     </div>
 
-    <div class='row mt-3'>
-      <div class='offset-2 col-10 pl-0'>
-        <%= f.submit '送信する', class: 'btn btn-success' %>
+    <div class="row mt-3">
+      <div class="offset-2 col-10 pl-0">
+        <%= f.submit "送信する", class: "btn btn-success pl-5 pr-5" %>
+        <%= link_to "ログイン画面に戻る", new_end_user_session_path, method: :get, class: "btn btn-primary ml-5" %>
       </div>
     </div>
   <% end %>

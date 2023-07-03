@@ -6,9 +6,11 @@ class Public::SearchesController < ApplicationController
     @categories = Category.all
     if params[:keyword].present?
       @keyword = params[:keyword]
-      @questions = Question.search(@keyword).order(created_at: :asc)
+      questions = Question.search(@keyword)
+      @answered_questions = questions.where(is_answer: true).order(created_at: :asc)
+      @looking_for_answers_questions = questions.where(is_answer: false).order(created_at: :asc)
     else
-      redirect_to questions_top_path, danger: 'キーワードを入力してください'
+      redirect_to question_and_answers_path, warning: 'キーワードを入力してください'
     end
   end
 end

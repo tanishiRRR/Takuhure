@@ -1,38 +1,31 @@
 <div class="container">
 
   <div class="row mt-3">
-    <h4>会員一覧</h4>
+    <h4>合格者一覧</h4>
   </div>
 
   <div class="row mt-3">
     <table class="col table table-bordered">
       <thead>
         <tr>
-          <th style="width: 10%">会員ID</th>
-          <th style="width: 10%">画像</th>
-          <th style="width: 20%">アカウント名</th>
-          <th style="width: 20%">メールアドレス</th>
-          <th style="width: 10%">状態</th>
-          <th style="width: 20%">総学習時間</th>
-          <th style="width: 10%">ステータス</th>
+          <th style="width: 20%">画像</th>
+          <th style="width: 40%">アカウント名</th>
+          <th style="width: 40%">総学習時間</th>
         </tr>
       </thead>
       <tbody>
         <% @end_users.each do |end_user| %>
           <tr>
-            <td><%= end_user.id %></td>
             <td>
-              <%= link_to admin_end_user_path(end_user.id), method: :get do %>
+              <%= link_to end_user_path(end_user.id), method: :get do %>
                 <%= image_tag end_user.get_profile_image(60,60) %>
               <% end %>
             </td>
             <td>
-              <%= link_to admin_end_user_path(end_user.id), method: :get do %>
+              <%= link_to end_user_path(end_user.id), method: :get do %>
                 <%= end_user.account_name %>
               <% end %>
             </td>
-            <td><%= end_user.email %></td>
-            <td><%= end_user.is_study_i18n %></td>
             <td>
               <% total_time = 0 %>
               <% end_user.learning_records.each do |learning_record| %>
@@ -45,9 +38,6 @@
               <% total_time_hour = total_time.div(60*60) %>
               <% total_time_minutes = (total_time % (60*60)).div(60) %>
               <%= total_time_hour %>時間<%= total_time_minutes %>分
-            </td>
-            <td class="<%= end_user.is_deleted ? "text-muted" : "font-weight-bold text-success" %> text-center">
-              <%= end_user.is_deleted ? "退会" : "有効" %>
             </td>
           </tr>
         <% end %>

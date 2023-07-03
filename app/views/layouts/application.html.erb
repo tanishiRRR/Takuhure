@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Takuhure</title>
+    <title>宅フレ！</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/4cb99e59bb.js" crossorigin="anonymous"></script>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -15,12 +17,12 @@
       <!--ヘッダーを画面上部に固定-->
       <header class='sticky-top'>
         <!--navbar-expand-mdでナビゲーションバーとハンバーガーメニューの切り替え-->
-        <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
-          <%= link_to '宅フレ！', admin_root_path , class: 'navbar-brand' %>
-          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-icon'></span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <%= link_to '宅フレ！', admin_root_path, method: :get, class: 'navbar-brand' %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
+          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class='navbar-nav mr-auto'>
               <li class='nav-item active'>
                 <%= link_to '会員一覧', admin_root_path, method: :get, class: 'nav-link' %>
@@ -46,12 +48,12 @@
       </header>
     <% elsif end_user_signed_in? %>
       <header class='sticky-top'>
-        <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
-          <%= link_to '宅フレ！', learning_records_path , class: 'navbar-brand' %>
-          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-icon'></span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <%= link_to '宅フレ！', learning_records_path, method: :get, class: 'navbar-brand' %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
+          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class='navbar-nav mr-auto'>
               <li class='nav-item active'>
                 <%= link_to 'マイページ', end_users_my_page_path, method: :get, class: 'nav-link' %>
@@ -60,19 +62,22 @@
                 <%= link_to '学習時間打刻', new_learning_record_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to 'Q&A', questions_top_path, method: :get, class: 'nav-link' %>
+                <%= link_to 'Q&A', question_and_answers_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to '投稿質問一覧', questions_path, method: :get, class: 'nav-link' %>
+                <%= link_to '自分の質問一覧', questions_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to '投稿回答一覧', answers_path, method: :get, class: 'nav-link' %>
+                <%= link_to '自分の回答一覧', answers_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to '投稿コメント一覧', comments_path, method: :get, class: 'nav-link' %>
+                <%= link_to '自分のコメント一覧', comments_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
-                <%= link_to 'いいね一覧', favorites_path, method: :get, class: 'nav-link' %>
+                <%= link_to '自分のいいね一覧', favorites_path, method: :get, class: 'nav-link' %>
+              </li>
+              <li class='nav-item active'>
+                <%= link_to '合格者の情報', end_users_path, method: :get, class: 'nav-link' %>
               </li>
               <li class='nav-item active'>
                 <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class: 'nav-link' %>
@@ -83,12 +88,12 @@
       </header>
     <% else %>
       <header class='sticky-top'>
-        <nav class='navbar nav-expand-lg bg-dark navbar-dark'>
-          <%= link_to '宅フレ！', root_path , class: 'navbar-brand' %>
-          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo02' aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-icon'></span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <%= link_to '宅フレ！', root_path, method: :get, class: 'navbar-brand' %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
+          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class='navbar-nav mr-auto'>
               <li class='nav-item active'>
                 <%= link_to '新規登録', new_end_user_registration_path, method: :get, class: 'nav-link' %>
@@ -107,6 +112,15 @@
       <%= render 'public/shared/error_messages', resource: resource if devise_controller? %>
       <%= yield %>
     </main>
+
+    <footer>
+      <div class="border-top border-dark mt-3">
+        <p class="text-center mt-3">
+          Copyright © Takuhure! All Rights Reserved.
+          <a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="221" height="21"/></a>
+        </p>
+      </div>
+    </footer>
 
   </body>
 

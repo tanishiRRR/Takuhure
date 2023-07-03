@@ -11,24 +11,24 @@ Rails.application.routes.draw do
   devise_for :end_users, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',
-    passwords: 'public/passwords'
+    passwords: 'public/passwords',
   }
 
   scope module: :public do
     root to: 'homes#top'
 
-    get   'end_users/my_page' => 'end_users#show'
+    get   'end_users/my_page' => 'end_users#my_page'
     get   'end_users/information/edit' => 'end_users#edit'
     patch 'end_users/information' => 'end_users#update'
     get   'end_users/unsubscribe' => 'end_users#unsubscribe'
     patch 'end_users/withdraw' => 'end_users#withdraw'
+    resources :end_users, only: [:index, :show]
 
-    get 'questions/top' => 'questions#top'
     resources :questions, only: [:index, :create, :new, :show, :destroy]
 
     resources :supplemental_questions, only: [:create, :destroy]
 
-    resources :answers, only: [:index, :create, :new, :show, :destroy] do
+    resources :answers, only: [:index, :create, :new, :destroy] do
       resources :comments, only: [:create]
       # resourceと単数形にすると、/:idがURLに含まれなくなる
       resource :favorites, only: [:create, :destroy]
