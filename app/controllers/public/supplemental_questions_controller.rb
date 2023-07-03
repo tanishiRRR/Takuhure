@@ -18,7 +18,7 @@ class Public::SupplementalQuestionsController < ApplicationController
     # リダイレクト用に質問IDを定義する。
     question_id = supplemental_question.question_id
     if supplemental_question.destroy
-      redirect_to question_path(question_id), danger: '補足を削除しました'
+      redirect_to question_path(question_id), success: '補足を削除しました'
     end
   end
 

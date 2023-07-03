@@ -37,4 +37,11 @@
     </table>
   </div>
   <%= paginate @answers %>
+
+  <% if params[:end_user_id].present? %>
+    <div class="row mt-3">
+      <%= link_to "会員情報詳細に戻る", admin_end_user_path(params[:end_user_id]), method: :get, class: "offset-4 col-4 btn btn-primary" %>
+    </div>
+  <% end %>
+
 </div>

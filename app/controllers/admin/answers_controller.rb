@@ -15,9 +15,9 @@ class Admin::AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    if @answer.destroy
-      redirect_to admin_answers_path(end_user_id: @answer.end_user.id), danger: '回答を削除しました'
+    answer = Answer.find(params[:id])
+    if answer.destroy
+      redirect_to admin_answers_path(end_user_id: answer.end_user.id), success: '回答を削除しました'
     end
   end
 end
