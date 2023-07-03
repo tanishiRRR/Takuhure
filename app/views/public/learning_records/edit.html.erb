@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div class="row mt-3">
+    <h4>学習情報編集</h4>
+  </div>
+
+  <%= form_with model: @learning_record, url: learning_record_path, method: :patch, local: true do |f| %>
+    <div class="row mt-5">
+      <table class="offset-1 col-10 table table-bordered">
+        <thead>
+          <tr>
+            <th style="width: 25%">開始時間</th>
+            <th style="width: 25%">終了時間</th>
+            <th style="width: 25%">メモ書き</th>
+            <th style="width: 25%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= f.time_field :start_time_option, required: true, class: "form-control" %></td>
+            <td><%= f.time_field :end_time_option, required: true, class: "form-control" %></td>
+            <td><%= f.text_area :content_memo, placeholder: 'メモ書き', class: "form-control" %></td>
+            <td class="text-center">
+              <%= f.submit "変更を保存", class: "btn btn-success" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <div class="row mt-3">
+    <%= link_to "学習情報に戻る", learning_record_path(@learning_record.date), method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
+
+</div>

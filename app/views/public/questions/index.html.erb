@@ -1,0 +1,34 @@
+<div class="container">
+
+  <div class="row mt-3">
+    <h4>質問一覧</h4>
+  </div>
+
+  <div class="row mt-3">
+    <table class="table table-bordered offset-1 col-10">
+      <thead>
+        <tr>
+          <th style="width: 15%">質問投稿日</th>
+          <th style="width: 20%">タイトル</th>
+          <th style="width: 15%">カテゴリ</th>
+          <th style="width: 25%">投稿内容</th>
+          <th style="width: 10%"></th>
+          <th style="width: 15%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><%= question.date.strftime("%Y/%m/%d") %></td>
+            <td><%= question.title %></td>
+            <td><%= question.category.category_name %></td>
+            <td><%= truncate(question.question, :length => 30) %></td>
+            <td class="text-center"><%= link_to "詳細", question_path(question.id), method: :get, class: "btn btn-primary btn-sm" %></td>
+            <td class="text-center"><%= link_to "質問を取り消す", question_path(question), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "削除しますか？"} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= paginate @questions %>
+</div>

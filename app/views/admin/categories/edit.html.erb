@@ -1,0 +1,15 @@
+<div class="container">
+
+  <div class="row mt-3">
+    <h4>カテゴリ編集</h4>
+  </div>
+
+  <%= form_with model: @category, url: admin_category_path, method: :patch, local: true do |f| %>
+    <div class="form-group row mt-3">
+      <%= f.label :category_name, "カテゴリ名", class: "col-2 form-label" %>
+      <%= f.text_field :category_name, required: true, autofocus: true, autocomplete: "category-name", placeholder: "カテゴリ名", class: "col-5 form-control" %>
+      <div class="col-5"><%= f.submit "変更を保存", class: "btn btn-success pl-5 pr-5" %></div>
+    </div>
+  <% end %>
+
+</div>

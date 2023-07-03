@@ -1,0 +1,33 @@
+ja:
+  enums:
+    end_user:
+      is_study:
+        learning: "学習中"
+        pass: "合格"
+
+  activerecord:
+    models:
+      end_user: "会員情報"
+    attributes:
+       end_user:
+         email: "Email"
+         account_name: "アカウント名"
+         password: "パスワード"
+
+  time:
+    formats:
+      short_day: "%Y/%m/%d"
+      short_time: "%H:%M"
+      short_month: "%Y年%m月"
+
+  date:
+    formats:
+      short_day: "%m/%d"
+
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."

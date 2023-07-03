@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="row mt-3">
+    <h4>いいね一覧</h4>
+  </div>
+
+  <div class="row mt-3">
+    <table class="table table-bordered offset-1 col-10">
+      <thead>
+        <tr>
+          <th style="width: 15%">質問タイトル</th>
+          <th style="width: 15%">カテゴリ</th>
+          <th style="width: 27%">質問内容</th>
+          <th style="width: 27%">回答内容</th>
+          <th style="width: 16%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= favorite.answer.question.title %></td>
+            <td><%= favorite.answer.question.category.category_name %></td>
+            <td><%= truncate(favorite.answer.question.question, :length => 30) %></td>
+            <td><%= truncate(favorite.answer.answer, :length => 30) %></td>
+            <td class="text-center"><%= link_to "Q&A詳細画面", question_and_answer_path(favorite.answer.question.id), method: :get, class: "btn btn-primary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= paginate @favorites %>
+</div>

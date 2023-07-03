@@ -1,0 +1,16 @@
+<div class="container">
+
+  <% if params[:category_id].present? %>
+    <div class="row mt-3">
+      <h4>Q&A一覧(<%= Category.find(params[:category_id]).category_name %>)</h4>
+    </div>
+  <% else %>
+    <div class="row mt-3">
+      <h4>Q&A一覧</h4>
+    </div>
+  <% end %>
+
+  <%= render "public/searches/search", categories: @categories %>
+  <%= render "public/question_and_answers/index", looking_for_answers_questions: @looking_for_answers_questions, answered_questions: @answered_questions%>
+
+</div>
