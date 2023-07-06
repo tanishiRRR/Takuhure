@@ -42,6 +42,10 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # EC2インスタンス起動時にエラーになってしまうためここに記述
+  gem 'byebug'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -59,10 +63,9 @@ gem 'rename'
 gem 'devise'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
-gem 'pry-rails'
 gem 'enum_help'
 gem 'rails-i18n'
-gem 'byebug'
+
 gem 'rakuten_web_service'
 
 gem 'dotenv-rails'
