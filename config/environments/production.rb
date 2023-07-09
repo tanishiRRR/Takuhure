@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  
+
   # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.public_file_server.enabled = true
@@ -66,6 +66,28 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "takuhure_production"
 
   config.action_mailer.perform_caching = false
+
+  # Don't care if the mailer can't send. メール送信失敗時のエラーを発生させる
+  config.action_mailer.raise_delivery_errors = true
+
+  # メール送信にSMTPを使用する
+  config.action_mailer.delivery_method = :smtp
+
+  # SMPTの詳細設定
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    # HELOコマンドで使用するドメイン、たぶん無くてもok
+    domain: 'smtp.gmail.com',
+    # Gmailのメールアドレス
+    user_name: ENV['GOOGLE_MAIL_ADDRESS'],
+    # Googleのアプリパスワード
+    password: ENV['GOOGLE_APP_PASSWORD'],
+    # メールサーバーの認証の種類
+    authentication: 'plain',
+    # STARTTLSを自動検出して有効化
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
