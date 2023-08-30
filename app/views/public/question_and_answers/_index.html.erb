@@ -23,10 +23,10 @@
   <div class="row mt-5">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="contents1-tab" data-toggle="tab" href="#contents1" role="tab" aria-controls="contents1" aria-selected="true">回答募集中</a>
+        <a class="nav-link active" id="contents1-tab" data-toggle="tab" href="#contents1" role="tab" aria-controls="contents1" aria-selected="true">回答募集中(<%=looking_for_answers_questions.count%>件)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contents2-tab" data-toggle="tab" href="#contents2" role="tab" aria-controls="contents2" aria-selected="false">回答済み</a>
+        <a class="nav-link" id="contents2-tab" data-toggle="tab" href="#contents2" role="tab" aria-controls="contents2" aria-selected="false">回答済み(<%=answered_questions.count%>件)</a>
       </li>
     </ul>
   </div>
