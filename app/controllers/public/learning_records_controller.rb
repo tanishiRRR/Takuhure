@@ -133,7 +133,8 @@ class Public::LearningRecordsController < ApplicationController
     end
 
     def end_user_scan
-      unless current_end_user
+      @learning_record = LearningRecord.find(params[:id])
+      unless @learning_record.end_user.id == current_end_user.id
         redirect_to end_users_my_page_path
       end
     end
