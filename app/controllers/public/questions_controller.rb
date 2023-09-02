@@ -42,7 +42,8 @@ class Public::QuestionsController < ApplicationController
     end
 
     def end_user_scan
-      unless current_end_user
+      @question = Question.find(params[:id])
+      unless @question.end_user.id == current_end_user.id
         redirect_to end_users_my_page_path
       end
     end
