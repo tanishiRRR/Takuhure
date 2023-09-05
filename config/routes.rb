@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
     resources :supplemental_questions, only: [:create, :destroy]
 
-    resources :answers, only: [:index, :create, :new, :edit, :destroy] do
+    resources :answers, only: [:index, :create, :new, :edit, :update, :destroy] do
       resources :comments, only: [:create]
       # resourceと単数形にすると、/:idがURLに含まれなくなる
       resource :favorites, only: [:create, :destroy]

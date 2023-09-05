@@ -46,6 +46,8 @@ class Public::AnswersController < ApplicationController
     answer = Answer.find(params[:id])
     if answer.update(answer_params)
       redirect_to question_and_answer_path(answer.question.id), success: '回答を編集しました'
+    else
+      redirect_to edit_answer_path(answer.question.id), warning: '回答を入力してください'
     end
   end
 
