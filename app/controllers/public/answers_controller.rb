@@ -37,6 +37,17 @@ class Public::AnswersController < ApplicationController
     end
   end
 
+  def edit
+    @answer = Answer.find(params[:id])
+  end
+
+  def update
+    answer = Answer.find(params[:id])
+    if answer.update(answer_params)
+      redirect_to
+    end
+  end
+
   def destroy
     answer = Answer.find(params[:id])
     # 回答していた質問が、回答を一つも持たなくなった場合、回答待ちへ変更する
