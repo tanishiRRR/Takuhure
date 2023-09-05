@@ -44,7 +44,7 @@ class Public::AnswersController < ApplicationController
   def update
     answer = Answer.find(params[:id])
     if answer.update(answer_params)
-      redirect_to
+      redirect_to question_and_answer_path(answer.question.id), success: '回答を編集しました'
     end
   end
 
