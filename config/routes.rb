@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch 'end_users/withdraw' => 'end_users#withdraw'
     resources :end_users, only: [:index, :show]
 
-    resources :questions, only: [:index, :create, :new, :show, :destroy]
+    resources :questions, only: [:index, :create, :new, :show, :edit, :update, :destroy]
 
     resources :supplemental_questions, only: [:create, :destroy]
 

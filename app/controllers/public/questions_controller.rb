@@ -21,9 +21,18 @@ class Public::QuestionsController < ApplicationController
       redirect_to new_question_path, warning: '全て入力してください'
     end
   end
-  
+
   def edit
     @question = Question.find(params[:id])
+  end
+
+  def update
+    question = Question.find(params[:id])
+    if question.update(question_params)
+      redirect_to question_and_answer_path(question.id), success: '質問を編集しました'
+    else
+      redirect_to edit_question_path(question.id), warning: '質問を入力してください'
+    end
   end
 
   def show
