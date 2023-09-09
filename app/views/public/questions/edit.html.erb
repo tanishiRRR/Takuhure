@@ -1,0 +1,69 @@
+<div class="container">
+
+  <div class="row mt-3">
+    <h4>質問編集ページ</h4>
+  </div>
+
+  <%= form_with model: @question, url: question_path, method: :patch, local: true do |f| %>
+    <div class="row mt-3">
+      <%= f.label :title, "タイトル", class: "offset-1 col-10 form-label pl-0" %>
+    </div>
+    <div class="row">
+      <%= f.text_field :title, required: true, autofocus: true, placeholder: "タイトルを記入してください", class: 'offset-1 col-10 form-control' %>
+    </div>
+
+    <div class="row mt-3">
+      <%= f.label :category_id, "カテゴリー", class: "offset-1 col-10 form-label pl-0" %>
+    </div>
+    <div class="row">
+      <!--f.保存したいカラム、テーブルのデータをallで全て取得し、mapで一つずつ｜｜に代入。：category_nameと:idに分ける。-->
+      <%= f.select :category_id, Category.all.map {|category| [category.category_name, category.id]}, {required: true, include_blank: "カテゴリーを選択してください"}, {class: "offset-1 col-10 form-control"} %>
+    </div>
+
+    <div class="row mt-3">
+      <%= f.label :question, "質問内容", class: "offset-1 col-10 form-label pl-0" %>
+    </div>
+    <div class="row">
+      <%= f.text_area :question, required: true, placeholder: "質問内容を記入してください", class: "offset-1 col-10 form-control" %>
+    </div>
+
+    <div class="row mt-5">
+      <%= f.submit "質問を編集する", class: "offset-4 col-4 btn btn-success" %>
+    </div>
+  <% end %>
+
+  <% if @question.supplemental_questions.exists? %>
+    <div class="row mt-2">
+      <h5 class="ml-5">質問補足内容</h5>
+    </div>
+  <% end %>
+
+  <div class="row mt-1">
+    <% @question.supplemental_questions.each do |supplemental_question| %>
+      <div class="offset-1 col-10 border border-dark mt-2">
+        <div class="row ml-1 mt-1">
+          <%= image_tag @question.end_user.get_profile_image(100,100) %>
+          <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
+            <%= @question.end_user.account_name %><br>
+            <%= I18n.l supplemental_question.created_at, format: :short_day %>
+          </p>
+        </div>
+        <div class="row">
+          <table class="table table-borderless offset-1 col-10">
+            <tbody>
+              <tr>
+                <td><%= safe_join(supplemental_question.supplemental_question.split("\n"), tag(:br)) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row mt-3">
+    <%= link_to "Q&A一覧画面に戻る", question_and_answers_path, method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
+
+</div>
+
