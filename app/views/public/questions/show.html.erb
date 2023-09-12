@@ -40,6 +40,10 @@
   </div>
 
   <div class="row mt-5">
+    <%= link_to "質問を編集する", edit_question_path(@question), method: :get, class: "offset-4 col-4 btn btn-primary" %>
+  </div>
+
+  <div class="row mt-3">
     <%= link_to "Q&A詳細画面へ", question_and_answer_path(@question), method: :get, class: "offset-4 col-4 btn btn-primary" %>
   </div>
 
