@@ -96,19 +96,9 @@
           </div>
           <div class="row">
             <div class="offset-1 col-10">
-              <% if answer.favorited_by?(current_end_user) %>
-                <p>
-                  <%= link_to answer_favorites_path(answer), method: :delete do %>
-                    ♥<%= answer.favorites.count %> いいね
-                  <% end %>
-                </p>
-                <% else %>
-                <p>
-                  <%= link_to answer_favorites_path(answer), method: :post do %>
-                    ♡<%= answer.favorites.count %> いいね
-                  <% end %>
-                </p>
-              <% end %>
+              <p id = "favorite_buttons_<%= answer.id %>">
+                <%= render "public/favorites/favorite", answer: answer %>
+              </p>
             </div>
           </div>
         </div>

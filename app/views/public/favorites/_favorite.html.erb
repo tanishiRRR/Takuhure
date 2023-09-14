@@ -1,0 +1,9 @@
+<% if answer.favorited_by?(current_end_user) %>
+  <%= link_to answer_favorites_path(answer), method: :delete, remote: true do %>
+    ♥<%= answer.favorites.count %> いいね
+  <% end %>
+<% else %>
+  <%= link_to answer_favorites_path(answer), method: :post, remote: true do %>
+    ♡<%= answer.favorites.count %> いいね
+  <% end %>
+<% end %>
