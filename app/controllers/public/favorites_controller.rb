@@ -6,17 +6,17 @@ class Public::FavoritesController < ApplicationController
   end
 
   def create
-    answer = Answer.find(params[:answer_id])
-    favorite = Favorite.new
-    favorite.end_user_id = current_end_user.id
-    favorite.answer_id = params[:answer_id]
+    @answer = Answer.find(params[:answer_id])
+    favorite = current_end_user.favorites.new(answer_id: @answer.id)
+    # favorite.end_user_id = current_end_user.id
+    # favorite.answer_id = params[:answer_id]
     favorite.save
     # redirect_to question_and_answer_path(answer.question.id)
   end
 
   def destroy
-    answer = Answer.find(params[:answer_id])
-    favorite = current_end_user.favorites.find_by(answer_id: answer.id)
+    @answer = Answer.find(params[:answer_id])
+    favorite = current_end_user.favorites.find_by(answer_id: @answer.id)
     favorite.destroy
     # redirect_to question_and_answer_path(answer.question.id)
   end
