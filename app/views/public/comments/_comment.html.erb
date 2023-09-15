@@ -1,0 +1,31 @@
+<div class="row">
+  <p>コメント件数：<%= answer.comments.count %></p>
+</div>
+<% answer.comments.each do |comment| %>
+  <div class="row">
+    <%= image_tag comment.end_user.get_profile_image(80,80) %>
+    <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
+      <%= comment.end_user.account_name %><br>
+      <%= I18n.l comment.created_at, format: :short_day %>
+    </p>
+  </div>
+  <div class="row">
+    <table class="table table-borderless offset-1 col-10 mb-0">
+      <tr>
+        <td><%= safe_join(comment.comment.split("\n"), tag(:br)) %></td>
+      </tr>
+    </table>
+  </div>
+<% end %>
+
+<%= form_with model: [answer, @comment], local: false do |f| %>
+<!--form_withに対して、[@answer,@comment]のように、配列でインスタンス変数を2つ指定している点に注意すること。
+コメントは、answerに結びついたcommentであるため、2つ用意する必要がある。
+また、commentをcreateするためのリクエストは、ルーティングもネスト（親子関係）しているため、上記2つの情報が必要になる。-->
+  <div class="row mt-3">
+    <%= f.text_area :comment, required: true, rows: "2", placeholder: "コメントはここへ", class: "col form-control" %>
+  </div>
+  <div class="row mt-3 mb-3">
+    <%= f.submit "コメントする", class: "offset-4 col-4 btn btn-success btn-sm" %>
+  </div>
+<% end %>

@@ -8,14 +8,20 @@ class Public::CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.new(comment_params)
-    comment.end_user_id = current_end_user.id
-    comment.answer_id = params[:answer_id]
+    answer = Answer.find(params[:answer_id])
+    comment = current_end_user.comments.new(comment_params)
+    comment.answer_id = answer.id
+    # comment.end_user_id = current_end_user.id
+    # comment.answer_id = params[:answer_id]
     if comment.save
-      redirect_to question_and_answer_path(comment.answer.question.id), success:'コメントを投稿しました'
+      flash.now[:success] = "コメントを投稿しました"
+      @answer = Answer.find(params[:answer_id])
+      @comment = Comment.new
+      # redirect_to question_and_answer_path(comment.answer.question.id), success:'コメントを投稿しました'
     else
-      answer = Answer.find(params[:answer_id])
-      redirect_to question_and_answer_path(answer.question.id), warning: '空のコメントは投稿できません'
+      flash.now[:warning] = "空のコメントは投稿できません"
+      # answer = Answer.find(params[:answer_id])
+      # redirect_to question_and_answer_path(answer.question.id), warning: '空のコメントは投稿できません'
     end
   end
 
