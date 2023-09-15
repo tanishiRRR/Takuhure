@@ -14,9 +14,9 @@ class Public::CommentsController < ApplicationController
     # comment.end_user_id = current_end_user.id
     # comment.answer_id = params[:answer_id]
     if comment.save
-      flash.now[:success] = "コメントを投稿しました"
       @answer = Answer.find(params[:answer_id])
       @comment = Comment.new
+      flash.now[:success] = "コメントを投稿しました"
       # redirect_to question_and_answer_path(comment.answer.question.id), success:'コメントを投稿しました'
     else
       flash.now[:warning] = "空のコメントは投稿できません"

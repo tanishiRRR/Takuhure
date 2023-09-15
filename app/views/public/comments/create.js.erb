@@ -1,1 +1,2 @@
 $("#comment_area_<%= @answer.id %>").html("<%=j(render 'public/comments/comment', answer: @answer)%>");
+$('#notice').html("<%= j(render "layouts/notice") %>");
