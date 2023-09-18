@@ -20,7 +20,6 @@ class Public::CommentsController < ApplicationController
       # redirect_to question_and_answer_path(comment.answer.question.id), success:'コメントを投稿しました'
     else
       flash.now[:warning] = "空のコメントは投稿できません"
-      
       # answer = Answer.find(params[:answer_id])
       # redirect_to question_and_answer_path(answer.question.id), warning: '空のコメントは投稿できません'
     end
