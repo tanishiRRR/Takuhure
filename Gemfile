@@ -64,7 +64,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'enum_help'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
 gem 'jquery-rails'
 # いいね非同期通信のため

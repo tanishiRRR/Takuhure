@@ -13,6 +13,7 @@ ja:
          email: "Email"
          account_name: "アカウント名"
          password: "パスワード"
+         password_confirmation: "パスワード（確認用）"
 
   time:
     formats:
