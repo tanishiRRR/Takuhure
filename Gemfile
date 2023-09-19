@@ -65,6 +65,7 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'enum_help'
 gem 'rails-i18n'
+gem 'devise-i18n'
 gem 'jquery-rails'
 # いいね非同期通信のため
 
