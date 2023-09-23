@@ -1,7 +1,8 @@
 ja:
   activerecord:
     attributes:
-      user:
+      # 今回のユーザーモデル名はEndUserなので、デフォルトの「user」から「end_user」に修正
+      end_user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
@@ -26,7 +27,7 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
     models:
-      user: ユーザー
+      end_user: 会員情報
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

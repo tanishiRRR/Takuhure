@@ -5,15 +5,16 @@ ja:
         learning: "学習中"
         pass: "合格"
 
-  activerecord:
-    models:
-      end_user: "会員情報"
-    attributes:
-       end_user:
-         email: "Email"
-         account_name: "アカウント名"
-         password: "パスワード"
-         password_confirmation: "パスワード（確認用）"
+  # devise.ja.ymlで設定したため削除
+  # activerecord:
+  #   models:
+  #     end_user: "会員情報"
+  #   attributes:
+  #     end_user:
+  #       email: "Email"
+  #       account_name: "アカウント名"
+  #       password: "パスワード"
+  #       password_confirmation: "パスワード（確認用）"
 
   time:
     formats:
