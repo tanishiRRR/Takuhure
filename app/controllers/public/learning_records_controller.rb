@@ -34,7 +34,8 @@ class Public::LearningRecordsController < ApplicationController
       if @learning_record.save
         redirect_to learning_record_path(params[:learning_record][:date]), success: '学習情報を保存しました'
       else
-        redirect_to learning_record_path(params[:learning_record][:date]), warning: '終了時間は、開始時間より遅い時間を入力してください'
+        # 「.join(' ')」をつけずに「~.errors.full_messages」のみの場合は、["エラー文"]の形で出力される。
+        redirect_to learning_record_path(params[:learning_record][:date]), warning: @learning_record.errors.full_messages.join(' ')
       end
     else
     # 打刻機能で学習記録を保存する場合

@@ -11,7 +11,7 @@ class LearningRecord < ApplicationRecord
 
   def do_not_registration_time
     if end_time.present?
-      errors.add('終了時間は、開始時間より遅い時間を入力してください') unless start_time < end_time
+      errors.add(:base, '終了時間は、開始時間より遅い時間を入力してください') unless start_time < end_time
     end
   end
 
