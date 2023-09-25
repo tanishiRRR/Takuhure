@@ -23,15 +23,6 @@ class LearningRecord < ApplicationRecord
     end
   end
 
-  # 重複時間の登録に対するバリデーション検討
-  # def do_not_registration_time
-  #   if start_time.present?
-  #     if LearningRecord.where("end_user_id=? and start_time < ? and end_time > ?", end_user_id,start_time,start_time).any?
-  #       errors.add(:start_time,'開始時間は既に学習時間に含まれています')
-  #     end
-  #   end
-  # end
-
   # 0時をまたぐ場合、日付を区切るための終了時間
   def self.punctuation_time_end(year, month, day)
     Time.zone.local(year, month, day, 23, 59, 59).to_time
