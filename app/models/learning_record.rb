@@ -10,10 +10,15 @@ class LearningRecord < ApplicationRecord
   validate :do_not_registration_time
 
   def do_not_registration_time
+    if start_time.present?
+      if LearningRecord.where("end_user_id = ? and start_time < ? and end_time > ?", end_user_id, start_time, start_time).any?
+        errors.add(:base, "開始時間は既に学習時間に含まれています")
+      end
+    end
     if end_time.present?
-      errors.add(:base, '終了時間は、開始時間より遅い時間を入力してください') unless start_time < end_time
+      errors.add(:base, "終了時間は、開始時間より遅い時間を入力してください") unless start_time < end_time
         if LearningRecord.where("end_user_id = ? and start_time < ? and end_time > ?", end_user_id, end_time, end_time).any?
-          errors.add(:base,'終了時間は既に学習時間に含まれています')
+          errors.add(:base,"終了時間は既に学習時間に含まれています")
         end
     end
   end
