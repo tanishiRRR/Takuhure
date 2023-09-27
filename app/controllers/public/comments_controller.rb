@@ -24,6 +24,10 @@ class Public::CommentsController < ApplicationController
       # redirect_to question_and_answer_path(answer.question.id), warning: '空のコメントは投稿できません'
     end
   end
+  
+  def edit
+    
+  end
 
   def destroy
     comment = Comment.find(params[:id])
