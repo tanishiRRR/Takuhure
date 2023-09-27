@@ -59,15 +59,22 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# rails newした後からアプリ名を変更するため
 gem 'rename'
+# 認証機能を実装するため
 gem 'devise'
+# ページネーションを実装するため
 gem 'kaminari'
+# kaminariとboostrap4を使ってページネーションをするため
 gem 'bootstrap4-kaminari-views'
+# 日本語表示されたセレクトボックスを作るため
 gem 'enum_help'
+# 日本語用の言語ファイルを使用するため
 gem 'rails-i18n', '~> 6.0'
+# deviseを日本語化するため
 gem 'devise-i18n'
+# いいね、コメント非同期通信のため
 gem 'jquery-rails'
-# いいね非同期通信のため
 
 gem 'rakuten_web_service'
 
