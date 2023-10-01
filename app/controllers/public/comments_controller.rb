@@ -29,14 +29,14 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  # def update
-  #   comment = Comment.find(params[:id])
-  #   if comment.update(comment_params)
+  def update
+    comment = Comment.find(params[:id])
+    if comment.update(comment_params)
 
-  #   else
+    else
 
-  #   end
-  # end
+    end
+  end
 
   def destroy
     comment = Comment.find(params[:id])
