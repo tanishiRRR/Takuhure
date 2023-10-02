@@ -32,7 +32,7 @@ class Public::CommentsController < ApplicationController
   def update
     comment = Comment.find(params[:id])
     if comment.update(comment_params)
-
+      flash.now[:success] = "コメントを編集しました"
     else
 
     end
