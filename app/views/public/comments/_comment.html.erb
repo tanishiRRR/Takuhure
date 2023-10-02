@@ -18,10 +18,10 @@
   </div>
 <% end %>
 
-<%= form_with model: [answer, @comment], local: false do |f| %>
+<%= form_with model: [answer, @comment], url: answer_comments_path(answer), local: false do |f| %>
 <!--form_withに対して、[@answer,@comment]のように、配列でインスタンス変数を2つ指定している点に注意すること。
 コメントは、answerに結びついたcommentであるため、2つ用意する必要がある。
-また、commentをcreateするためのリクエストは、ルーティングもネスト（親子関係）しているため、上記2つの情報が必要になる。-->
+また、commentをcreateするためのリクエストは、ルーティングもネスト（親子関係）しているため、answerとcommentの2つの情報が必要になる。-->
   <div class="row mt-3">
     <%= f.text_area :comment, required: true, rows: "2", placeholder: "コメントはここへ", class: "col form-control" %>
   </div>
