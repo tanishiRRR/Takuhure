@@ -34,7 +34,7 @@ class Public::CommentsController < ApplicationController
     if comment.update(comment_params)
       flash.now[:success] = "コメントを編集しました"
     else
-
+      flash.now[:warning] = "空のコメントは投稿できません"
     end
   end
 
