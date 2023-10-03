@@ -1,0 +1,2 @@
+$("#comment_area_<%= @answer.id %>").html("<%= j(render "public/comment/comment", answer: @answer)%>);
+$("#noatice").html("<%= j(render "public/shared/flash_message") %>");
