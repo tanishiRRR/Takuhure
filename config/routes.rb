@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
 
-    resources :comments, only: [:index, :destroy]
+    resources :comments, only: [:index, :edit, :update, :destroy]
     resources :favorites, only: [:index]
 
     patch 'learning_records' => 'learning_records#end_count'
