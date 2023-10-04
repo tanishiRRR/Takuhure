@@ -16,9 +16,11 @@
       </tr>
     </table>
   </div>
-  <div>
-    <%= link_to "編集する", edit_comment_path(comment), method: :get, remote: true, class: "offset-4  col-4 btn btn-primary btn-sm" %>
-  </div>
+  <% if comment.end_user.id == current_end_user.id %>
+    <div>
+      <%= link_to "編集する", edit_comment_path(comment), method: :get, remote: true, class: "offset-4  col-4 btn btn-primary btn-sm" %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= form_with model: [answer, @comment], url: answer_comments_path(answer), local: false do |f| %>
