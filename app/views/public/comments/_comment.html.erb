@@ -18,7 +18,8 @@
   </div>
   <% if comment.end_user.id == current_end_user.id %>
     <div>
-      <%= link_to "編集する", edit_comment_path(comment), method: :get, remote: true, class: "offset-4  col-4 btn btn-primary btn-sm" %>
+      <%= link_to "編集", edit_comment_path(comment), method: :get, remote: true, class: "offset-4 col-2 btn btn-primary btn-sm" %>
+      <%= link_to "削除", comment_path(comment), method: :delete, class: "col-2 btn btn-danger btn-sm" %>
     </div>
   <% end %>
 <% end %>
