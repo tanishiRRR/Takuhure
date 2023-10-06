@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
 
+    delete 'comments/destroy_ajax' => 'comments#destroy_ajax'
     resources :comments, only: [:index, :edit, :update, :destroy]
     resources :favorites, only: [:index]
 

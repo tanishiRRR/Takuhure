@@ -45,6 +45,15 @@ class Public::CommentsController < ApplicationController
     end
   end
 
+  # Q&A画面で非同期通信による削除を実装するためのコントローラー
+  def destroy_ajax
+    comment = Comment.find(params[:id])
+    if comment.destroy
+      flash.now[:success] = "コメントを削除しました"
+      @comment = Comment.new
+    end
+  end
+
   private
 
     def comment_params
