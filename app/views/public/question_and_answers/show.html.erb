@@ -107,6 +107,7 @@
 
       <div class="row mt-1">
         <div class="offset-2 col-8" id="comment_area_<%= answer.id %>">
+          <%= render "public/comments/comment_index", answer: answer, comment: @comment %>
           <%= render "public/comments/comment", answer: answer, comment: @comment %>
         </div>
       </div>
