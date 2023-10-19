@@ -1,3 +1,29 @@
+<div class="row">
+  <p>コメント件数：<%= answer.comments.count %></p>
+</div>
+<% answer.comments.each do |comment| %>
+  <div class="row">
+    <%= image_tag comment.end_user.get_profile_image(80,80) %>
+    <p class="d-flex align-items-center ml-3 mb-0" style="vertical-align:middle;">
+      <%= comment.end_user.account_name %><br>
+      <%= I18n.l comment.created_at, format: :short_day %>
+    </p>
+  </div>
+  <div class="row">
+    <table class="table table-borderless offset-1 col-10 mb-0">
+      <tr>
+        <td><%= safe_join(comment.comment.split("\n"), tag(:br)) %></td>
+      </tr>
+    </table>
+  </div>
+  <% if comment.end_user.id == current_end_user.id %>
+    <div>
+      <%= link_to "編集", edit_comment_path(comment), method: :get, remote: true, class: "offset-4 col-2 btn btn-primary btn-sm" %>
+      <%= link_to "削除", comments_destroy_ajax_path(comment), method: :delete, class: "col-2 btn btn-danger btn-sm" %>
+    </div>
+  <% end %>
+<% end %>
+
 <%= form_with model: [answer, @comment], url: answer_comments_path(answer), local: false do |f| %>
 <!--form_withに対して、[@answer,@comment]のように、配列でインスタンス変数を2つ指定している点に注意すること。
 コメントは、answerに結びついたcommentであるため、2つ用意する必要がある。
